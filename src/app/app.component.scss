@@ -1,0 +1,28 @@
+.flex{
+  display: flex;
+  height: 100%;
+}
+
+.menu{
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: right;
+}
+
+.content{
+  width: 100%;
+}
+
+.header {
+  width: 140px;
+  font-size: 30px;
+}
+
+.column{
+  flex-direction: column;
+}
+
+.left-menu {
+  border-right: solid 1px black;
+}
