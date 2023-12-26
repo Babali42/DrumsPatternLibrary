@@ -7,14 +7,18 @@ import { MetalComponent } from './pages/metal/metal.component';
 import { provideRouter } from '@angular/router';
 import { routes } from '../app.route';
 import { EbmComponent } from './pages/ebm/ebm.component';
+import {SequencerComponent} from "./components/sequencer/sequencer.component";
+import { GabberComponent } from './pages/gabber/gabber.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TechnoComponent,
-    MetalComponent,
-    EbmComponent
-  ],
+    declarations: [
+        AppComponent,
+        TechnoComponent,
+        MetalComponent,
+        EbmComponent,
+        SequencerComponent,
+        GabberComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule

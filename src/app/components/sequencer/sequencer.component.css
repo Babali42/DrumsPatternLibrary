@@ -1,0 +1,62 @@
+.drum {
+  background: #FF00A9;
+}
+
+.voice {
+  background: #A9FF00;
+}
+
+.synth {
+  background: #00A9FF;
+}
+
+.empty {
+  background: dimgrey;
+}
+
+.button {
+  height: 40px;
+  width: 40px;
+  background-color: #444;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.emoji-button{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.emoji{
+  font-size: 3vw;
+}
+
+.line{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.button-play{
+  height: 5vw;
+  border: solid 2px black;
+  background: yellow;
+  font-size: 3vw;
+  font-weight: bold;
+  margin: 1vw;
+}
+
+.playing{
+  background: yellow;
+}
+
+.sample-name{
+  text-align: center;
+  font-weight: bold;
+}
+
+.muted{
+  background: red;
+  color: white;
+}
