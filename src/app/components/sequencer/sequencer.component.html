@@ -1,18 +1,6 @@
-<div style="display: flex; justify-content: center; margin-right: 10vw">
-  <div style="flex: none;">
-    <div *ngFor="let beat of beats"
-         (mouseup)="mouseUpOnSequencer()"
-         style="display: flex; flex-direction: row; height: 4vw;">
-      <div style="overflow: hidden; width: 10vw;">
-        <div class="sample-name">{{beat.DisplayName}}</div>
-      </div>
-      <div *ngFor="let number of numbers">
-        <button class="button emoji-button"
-                [ngClass]="{'playing': isCellEnabled(number),'drum':true}"
-                (mousedown)="mouseDownOnSequencer(beat.FileName, number)"
-                (mouseenter)="mouseEnterOnButton(beat.FileName,number)">
-        </button>
-      </div>
-    </div>
+<!-- sequencer.component.html -->
+<div id="container">
+  <div id="sequencer">
+    <div *ngFor="let step of steps; let i = index" class="step" [class.active]="step"></div>
   </div>
 </div>

@@ -1,20 +1,21 @@
-.drum {
-  background: #FF00A9;
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  background-color: #282c34;
+  color: white;
 }
 
-.voice {
-  background: #A9FF00;
+#sequencer {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 4px;
 }
 
-.synth {
-  background: #00A9FF;
-}
-
-.empty {
-  background: dimgrey;
-}
-
-.button {
+.step {
   height: 40px;
   width: 40px;
   background-color: #444;
@@ -22,41 +23,6 @@
   cursor: pointer;
 }
 
-.emoji-button{
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.emoji{
-  font-size: 3vw;
-}
-
-.line{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.button-play{
-  height: 5vw;
-  border: solid 2px black;
-  background: yellow;
-  font-size: 3vw;
-  font-weight: bold;
-  margin: 1vw;
-}
-
-.playing{
-  background: yellow;
-}
-
-.sample-name{
-  text-align: center;
-  font-weight: bold;
-}
-
-.muted{
-  background: red;
-  color: white;
+.active {
+  background-color: #61dafb; /* Light blue color */
 }
