@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'sequencer',
@@ -6,14 +7,22 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./sequencer.component.css']
 })
 export class SequencerComponent implements OnInit {
-
   steps: boolean[] = [];
+  name: string = "";
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    let myJSON = '["X", " ", " ", " ","X", " ", " ", " ", "X", " ", " ", " ", "X", " ", " ", " "]';
-    let myArray : string[] = JSON.parse(myJSON);
-    this.steps = myArray
-      .map(x => x.trim())
-      .map(x => Boolean(x));
+    this.dataService.getData().subscribe((result : track) => {
+      this.name = result.name;
+      this.steps = result.steps
+        .map(x => x.trim())
+        .map(x => Boolean(x));
+    });
   }
+}
+
+export interface track {
+  name: string
+  steps: string[]
 }
