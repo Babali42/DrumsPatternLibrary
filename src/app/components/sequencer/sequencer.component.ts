@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
+import {track} from "./../../models/track";
 
 @Component({
   selector: 'sequencer',
@@ -22,7 +23,3 @@ export class SequencerComponent implements OnInit {
   }
 }
 
-export interface track {
-  name: string
-  steps: string[]
-}

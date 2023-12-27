@@ -1,9 +1,2 @@
-<!-- sequencer.component.html -->
-<div id="container">
-  <div>
-    <div>{{this.name}}</div>
-  </div>
-  <div id="sequencer">
-    <div *ngFor="let step of steps; let i = index" class="step" [class.active]="step"></div>
-  </div>
-</div>
+<app-track [name]="this.name" [steps]="this.steps"></app-track>
+<app-track name="fsdqfqsdfqsd" [steps]="this.steps"></app-track>
