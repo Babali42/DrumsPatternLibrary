@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {track} from "../../../../models/track";
 
 @Component({
   selector: 'app-track',
@@ -6,13 +7,18 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./track.component.scss']
 })
 export class TrackComponent implements OnInit {
+  @Input() track: track = {name: "", steps: []};
+  steps: boolean[] = [];
+  name: string = "";
 
-  @Input() name: string = "";
-  @Input() steps: boolean[] = [];
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.name = this.track.name;
+    this.steps = this.track.steps
+      .map(x => x.trim())
+      .map(x => Boolean(x));
   }
 
 }

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
-import {track} from "./../../models/track";
+import {Beat} from "../../models/beat";
 
 @Component({
   selector: 'sequencer',
@@ -8,17 +8,16 @@ import {track} from "./../../models/track";
   styleUrls: ['./sequencer.component.css']
 })
 export class SequencerComponent implements OnInit {
-  steps: boolean[] = [];
-  name: string = "";
 
-  constructor(private dataService: DataService) { }
+  @Input() fileName: string = "";
+  beat: Beat = {name: "", tracks: []};
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit(): void {
-    this.dataService.getData().subscribe((result : track) => {
-      this.name = result.name;
-      this.steps = result.steps
-        .map(x => x.trim())
-        .map(x => Boolean(x));
+    this.dataService.getData(this.fileName).subscribe((result: Beat) => {
+      this.beat = result;
     });
   }
 }

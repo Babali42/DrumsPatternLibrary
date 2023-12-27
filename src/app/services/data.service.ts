@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'assets/kick.json'; // Adjust the path to your JSON file
+  private apiUrl = 'assets/';
+  private fileExtension = '.json';
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getData(fileName: string): Observable<any> {
+    return this.http.get(this.apiUrl + fileName + this.fileExtension);
   }
 }

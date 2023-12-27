@@ -1,2 +1,3 @@
-<app-track [name]="this.name" [steps]="this.steps"></app-track>
-<app-track name="fsdqfqsdfqsd" [steps]="this.steps"></app-track>
+<div *ngFor="let track of beat.tracks">
+  <app-track [track]="track"></app-track>
+</div>
