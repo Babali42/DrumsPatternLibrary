@@ -12,6 +12,8 @@ import {GabberComponent} from './pages/gabber/gabber.component';
 import {HttpClientModule} from "@angular/common/http";
 import { TrackComponent } from './components/sequencer/track/track.component';
 import { RockComponent } from './pages/rock/rock.component';
+import { RockVariationComponent } from './pages/rock-variation/rock-variation.component';
+import { HalfTimeGrooveComponent } from './pages/half-time-groove/half-time-groove.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { RockComponent } from './pages/rock/rock.component';
     SequencerComponent,
     GabberComponent,
     TrackComponent,
-    RockComponent
+    RockComponent,
+    RockVariationComponent,
+    HalfTimeGrooveComponent
   ],
   imports: [
     BrowserModule,
