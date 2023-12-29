@@ -20,6 +20,7 @@ export class SequencerComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getData(this.fileName).subscribe((result: JsonBeat) => {
       this.beat = Convert.toBeat(result);
+      this.soundService.reset();
       this.soundService.setBpm(this.beat.bpm);
       this.soundService.setTracks(this.beat.tracks);
     });

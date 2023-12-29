@@ -5,7 +5,7 @@ export class Track {
     this.steps = steps;
   }
 
-  name: string = "";
-  fileName: string = "";
-  steps: boolean[] = [];
+  name: string;
+  fileName: string;
+  steps: boolean[];
 }

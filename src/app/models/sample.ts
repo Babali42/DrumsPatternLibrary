@@ -1,8 +1,8 @@
 export class Sample {
-  public FileName: string;
-  public Sample: AudioBuffer | undefined;
+  public fileName: string;
+  public sample: AudioBuffer | undefined;
 
   constructor(fileName: string) {
-    this.FileName = fileName;
+    this.fileName = fileName;
   }
 }

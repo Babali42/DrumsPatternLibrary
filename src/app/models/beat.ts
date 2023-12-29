@@ -7,7 +7,7 @@ export class Beat{
     this.tracks = tracks;
   }
 
-  name: string = "";
-  bpm: number = 120;
-  tracks: Track[] = [];
+  name: string;
+  bpm: number;
+  tracks: Track[];
 }
