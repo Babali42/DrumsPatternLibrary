@@ -1,6 +1,7 @@
 import {track} from "./track";
 
-export interface Beat {
-  name: string;
-  tracks: track[];
+export class Beat {
+  name: string = "";
+  tempo: number = 120;
+  tracks: track[] = [];
 }

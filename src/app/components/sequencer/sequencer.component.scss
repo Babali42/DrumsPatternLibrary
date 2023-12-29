@@ -1,0 +1,40 @@
+@import "../../styles/styles";
+
+.play-pause-button {
+  height: 40px;
+  width: 40px;
+  min-width: 40px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  border: solid 2px black;
+  font-size: 20px;
+}
+
+.sequencer-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.sequencer-header{
+  display: flex;
+}
+
+.space {
+  width: 60px;
+  min-width: 60px;
+}
+
+.sequencer {
+  display: flex;
+  flex-direction: column;
+}
+
+.beat-name {
+  height: 40px;
+  @include centered-text;
+  width: 120px;
+  min-width: 120px;
+  font-size: 20px;
+}

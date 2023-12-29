@@ -1,7 +1,7 @@
+@import "../../../../styles/styles";
+
 #track-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 4px 0 0 0;
 }
 
@@ -26,5 +26,9 @@
 }
 
 .track-name {
-  width: 60px;
+  text-align: end;
+  height: 40px;
+  width: 50px;
+  min-width: 50px;
+  margin-right: 10px;
 }
