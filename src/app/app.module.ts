@@ -11,6 +11,7 @@ import {SequencerComponent} from "./components/sequencer/sequencer.component";
 import {GabberComponent} from './pages/gabber/gabber.component';
 import {HttpClientModule} from "@angular/common/http";
 import { TrackComponent } from './components/sequencer/track/track.component';
+import { RockComponent } from './pages/rock/rock.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TrackComponent } from './components/sequencer/track/track.component';
     EbmComponent,
     SequencerComponent,
     GabberComponent,
-    TrackComponent
+    TrackComponent,
+    RockComponent
   ],
   imports: [
     BrowserModule,
