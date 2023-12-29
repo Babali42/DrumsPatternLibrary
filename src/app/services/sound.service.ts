@@ -8,11 +8,12 @@ import {Track} from "../models/track";
 export class SoundService {
   index: number;
   bpm: number = 120;
-  ms: number = this.getMillisStepFromBpm();
   isPlaying: boolean = false;
+
   private samples: Sample[] = [];
   private audioCtx: AudioContext;
   private tracks: Track[] = [];
+  private ms: number = this.getMillisStepFromBpm();
 
   constructor() {
     this.audioCtx = new AudioContext();
@@ -81,7 +82,6 @@ export class SoundService {
     this.samples.forEach((sample) => {
       this.getAudioBuffer(sample.fileName).then(arrayBuffer => {
         sample.sample = arrayBuffer;
-        console.log(sample.sample);
       });
     });
   }
