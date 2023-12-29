@@ -1,18 +1,21 @@
 {
-  "name": "techno",
-  "bpm": 128,
+  "name": "metal",
+  "bpm": 180,
   "tracks": [
     {
       "name": "Snare",
+      "fileName": "techno/kick.mp3",
       "steps": [" ", " ", " ", " ", "X", " ", " ", " ", " ", " ", " ", " ", "X", " ", " ", " "]
     },
     {
       "name": "Hats",
+      "fileName": "techno/kick.mp3",
       "steps": ["X", " ", "X", " ", "X", " ", "X", " ", "X", " ", "X", " ", "X", " ", "X", " "]
     },
     {
       "name": "Kick",
-      "steps": ["X", " ", " ", " ", "X", " ", " ", " ", "X", " ", " ", " ", "X", " ", " ", " "]
+      "fileName": "techno/kick.mp3",
+      "steps": ["X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"]
     }
   ]
 }
