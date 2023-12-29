@@ -1,6 +1,6 @@
 {
   "name": "techno",
-  "tempo": 128,
+  "bpm": 128,
   "tracks": [
     {
       "name": "Snare",

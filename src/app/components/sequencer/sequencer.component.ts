@@ -13,17 +13,14 @@ export class SequencerComponent implements OnInit {
   @Input() fileName: string = "";
   beat: Beat = new Beat();
 
-  constructor(private dataService: DataService, private soundService: SoundService) {
+  constructor(private dataService: DataService, public soundService: SoundService) {
   }
 
   ngOnInit(): void {
     this.dataService.getData(this.fileName).subscribe((result: Beat) => {
       this.beat = result;
+      this.soundService.setBpm(this.beat.bpm);
     });
-  }
-
-  getIsPlaying(): boolean{
-    return this.soundService.isPlaying;
   }
 
   toggleIsPlaying(): void{

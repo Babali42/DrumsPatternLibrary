@@ -10,7 +10,7 @@ import {EbmComponent} from './pages/ebm/ebm.component';
 import {SequencerComponent} from "./components/sequencer/sequencer.component";
 import {GabberComponent} from './pages/gabber/gabber.component';
 import {HttpClientModule} from "@angular/common/http";
-import { TrackComponent } from './components/sequencer/track/track/track.component';
+import { TrackComponent } from './components/sequencer/track/track.component';
 
 @NgModule({
   declarations: [

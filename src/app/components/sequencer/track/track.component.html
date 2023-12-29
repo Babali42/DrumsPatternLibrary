@@ -1,0 +1,8 @@
+<div id="track-container">
+  <div class="track-name">
+    <div>{{ this.name }}</div>
+  </div>
+  <div id="track">
+    <div *ngFor="let step of steps; let i = index" class="step" [class.active]="step" [class.current]="i === this.currentStepIndex"></div>
+  </div>
+</div>

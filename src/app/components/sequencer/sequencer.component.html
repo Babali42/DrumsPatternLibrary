@@ -1,15 +1,15 @@
 <div class="sequencer">
   <div class="sequencer-header">
     <div class="space"></div>
-    <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.getIsPlaying() ? "⏸" : "▶" }}</button>
+    <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
     <div class="space"></div>
     <div class="beat-name">{{beat.name | titlecase}}</div>
     <div class="space"></div>
-    <div class="beat-name">{{beat.tempo}} bpm</div>
+    <div class="beat-name">{{beat.bpm}} bpm</div>
   </div>
   <div class="sequencer-grid">
     <div *ngFor="let track of beat.tracks">
-      <app-track [track]="track"></app-track>
+      <app-track [track]="track" [current-step-index]="this.soundService.index"></app-track>
     </div>
   </div>
 </div>

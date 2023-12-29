@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {track} from "../../../../models/track";
+import {track} from "../../../models/track";
 
 @Component({
   selector: 'app-track',
@@ -7,7 +7,10 @@ import {track} from "../../../../models/track";
   styleUrls: ['./track.component.scss']
 })
 export class TrackComponent implements OnInit {
+
   @Input() track: track = {name: "", steps: []};
+  @Input('current-step-index') currentStepIndex: number = 0;
+
   steps: boolean[] = [];
   name: string = "";
 
@@ -20,5 +23,4 @@ export class TrackComponent implements OnInit {
       .map(x => x.trim())
       .map(x => Boolean(x));
   }
-
 }
