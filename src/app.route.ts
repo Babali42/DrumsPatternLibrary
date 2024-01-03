@@ -6,6 +6,7 @@ import {RockComponent} from "./app/pages/rock/rock.component";
 import {RockVariationComponent} from "./app/pages/rock-variation/rock-variation.component";
 import {HalfTimeGrooveComponent} from "./app/pages/half-time-groove/half-time-groove.component";
 import {DrumNBassComponent} from "./app/pages/drum-n-bass/drum-n-bass/drum-n-bass.component";
+import {GarageComponent} from "./app/pages/garage/garage/garage.component";
 
 export const routes = [{path: 'techno', component: TechnoComponent},
   {path: 'metal', component: MetalComponent},
@@ -13,5 +14,6 @@ export const routes = [{path: 'techno', component: TechnoComponent},
   {path: 'rock-variation', component: RockVariationComponent},
   {path: 'half-time-groove', component: HalfTimeGrooveComponent},
   {path: 'drum-n-bass', component: DrumNBassComponent},
+  {path: 'garage', component: GarageComponent},
   {path: 'gabber', component: GabberComponent},
   {path: 'ebm', component: EbmComponent},];
