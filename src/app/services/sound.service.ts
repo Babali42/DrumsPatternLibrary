@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {Sample} from "../models/sample";
-import {Track} from "../models/track";
+import {Injectable} from '@angular/core';
+import {Sample} from '../models/sample';
+import {Track} from '../models/track';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class SoundService {
   }
 
   scheduler() {
-    if(this.isPlaying){
+    if (this.isPlaying) {
       this.playSamples(this.index);
       this.index < 15 ? this.index++ : this.index = 0;
     }
@@ -44,7 +44,7 @@ export class SoundService {
     return quaterBeat;
   }
 
-  playSamples(index : number) {
+  playSamples(index: number) {
     this.tracks.forEach(track => {
       if (track.steps[index]) {
         this.playSound(this.samples.find(x => x.fileName === track.fileName)!.sample!);
@@ -60,13 +60,12 @@ export class SoundService {
   }
 
 
-
   reset(): void {
     this.isPlaying = false;
     this.index = 0;
   }
 
-  setBpm(bpm: number) : void {
+  setBpm(bpm: number): void {
     this.bpm = bpm;
     this.ms = this.getMillisStepFromBpm();
   }
@@ -90,6 +89,8 @@ export class SoundService {
     let myRequest = new Request(`assets/sounds/${soundName}`);
     const response = await fetch(myRequest);
     const arrayBuffer = await response.arrayBuffer();
-    return await this.audioCtx.decodeAudioData(arrayBuffer).then((data) => { return data });
+    return await this.audioCtx.decodeAudioData(arrayBuffer).then((data) => {
+      return data
+    });
   }
 }

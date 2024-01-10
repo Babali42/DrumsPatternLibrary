@@ -21,10 +21,6 @@
   border: solid 1px black;
 }
 
-.active {
-  background-color: #003b8f; /* Light blue color */
-}
-
 .track-name {
   text-align: end;
   height: 40px;
@@ -34,5 +30,13 @@
 }
 
 .current {
-  filter: invert(15%) saturate(10%);
+  background-color: #D6D6D6;
+}
+
+.active {
+  background-color: #003b8f;
+
+  &.current {
+    background-color: #464A50;
+  }
 }

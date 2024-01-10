@@ -16,6 +16,7 @@ import { RockVariationComponent } from './pages/rock-variation/rock-variation.co
 import { HalfTimeGrooveComponent } from './pages/half-time-groove/half-time-groove.component';
 import { DrumNBassComponent } from './pages/drum-n-bass/drum-n-bass/drum-n-bass.component';
 import { GarageComponent } from './pages/garage/garage/garage.component';
+import { PsytranceComponent } from './pages/psytrance/psytrance/psytrance.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { GarageComponent } from './pages/garage/garage/garage.component';
     RockVariationComponent,
     HalfTimeGrooveComponent,
     DrumNBassComponent,
-    GarageComponent
+    GarageComponent,
+    PsytranceComponent
   ],
   imports: [
     BrowserModule,
