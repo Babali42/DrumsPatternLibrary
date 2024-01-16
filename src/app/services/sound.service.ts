@@ -14,6 +14,7 @@ export class SoundService {
   private tracks: Track[] = [];
   private ms: number = this.getMillisStepFromBpm();
   private cursor = 0;
+  private playbackSource: AudioBufferSourceNode | null  = null;
 
   constructor() {
     this.context = new AudioContext();
@@ -25,6 +26,9 @@ export class SoundService {
     if (this.isPlaying) {
       var loopBuffer = await this.getRenderedBuffer();
       this.playSound(loopBuffer);
+    }else {
+      // @ts-ignore
+      this.playbackSource.stop(this.context.currentTime);
     }
   }
 
@@ -34,10 +38,10 @@ export class SoundService {
     source.connect(this.context.destination);
     source.loop = true;
     source.start(this.context.currentTime, this.cursor * this.getTickLength());
-    // if ($scope.playbackSource) {
-    //   $scope.playbackSource.stop($scope.context.currentTime);
-    // }
-    // $scope.playbackSource = source;
+    if (this.playbackSource) {
+      this.playbackSource.stop(this.context.currentTime);
+    }
+    this.playbackSource = source;
   }
 
   private getMillisStepFromBpm(): number {
