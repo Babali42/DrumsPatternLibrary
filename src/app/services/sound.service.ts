@@ -6,34 +6,42 @@ import {Track} from '../models/track';
   providedIn: 'root'
 })
 export class SoundService {
-  index: number;
   bpm: number = 120;
   isPlaying: boolean = false;
 
   private samples: Sample[] = [];
-  private audioCtx: AudioContext;
+  private context: AudioContext;
   private tracks: Track[] = [];
   private ms: number = this.getMillisStepFromBpm();
+  private cursor = 0;
+  private playbackSource: AudioBufferSourceNode | null  = null;
 
   constructor() {
-    this.audioCtx = new AudioContext();
-    this.index = 0;
-    this.scheduler();
+    this.context = new AudioContext();
+    this.cursor = 0;
   }
 
-  playPause() {
+  async playPause() {
     this.isPlaying = !this.isPlaying;
+    if (this.isPlaying) {
+      var loopBuffer = await this.getRenderedBuffer();
+      this.playSound(loopBuffer);
+    }else {
+      // @ts-ignore
+      this.playbackSource.stop(this.context.currentTime);
+    }
   }
 
-  scheduler() {
-    if (this.isPlaying) {
-      this.playSamples(this.index);
-      this.index < 15 ? this.index++ : this.index = 0;
+  private playSound(loopBuffer: AudioBuffer) {
+    var source = this.context.createBufferSource();
+    source.buffer = loopBuffer;
+    source.connect(this.context.destination);
+    source.loop = true;
+    source.start(this.context.currentTime, this.cursor * this.getTickLength());
+    if (this.playbackSource) {
+      this.playbackSource.stop(this.context.currentTime);
     }
-
-    setTimeout(() => {
-      this.scheduler();
-    }, this.ms);
+    this.playbackSource = source;
   }
 
   private getMillisStepFromBpm(): number {
@@ -44,25 +52,33 @@ export class SoundService {
     return quaterBeat;
   }
 
-  playSamples(index: number) {
-    this.tracks.forEach(track => {
-      if (track.steps[index]) {
-        this.playSound(this.samples.find(x => x.fileName === track.fileName)!.sample!);
-      }
-    });
-  }
+  async getRenderedBuffer() {
+    var tickLength = this.getTickLength();
+    var offlineContext = new OfflineAudioContext(1, 16 * tickLength * 44100, 44100);
 
-  playSound(buffer: AudioBuffer): void {
-    let source = this.audioCtx.createBufferSource();
-    source.buffer = buffer;
-    source.connect(this.audioCtx.destination);
-    source.start(0);
+    this.tracks.forEach((track: Track) => {
+      track.steps.forEach((beat: boolean, i: number) => {
+        if (beat) {
+          let audioBuffer = this.samples.find(x => x.fileName === track.fileName)!.sample!;
+          let audioBufferSourceNode = offlineContext.createBufferSource();
+          audioBufferSourceNode.buffer = audioBuffer;
+          audioBufferSourceNode.connect(offlineContext.destination);
+
+          var when = i * tickLength;
+          audioBufferSourceNode.start(when);
+        }
+      });
+    });
+
+    offlineContext.oncomplete = (event: OfflineAudioCompletionEvent) => {
+      return event.renderedBuffer;
+    }
+    return await offlineContext.startRendering();
   }
 
 
   reset(): void {
     this.isPlaying = false;
-    this.index = 0;
   }
 
   setBpm(bpm: number): void {
@@ -89,8 +105,12 @@ export class SoundService {
     let myRequest = new Request(`assets/sounds/${soundName}`);
     const response = await fetch(myRequest);
     const arrayBuffer = await response.arrayBuffer();
-    return await this.audioCtx.decodeAudioData(arrayBuffer).then((data) => {
+    return await this.context.decodeAudioData(arrayBuffer).then((data) => {
       return data
     });
   }
+
+  private getTickLength() {
+    return 60 / this.bpm / 4;
+  };
 }
