@@ -11,12 +11,12 @@ export class SoundService {
   isPlaying: boolean = false;
 
   private samples: Sample[] = [];
-  private audioCtx: AudioContext;
+  private audioContext: AudioContext;
   private tracks: Track[] = [];
   private ms: number = this.getMillisStepFromBpm();
 
   constructor() {
-    this.audioCtx = new AudioContext();
+    this.audioContext = new AudioContext();
     this.index = 0;
     this.scheduler();
   }
@@ -28,7 +28,7 @@ export class SoundService {
   scheduler() {
     if (this.isPlaying) {
       this.playSamples(this.index);
-      this.index < 15 ? this.index++ : this.index = 0;
+      //this.index < 15 ? this.index++ : this.index = 0;
     }
 
     setTimeout(() => {
@@ -45,17 +45,49 @@ export class SoundService {
   }
 
   playSamples(index: number) {
+    let recordingBuffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate * 10, this.audioContext.sampleRate);
+    const offlineContext = new OfflineAudioContext(2, recordingBuffer.length, recordingBuffer.sampleRate);
+
+
+    let channelMerger = this.audioContext.createChannelMerger(this.tracks.length);
+
     this.tracks.forEach(track => {
-      if (track.steps[index]) {
-        this.playSound(this.samples.find(x => x.fileName === track.fileName)!.sample!);
-      }
+      //if (track.steps[index]) {
+        let audioBuffer =  this.samples.find(x => x.fileName === track.fileName)!.sample!;
+        let audioBufferSourceNode = this.audioContext.createBufferSource();
+        audioBufferSourceNode.buffer = audioBuffer;
+        let gain = this.audioContext.createGain();
+        audioBufferSourceNode.connect(gain);
+        gain.connect(channelMerger, 0, 0);
+
+      // Create a final gain node to control the overall volume
+      const masterGain = this.audioContext.createGain();
+      channelMerger.connect(masterGain);
+
+      // Connect the master gain to the recording buffer
+      masterGain.connect(offlineContext.destination);
+
+        audioBufferSourceNode.start();
+        setTimeout(() => {
+          audioBufferSourceNode.stop();
+        }, 7000);
+      //}
+
+
     });
+
+      // Get an AudioBufferSourceNode.
+      // This is the AudioNode to use when we want to play an AudioBuffer
+      const source = this.audioContext.createBufferSource();
+      source.buffer = recordingBuffer;
+      source.connect(this.audioContext.destination);
+      source.start();
   }
 
   playSound(buffer: AudioBuffer): void {
-    let source = this.audioCtx.createBufferSource();
+    let source = this.audioContext.createBufferSource();
     source.buffer = buffer;
-    source.connect(this.audioCtx.destination);
+    source.connect(this.audioContext.destination);
     source.start(0);
   }
 
@@ -89,7 +121,7 @@ export class SoundService {
     let myRequest = new Request(`assets/sounds/${soundName}`);
     const response = await fetch(myRequest);
     const arrayBuffer = await response.arrayBuffer();
-    return await this.audioCtx.decodeAudioData(arrayBuffer).then((data) => {
+    return await this.audioContext.decodeAudioData(arrayBuffer).then((data) => {
       return data
     });
   }
