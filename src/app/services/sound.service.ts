@@ -6,34 +6,38 @@ import {Track} from '../models/track';
   providedIn: 'root'
 })
 export class SoundService {
-  index: number;
   bpm: number = 120;
   isPlaying: boolean = false;
 
   private samples: Sample[] = [];
-  private audioContext: AudioContext;
+  private context: AudioContext;
   private tracks: Track[] = [];
   private ms: number = this.getMillisStepFromBpm();
+  private cursor = 0;
 
   constructor() {
-    this.audioContext = new AudioContext();
-    this.index = 0;
-    this.scheduler();
+    this.context = new AudioContext();
+    this.cursor = 0;
   }
 
-  playPause() {
+  async playPause() {
     this.isPlaying = !this.isPlaying;
+    if (this.isPlaying) {
+      var loopBuffer = await this.getRenderedBuffer();
+      this.playSound(loopBuffer);
+    }
   }
 
-  scheduler() {
-    if (this.isPlaying) {
-      this.playSamples(this.index);
-      //this.index < 15 ? this.index++ : this.index = 0;
-    }
-
-    setTimeout(() => {
-      this.scheduler();
-    }, this.ms);
+  private playSound(loopBuffer: AudioBuffer) {
+    var source = this.context.createBufferSource();
+    source.buffer = loopBuffer;
+    source.connect(this.context.destination);
+    source.loop = true;
+    source.start(this.context.currentTime, this.cursor * this.getTickLength());
+    // if ($scope.playbackSource) {
+    //   $scope.playbackSource.stop($scope.context.currentTime);
+    // }
+    // $scope.playbackSource = source;
   }
 
   private getMillisStepFromBpm(): number {
@@ -44,57 +48,33 @@ export class SoundService {
     return quaterBeat;
   }
 
-  playSamples(index: number) {
-    let recordingBuffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate * 10, this.audioContext.sampleRate);
-    const offlineContext = new OfflineAudioContext(2, recordingBuffer.length, recordingBuffer.sampleRate);
+  async getRenderedBuffer() {
+    var tickLength = this.getTickLength();
+    var offlineContext = new OfflineAudioContext(1, 16 * tickLength * 44100, 44100);
 
+    this.tracks.forEach((track: Track) => {
+      track.steps.forEach((beat: boolean, i: number) => {
+        if (beat) {
+          let audioBuffer = this.samples.find(x => x.fileName === track.fileName)!.sample!;
+          let audioBufferSourceNode = offlineContext.createBufferSource();
+          audioBufferSourceNode.buffer = audioBuffer;
+          audioBufferSourceNode.connect(offlineContext.destination);
 
-    let channelMerger = this.audioContext.createChannelMerger(this.tracks.length);
-
-    this.tracks.forEach(track => {
-      //if (track.steps[index]) {
-        let audioBuffer =  this.samples.find(x => x.fileName === track.fileName)!.sample!;
-        let audioBufferSourceNode = this.audioContext.createBufferSource();
-        audioBufferSourceNode.buffer = audioBuffer;
-        let gain = this.audioContext.createGain();
-        audioBufferSourceNode.connect(gain);
-        gain.connect(channelMerger, 0, 0);
-
-      // Create a final gain node to control the overall volume
-      const masterGain = this.audioContext.createGain();
-      channelMerger.connect(masterGain);
-
-      // Connect the master gain to the recording buffer
-      masterGain.connect(offlineContext.destination);
-
-        audioBufferSourceNode.start();
-        setTimeout(() => {
-          audioBufferSourceNode.stop();
-        }, 7000);
-      //}
-
-
+          var when = i * tickLength;
+          audioBufferSourceNode.start(when);
+        }
+      });
     });
 
-      // Get an AudioBufferSourceNode.
-      // This is the AudioNode to use when we want to play an AudioBuffer
-      const source = this.audioContext.createBufferSource();
-      source.buffer = recordingBuffer;
-      source.connect(this.audioContext.destination);
-      source.start();
-  }
-
-  playSound(buffer: AudioBuffer): void {
-    let source = this.audioContext.createBufferSource();
-    source.buffer = buffer;
-    source.connect(this.audioContext.destination);
-    source.start(0);
+    offlineContext.oncomplete = (event: OfflineAudioCompletionEvent) => {
+      return event.renderedBuffer;
+    }
+    return await offlineContext.startRendering();
   }
 
 
   reset(): void {
     this.isPlaying = false;
-    this.index = 0;
   }
 
   setBpm(bpm: number): void {
@@ -121,8 +101,12 @@ export class SoundService {
     let myRequest = new Request(`assets/sounds/${soundName}`);
     const response = await fetch(myRequest);
     const arrayBuffer = await response.arrayBuffer();
-    return await this.audioContext.decodeAudioData(arrayBuffer).then((data) => {
+    return await this.context.decodeAudioData(arrayBuffer).then((data) => {
       return data
     });
   }
+
+  private getTickLength() {
+    return 60 / this.bpm / 4;
+  };
 }
