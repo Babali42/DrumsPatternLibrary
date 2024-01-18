@@ -27,7 +27,11 @@ export class SequencerComponent implements OnInit {
   }
 
   toggleIsPlaying(): void{
-    this.soundService.playPause().then(() => {});
+    this.soundService.playPause().then(() => {})
+      .catch(error => {
+        // Handle errors here
+        console.error('Error:', error);
+      });
   }
 }
 

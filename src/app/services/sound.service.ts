@@ -95,7 +95,11 @@ export class SoundService {
   private loadTracks(trackNames: string[]) {
     trackNames.forEach(x => this.samples.push(new Sample(x)))
     for (const sample of this.samples) {
-      this.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer).then(() => {});
+      this.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
+        .then(() => {})
+        .catch(error => {
+          console.error('Error:', error);
+        });
     }
   }
 
