@@ -10,12 +10,12 @@ export interface JsonBeat {
 
 export class Convert{
   public static toBeat(jsonBeat: JsonBeat): Beat{
-    let tracks = jsonBeat.tracks.map(x => Convert.toTrack(x));
+    const tracks = jsonBeat.tracks.map(x => Convert.toTrack(x));
     return new Beat(jsonBeat.name, jsonBeat.bpm, tracks);
   }
 
   private static toTrack(jsonTrack: JsonTrack): Track {
-    let steps = jsonTrack.steps
+    const steps = jsonTrack.steps
       .map(x => x.trim())
       .map(x => Boolean(x));
     return new Track(jsonTrack.name, jsonTrack.fileName, steps);

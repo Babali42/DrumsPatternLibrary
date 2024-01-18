@@ -27,7 +27,7 @@ export class SequencerComponent implements OnInit {
   }
 
   toggleIsPlaying(): void{
-    this.soundService.playPause();
+    this.soundService.playPause().then();
   }
 }
 
