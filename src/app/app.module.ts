@@ -6,9 +6,7 @@ import {TechnoComponent} from './pages/techno/techno.component';
 import {MetalComponent} from './pages/metal/metal.component';
 import {provideRouter} from '@angular/router';
 import {routes} from '../app.route';
-import {EbmComponent} from './pages/ebm/ebm.component';
 import {SequencerComponent} from "./components/sequencer/sequencer.component";
-import {GabberComponent} from './pages/gabber/gabber.component';
 import {HttpClientModule} from "@angular/common/http";
 import { TrackComponent } from './components/sequencer/track/track.component';
 import { RockComponent } from './pages/rock/rock.component';
@@ -23,9 +21,7 @@ import { PsytranceComponent } from './pages/psytrance/psytrance/psytrance.compon
     AppComponent,
     TechnoComponent,
     MetalComponent,
-    EbmComponent,
     SequencerComponent,
-    GabberComponent,
     TrackComponent,
     RockComponent,
     RockVariationComponent,
