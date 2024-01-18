@@ -22,7 +22,7 @@ export class SoundService {
     this.playbackSource = new AudioBufferSourceNode(this.context);
   }
 
-  async playPause() {
+  async playPause() : Promise<void> {
     this.isPlaying = !this.isPlaying;
     if (this.isPlaying) {
       const loopBuffer = await this.getRenderedBuffer();
@@ -45,7 +45,8 @@ export class SoundService {
   }
 
   private getMillisStepFromBpm(): number {
-    let beat = 60000 / this.bpm, quaterBeat = beat / 4;
+    const beat = 60000 / this.bpm;
+    let quaterBeat = beat / 4;
     quaterBeat = Math.min(quaterBeat, 1000);
     quaterBeat = Math.max(quaterBeat, 10);
     return quaterBeat;
@@ -59,8 +60,8 @@ export class SoundService {
         if (!beat)
           return;
 
-        let audioBuffer = this.samples.find(x => x.fileName === track.fileName)!.sample!;
-        let audioBufferSourceNode = offlineContext.createBufferSource();
+        const audioBuffer = this.samples.find(x => x.fileName === track.fileName)!.sample!;
+        const audioBufferSourceNode = offlineContext.createBufferSource();
         audioBufferSourceNode.buffer = audioBuffer;
         audioBufferSourceNode.connect(offlineContext.destination);
 
@@ -94,7 +95,7 @@ export class SoundService {
   private loadTracks(trackNames: string[]) {
     trackNames.forEach(x => this.samples.push(new Sample(x)))
     for (const sample of this.samples) {
-      this.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer);
+      this.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer).then(() => {});
     }
   }
 
