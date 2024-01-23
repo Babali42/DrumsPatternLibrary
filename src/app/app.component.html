@@ -1,5 +1,5 @@
-<div class="flex main-container">
-  <div class="flex column left-menu">
+<div class="main-container" [ngClass]="{'flex': !isMobileDisplay}">
+  <div class="flex column left-menu" *ngIf="!isMobileDisplay">
     <div class="header"> DRUMS<br> PATTERN<br> LIBRARY</div>
     <div class="flex menu">
       <a class="button" routerLink="/techno">Techno</a>
@@ -12,7 +12,35 @@
       <a class="button" routerLink="/half-time-groove">Half time groove</a>
     </div>
   </div>
-
+  <div *ngIf="isMobileDisplay">
+    <div class="header nowrap">DRUMS PATTERN LIBRARY</div>
+    <div class="flex" style="width: 100%; scroll: auto">
+      <div>
+        <a class="button" routerLink="/techno">Techno</a>
+      </div>
+      <div>
+        <a class="button" routerLink="/drum-n-bass">Drum & Bass</a>
+      </div>
+      <div>
+        <a class="button" routerLink="/garage">Garage - 2 step</a>
+      </div>
+      <div>
+        <a class="button" routerLink="/psytrance">Psytrance</a>
+      </div>
+      <div>
+        <a class="button" routerLink="/metal">Metal</a>
+      </div>
+      <div>
+        <a class="button" routerLink="/rock">Rock</a>
+      </div>
+      <div>
+        <a class="button" routerLink="/rock-variation">Rock variation</a>
+      </div>
+      <div>
+        <a class="button" routerLink="/half-time-groove">Half time groove</a>
+      </div>
+    </div>
+  </div>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
