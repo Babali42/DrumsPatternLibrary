@@ -29,9 +29,19 @@
 .sequencer {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
+  margin-left: 20px;
 }
 
 .beat-name {
+  height: 40px;
+  @include centered-text;
+  width: 200px;
+  min-width: 200px;
+  font-size: 20px;
+}
+
+.bpm {
   height: 40px;
   @include centered-text;
   width: 120px;

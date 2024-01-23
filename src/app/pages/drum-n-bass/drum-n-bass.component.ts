@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-drum-n-bass',
-  templateUrl: './drum-n-bass.component.html',
-  styleUrls: ['./drum-n-bass.component.scss']
+  templateUrl: './drum-n-bass.component.html'
 })
 export class DrumNBassComponent implements OnInit {
 

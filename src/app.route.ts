@@ -3,9 +3,9 @@ import {MetalComponent} from "./app/pages/metal/metal.component";
 import {RockComponent} from "./app/pages/rock/rock.component";
 import {RockVariationComponent} from "./app/pages/rock-variation/rock-variation.component";
 import {HalfTimeGrooveComponent} from "./app/pages/half-time-groove/half-time-groove.component";
-import {DrumNBassComponent} from "./app/pages/drum-n-bass/drum-n-bass/drum-n-bass.component";
-import {GarageComponent} from "./app/pages/garage/garage/garage.component";
-import {PsytranceComponent} from './app/pages/psytrance/psytrance/psytrance.component';
+import {DrumNBassComponent} from "./app/pages/drum-n-bass/drum-n-bass.component";
+import {GarageComponent} from "./app/pages/garage/garage.component";
+import {PsytranceComponent} from './app/pages/psytrance/psytrance.component';
 
 export const routes = [{path: 'techno', component: TechnoComponent},
   {path: 'metal', component: MetalComponent},

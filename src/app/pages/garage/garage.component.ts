@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-garage',
-  templateUrl: './garage.component.html',
-  styleUrls: ['./garage.component.scss']
+  templateUrl: './garage.component.html'
 })
 export class GarageComponent implements OnInit {
 

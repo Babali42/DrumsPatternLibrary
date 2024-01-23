@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-techno',
-  templateUrl: './techno.component.html',
-  styleUrls: ['./techno.component.scss']
+  templateUrl: './techno.component.html'
 })
 export class TechnoComponent implements OnInit {
 

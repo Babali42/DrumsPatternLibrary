@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-metal',
-  templateUrl: './metal.component.html',
-  styleUrls: ['./metal.component.scss']
+  templateUrl: './metal.component.html'
 })
 export class MetalComponent implements OnInit {
 
