@@ -30,3 +30,27 @@
 .nowrap{
   white-space: nowrap;
 }
+
+.mobile-menu {
+  width: 100%;
+  overflow-x: auto;
+  gap: 5px;
+
+  a {
+    all: unset;
+  }
+
+  .item{
+    white-space: nowrap;
+    background-color: darkgrey;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+  }
+}
+
+.header-mobile{
+  font-size: 30px;
+  width: 100%;
+  text-align: center;
+}
