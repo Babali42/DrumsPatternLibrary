@@ -1,14 +1,24 @@
 <div class="main-container" [ngClass]="{'flex': !isMobileDisplay}">
   <div class="flex column left-menu" *ngIf="!isMobileDisplay">
     <div class="header"> DRUMS<br> PATTERN<br> LIBRARY</div>
-    <div class="flex menu">
-      <a class="button" [routerLink]="link.link" *ngFor="let link of links">{{ link.label }}</a>
+    <div class="flex">
+      <div class="flex menu">
+        <a class="button pointer" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)">{{ genre.label }}</a>
+      </div>
+      <div class="flex menu">
+        <a class="button" [routerLink]="subgenre.link"
+           *ngFor="let subgenre of musicGenres[selectedGenreIndex].subGenres">{{ subgenre.label }}</a>
+      </div>
     </div>
   </div>
   <div *ngIf="isMobileDisplay">
     <div class="header-mobile">DRUMS PATTERN LIBRARY</div>
     <div class="flex mobile-menu">
-      <a class="item" [routerLink]="link.link" *ngFor="let link of links">{{ link.label }}</a>
+      <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)">{{ genre.label }}</a>
+    </div>
+    <div class="flex mobile-menu">
+      <a class="item" [routerLink]="subGenre.link"
+         *ngFor="let subGenre of musicGenres[selectedGenreIndex].subGenres">{{ subGenre.label }}</a>
     </div>
   </div>
   <div class="content">

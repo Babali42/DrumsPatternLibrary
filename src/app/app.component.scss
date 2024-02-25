@@ -36,9 +36,9 @@
   overflow-x: auto;
   gap: 5px;
 
-  a {
-    all: unset;
-  }
+  //a {
+  //  all: unset;
+  //}
 
   .item{
     white-space: nowrap;
@@ -53,4 +53,8 @@
   font-size: 30px;
   width: 100%;
   text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
 }
