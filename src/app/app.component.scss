@@ -1,33 +1,48 @@
-.flex{
+.flex {
   display: flex;
   height: 100%;
 }
 
-.menu{
+.menu {
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  text-align: right;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  &.genre {
+    justify-content: flex-end;
+  }
+
+  .button{
+    border-radius: 5px;
+    width: 90%;
+    padding: 5px;
+
+    &.selected{
+      background-color: black;
+      color: white;
+    }
+  }
 }
 
-.content{
+.content {
   width: 100%;
 }
 
 .header {
-  width: 140px;
+  width: 240px;
   font-size: 30px;
 }
 
-.column{
+.column {
   flex-direction: column;
 }
 
 .left-menu {
   border-right: solid 1px black;
+  padding: 10px;
 }
 
-.nowrap{
+.nowrap {
   white-space: nowrap;
 }
 
@@ -36,11 +51,7 @@
   overflow-x: auto;
   gap: 5px;
 
-  //a {
-  //  all: unset;
-  //}
-
-  .item{
+  .item {
     white-space: nowrap;
     background-color: darkgrey;
     color: white;
@@ -49,7 +60,7 @@
   }
 }
 
-.header-mobile{
+.header-mobile {
   font-size: 30px;
   width: 100%;
   text-align: center;

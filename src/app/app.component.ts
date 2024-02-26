@@ -11,6 +11,7 @@ import {Genre} from "./models/genre";
 export class AppComponent implements OnInit {
   isMobileDisplay: boolean = true;
   selectedGenreIndex: number = 0;
+  selectedSubGenreIndex: number = 0;
   musicGenres: Genre[] = [
     new Genre("Metal",
       [
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
   ];
 
 
+
   constructor(private responsive: BreakpointObserver) {
   }
 
@@ -46,5 +48,9 @@ export class AppComponent implements OnInit {
 
   selectGenre(i: number) {
     this.selectedGenreIndex = i;
+  }
+
+  selectSubGenre(i: number) {
+    this.selectedSubGenreIndex = i;
   }
 }
