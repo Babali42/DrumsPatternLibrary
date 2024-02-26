@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Link} from "./models/link";
+import {Subgenre} from "./models/subgenre";
+import {Genre} from "./models/genre";
 
 @Component({
   selector: 'app-root',
@@ -9,16 +10,29 @@ import {Link} from "./models/link";
 })
 export class AppComponent implements OnInit {
   isMobileDisplay: boolean = true;
-  links: Link[] = [
-    new Link("Techno", "/techno"),
-    new Link("Drum & Bass", "/drum-n-bass"),
-    new Link("Garage - 2 step", "/garage"),
-    new Link("Psytrance", "/psytrance"),
-    new Link("Metal", "/metal"),
-    new Link("Rock", "/rock"),
-    new Link("Rock variation", "/rock-variation"),
-    new Link("Half time groove", "/half-time-groove")
-  ]
+  selectedGenreIndex: number = 0;
+  selectedSubGenreIndex: number = 0;
+  musicGenres: Genre[] = [
+    new Genre("Metal",
+      [
+        new Subgenre("Metal", "/metal"),
+        new Subgenre("Rock", "/rock"),
+        new Subgenre("Rock variation", "/rock-variation"),
+        new Subgenre("Half time groove", "/half-time-groove"),
+      ]),
+    new Genre("Techno", [
+      new Subgenre("Basique", "/techno"),
+    ]),
+    new Genre("Garage", [
+      new Subgenre("Drum & Bass", "/drum-n-bass"),
+      new Subgenre("Garage - 2 step", "/garage"),
+    ]),
+    new Genre("Trance", [
+      new Subgenre("Psytrance", "/psytrance"),
+    ])
+  ];
+
+
 
   constructor(private responsive: BreakpointObserver) {
   }
@@ -30,5 +44,13 @@ export class AppComponent implements OnInit {
       .subscribe(result => {
         this.isMobileDisplay = !result.matches;
       });
+  }
+
+  selectGenre(i: number) {
+    this.selectedGenreIndex = i;
+  }
+
+  selectSubGenre(i: number) {
+    this.selectedSubGenreIndex = i;
   }
 }
