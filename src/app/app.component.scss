@@ -1,6 +1,13 @@
+.main-container {
+  height: 100%;
+}
+
 .flex {
   display: flex;
-  height: 100%;
+}
+
+.mt-40 {
+  margin-top: 40px;
 }
 
 .menu {
@@ -12,14 +19,18 @@
     justify-content: flex-end;
   }
 
-  .button{
+  .button {
     border-radius: 5px;
     width: 90%;
     padding: 5px;
 
-    &.selected{
+    &.selected {
       background-color: black;
       color: white;
+    }
+
+    &:hover:not(.selected) {
+      background-color: #cecece;
     }
   }
 }
