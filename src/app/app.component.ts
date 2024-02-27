@@ -48,13 +48,17 @@ export class AppComponent implements OnInit {
 
   selectGenre(i: number) {
     this.selectedGenreIndex = i;
-    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[0].link]).then(() => {
-    });
+    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[0].link]).then(
+      () => {},
+      () => {},
+    );
   }
 
   selectSubGenre(i: number) {
     this.selectedSubGenreIndex = i;
-    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link]).then(() => {
-    });
+    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link]).then(
+      () => {},
+      () => {},
+    );
   }
 }
