@@ -8,17 +8,14 @@ import {Track} from '../models/track';
 export class SoundService {
   bpm: number = 120;
   isPlaying: boolean = false;
-
+  index: number = 0;
   private samples: Sample[] = [];
   private context: AudioContext;
   private tracks: Track[] = [];
-  private ms: number = this.getMillisStepFromBpm();
-  private cursor = 0;
   private playbackSource: AudioBufferSourceNode;
 
   constructor() {
     this.context = new AudioContext();
-    this.cursor = 0;
     this.playbackSource = new AudioBufferSourceNode(this.context);
   }
 
@@ -28,8 +25,14 @@ export class SoundService {
       const loopBuffer = await this.getRenderedBuffer();
       this.playSound(loopBuffer);
     }else {
-      this.playbackSource.stop(this.context.currentTime);
+      this.pause();
     }
+  }
+
+  pause(){
+    if(!this.isPlaying)
+      return;
+    this.playbackSource.stop(this.context.currentTime);
   }
 
   private playSound(loopBuffer: AudioBuffer) {
@@ -37,7 +40,18 @@ export class SoundService {
     source.buffer = loopBuffer;
     source.connect(this.context.destination);
     source.loop = true;
-    source.start(this.context.currentTime, this.cursor * this.getTickLength());
+    let startTime = this.context.currentTime;
+    source.start(this.context.currentTime);
+
+    const updateDisplay = () => {
+      const currentTime = this.context.currentTime - startTime;
+      this.index = Math.trunc(((currentTime*1000)/this.getMillisStepFromBpm())%16);
+      if (this.isPlaying)
+        requestAnimationFrame(updateDisplay);
+    };
+
+    updateDisplay();
+
     if (this.playbackSource.buffer) {
       this.playbackSource.stop(this.context.currentTime);
     }
@@ -79,11 +93,11 @@ export class SoundService {
 
   reset(): void {
     this.isPlaying = false;
+    this.index = 0;
   }
 
   setBpm(bpm: number): void {
     this.bpm = bpm;
-    this.ms = this.getMillisStepFromBpm();
   }
 
   setTracks(tracks: Track[]) {
@@ -97,9 +111,7 @@ export class SoundService {
     for (const sample of this.samples) {
       this.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
         .then(() => {})
-        .catch(error => {
-          console.error('Error:', error);
-        });
+        .catch(() => {});
     }
   }
 

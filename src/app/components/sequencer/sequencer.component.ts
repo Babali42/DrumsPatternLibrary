@@ -20,18 +20,20 @@ export class SequencerComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getData(this.fileName).subscribe((result: JsonBeat) => {
       this.beat = Convert.toBeat(result);
+      this.soundService.pause();
       this.soundService.reset();
       this.soundService.setBpm(this.beat.bpm);
       this.soundService.setTracks(this.beat.tracks);
     });
   }
 
-  toggleIsPlaying(): void{
-    this.soundService.playPause().then(() => {})
-      .catch(error => {
-        // Handle errors here
-        console.error('Error:', error);
-      });
+  toggleIsPlaying(): void {
+    this.soundService.playPause().then(
+      () => {},
+      () => {}
+    );
   }
+
+  protected readonly SoundService = SoundService;
 }
 

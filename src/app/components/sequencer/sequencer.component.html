@@ -9,7 +9,7 @@
   </div>
   <div class="sequencer-grid">
     <div *ngFor="let track of beat.tracks">
-      <app-track [track]="track" [current-step-index]="0"></app-track>
+      <app-track [track]="track" [current-step-index]="soundService.index"></app-track>
     </div>
   </div>
 </div>

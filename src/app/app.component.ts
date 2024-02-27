@@ -48,7 +48,8 @@ export class AppComponent implements OnInit {
 
   selectGenre(i: number) {
     this.selectedGenreIndex = i;
-    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[0].link]).then(
+    this.selectedSubGenreIndex = 0;
+    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link]).then(
       () => {},
       () => {},
     );
