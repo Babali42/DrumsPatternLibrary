@@ -39,7 +39,7 @@ export class SoundService {
     source.buffer = loopBuffer;
     source.connect(this.context.destination);
     source.loop = true;
-    let startTime = this.context.currentTime;
+    const startTime = this.context.currentTime;
     source.start(this.context.currentTime);
 
     const updateDisplay = () => {
