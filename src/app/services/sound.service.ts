@@ -30,9 +30,8 @@ export class SoundService {
   }
 
   pause(){
-    if(!this.isPlaying)
-      return;
     this.playbackSource.stop(this.context.currentTime);
+    this.reset();
   }
 
   private playSound(loopBuffer: AudioBuffer) {
