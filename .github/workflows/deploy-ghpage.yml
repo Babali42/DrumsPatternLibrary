@@ -1,0 +1,21 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: All things angular
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@[version] ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
+      with:
+        build_configuration: staging # The build environment for the app. please look configurations in your angular.json
+        deploy_branch: gh-pages # The branch the action should deploy to.
+        angular_dist_build_folder: dist/drums-pattern-library # The folder where your project is supposed to be after running ng build by the action.
+
+permissions:
+  contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.
