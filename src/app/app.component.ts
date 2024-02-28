@@ -44,21 +44,26 @@ export class AppComponent implements OnInit {
       .subscribe(result => {
         this.isMobileDisplay = !result.matches;
       });
+    this.navigate();
   }
 
   selectGenre(i: number) {
     this.selectedGenreIndex = i;
-    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[0].link]).then(
-      () => {},
-      () => {},
+    this.selectedSubGenreIndex = 0;
+    this.navigate();
+  }
+
+  private navigate() {
+    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link]).then(
+      () => {
+      },
+      () => {
+      },
     );
   }
 
   selectSubGenre(i: number) {
     this.selectedSubGenreIndex = i;
-    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link]).then(
-      () => {},
-      () => {},
-    );
+    this.navigate();
   }
 }
