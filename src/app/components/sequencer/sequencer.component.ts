@@ -34,7 +34,5 @@ export class SequencerComponent implements OnInit {
       () => {}
     );
   }
-
-  protected readonly SoundService = SoundService;
 }
 
