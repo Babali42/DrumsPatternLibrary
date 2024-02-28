@@ -15,6 +15,7 @@ jobs:
       with:
         build_configuration: staging # The build environment for the app. please look configurations in your angular.json
         deploy_branch: gh-pages # The branch the action should deploy to.
+        base_href: '' # empty 
         angular_dist_build_folder: dist/drums-pattern-library # The folder where your project is supposed to be after running ng build by the action.
 
 permissions:
