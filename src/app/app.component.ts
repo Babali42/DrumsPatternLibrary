@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Subgenre} from './models/subgenre';
 import {Genre} from './models/genre';
 import {BehaviorSubject} from 'rxjs';
+import {DataService} from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -13,28 +13,10 @@ export class AppComponent implements OnInit {
   isMobileDisplay: boolean = true;
   selectedGenreIndex: number = 0;
   selectedSubGenreIndex: number = 0;
-  musicGenres: Genre[] = [
-    new Genre('Metal',
-      [
-        new Subgenre('Metal', 'metal'),
-        new Subgenre('Rock', 'rock-beat'),
-        new Subgenre('Rock variation', 'rock-beat-variation'),
-        new Subgenre('Half time groove', 'half-time-groove'),
-      ]),
-    new Genre('Techno', [
-      new Subgenre('Basique', 'techno'),
-    ]),
-    new Genre('Garage', [
-      new Subgenre('Drum & Bass', 'drum-n-bass'),
-      new Subgenre('Garage - 2 step', 'garage'),
-    ]),
-    new Genre('Trance', [
-      new Subgenre('Psytrance', 'psytrance'),
-    ])
-  ];
+  musicGenres: Genre[] = [];
   fileNameBehaviourSubject: BehaviorSubject<string>;
 
-  constructor(private responsive: BreakpointObserver) {
+  constructor(private responsive: BreakpointObserver, private dataService: DataService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
   }
 
@@ -45,6 +27,10 @@ export class AppComponent implements OnInit {
       .subscribe(result => {
         this.isMobileDisplay = !result.matches;
       });
+
+    this.dataService.getData<Genre[]>('genres').subscribe((result: Genre[]) => {
+      this.musicGenres = result;
+    });
   }
 
   selectGenre(i: number) {
@@ -58,7 +44,7 @@ export class AppComponent implements OnInit {
     this.updateFileName();
   }
 
-  private updateFileName() {
+  updateFileName() {
     const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].fileName;
     this.fileNameBehaviourSubject.next(fileName);
   }

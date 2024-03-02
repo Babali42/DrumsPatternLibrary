@@ -21,7 +21,7 @@ export class SequencerComponent implements OnInit {
 
   ngOnInit(): void {
     this.fileNameBehaviourSubject.subscribe(fileName => {
-      this.dataService.getData(fileName).subscribe((result: JsonBeat) => {
+      this.dataService.getData<JsonBeat>(fileName, 'beats/').subscribe((result: JsonBeat) => {
         this.beat = Convert.toBeat(result);
         if (this.soundService.isPlaying)
           this.soundService.pause();
