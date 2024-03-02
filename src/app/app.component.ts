@@ -17,26 +17,26 @@ export class AppComponent implements OnInit {
   musicGenres: Genre[] = [
     new Genre('Metal',
       [
-        new Subgenre('Metal', '/metal'),
-        new Subgenre('Rock', '/rock'),
-        new Subgenre('Rock variation', '/rock-variation'),
-        new Subgenre('Half time groove', '/half-time-groove'),
+        new Subgenre('Metal', 'metal'),
+        new Subgenre('Rock', 'rock-beat'),
+        new Subgenre('Rock variation', 'rock-beat-variation'),
+        new Subgenre('Half time groove', 'half-time-groove'),
       ]),
     new Genre('Techno', [
-      new Subgenre('Basique', '/techno'),
+      new Subgenre('Basique', 'techno'),
     ]),
     new Genre('Garage', [
-      new Subgenre('Drum & Bass', '/drum-n-bass'),
-      new Subgenre('Garage - 2 step', '/garage'),
+      new Subgenre('Drum & Bass', 'drum-n-bass'),
+      new Subgenre('Garage - 2 step', 'garage'),
     ]),
     new Genre('Trance', [
-      new Subgenre('Psytrance', '/psytrance'),
+      new Subgenre('Psytrance', 'psytrance'),
     ])
   ];
   fileNameBehaviourSubject: BehaviorSubject<string>;
 
   constructor(private responsive: BreakpointObserver, private router: Router) {
-    this.fileNameBehaviourSubject = new BehaviorSubject<string>("metal");
+    this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
   }
 
   ngOnInit(): void {
@@ -60,7 +60,8 @@ export class AppComponent implements OnInit {
   }
 
   private updateFileName() {
-    const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link;
+    const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].fileName;
+    console.log(fileName);
     this.fileNameBehaviourSubject.next(fileName);
   }
 }
