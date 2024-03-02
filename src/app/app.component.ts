@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   private updateFileName() {
-    var fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link;
+    const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link;
     this.fileNameBehaviourSubject.next(fileName);
   }
 }
