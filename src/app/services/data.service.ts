@@ -1,19 +1,22 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {JsonBeat} from "../models/primary/jsonBeat";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'assets/beats/';
+  private apiUrl = 'assets/';
   private fileExtension = '.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getData(fileName: string): Observable<JsonBeat> {
-    const url = this.apiUrl + fileName + this.fileExtension;
-    return this.http.get<JsonBeat>(url);
+  getData<T>(fileName: string, folder: string | undefined = undefined): Observable<T> {
+    let url = this.apiUrl;
+    if (folder)
+      url += folder;
+    url += fileName + this.fileExtension;
+    return this.http.get<T>(url);
   }
 }
