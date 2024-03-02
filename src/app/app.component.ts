@@ -3,6 +3,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Subgenre} from './models/subgenre';
 import {Genre} from './models/genre';
 import {Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -32,9 +33,10 @@ export class AppComponent implements OnInit {
       new Subgenre('Psytrance', '/psytrance'),
     ])
   ];
-
+  fileNameBehaviourSubject: BehaviorSubject<string>;
 
   constructor(private responsive: BreakpointObserver, private router: Router) {
+    this.fileNameBehaviourSubject = new BehaviorSubject<string>("metal");
   }
 
   ngOnInit(): void {
@@ -44,26 +46,21 @@ export class AppComponent implements OnInit {
       .subscribe(result => {
         this.isMobileDisplay = !result.matches;
       });
-    this.navigate();
   }
 
   selectGenre(i: number) {
     this.selectedGenreIndex = i;
     this.selectedSubGenreIndex = 0;
-    this.navigate();
-  }
-
-  private navigate() {
-    this.router.navigate([this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link]).then(
-      () => {
-      },
-      () => {
-      },
-    );
+    this.updateFileName();
   }
 
   selectSubGenre(i: number) {
     this.selectedSubGenreIndex = i;
-    this.navigate();
+    this.updateFileName();
+  }
+
+  private updateFileName() {
+    const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].link;
+    this.fileNameBehaviourSubject.next(fileName);
   }
 }
