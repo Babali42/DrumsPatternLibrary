@@ -1,5 +1,5 @@
 export class Subgenre {
-  constructor(public label: string, public link: string) {
+  constructor(public label: string, public fileName: string) {
 
   }
 }

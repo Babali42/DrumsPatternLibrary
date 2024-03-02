@@ -13,6 +13,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getData(fileName: string): Observable<JsonBeat> {
-    return this.http.get<JsonBeat>(this.apiUrl + fileName + this.fileExtension);
+    const url = this.apiUrl + fileName + this.fileExtension;
+    return this.http.get<JsonBeat>(url);
   }
 }
