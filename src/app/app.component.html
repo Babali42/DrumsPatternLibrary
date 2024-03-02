@@ -20,8 +20,8 @@
       <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)">{{ genre.label }}</a>
     </div>
     <div class="flex mobile-menu">
-      <a class="item" [routerLink]="subGenre.fileName"
-         *ngFor="let subGenre of musicGenres[selectedGenreIndex].subGenres">{{ subGenre.label }}</a>
+      <a class="item" *ngFor="let subGenre of musicGenres[selectedGenreIndex].subGenres; let i = index"
+         (click)="selectSubGenre(i)">{{ subGenre.label }}</a>
     </div>
   </div>
   <div class="flex content">
