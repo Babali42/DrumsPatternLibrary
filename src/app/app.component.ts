@@ -61,7 +61,6 @@ export class AppComponent implements OnInit {
 
   private updateFileName() {
     const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].fileName;
-    console.log(fileName);
     this.fileNameBehaviourSubject.next(fileName);
   }
 }
