@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Subgenre} from './models/subgenre';
 import {Genre} from './models/genre';
-import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({
@@ -35,7 +34,7 @@ export class AppComponent implements OnInit {
   ];
   fileNameBehaviourSubject: BehaviorSubject<string>;
 
-  constructor(private responsive: BreakpointObserver, private router: Router) {
+  constructor(private responsive: BreakpointObserver) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
   }
 
