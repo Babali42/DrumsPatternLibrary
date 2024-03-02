@@ -16,11 +16,13 @@ npm start
 ```
 
 ### Linter
+Le linter est déclenché sur chaque PR
 ```
 npx eslint . --config .eslintrc.js --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
 ```
 
 ### Deploy
+Les déploiements sont automatiques à chaque PR merge sur master
 ```
 ng deploy
 ```
