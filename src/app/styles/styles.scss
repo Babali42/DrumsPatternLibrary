@@ -1,4 +1,3 @@
-@mixin centered-text{
-  text-align: center;
-  vertical-align: middle;
-}
+@import './base';
+@import './utils';
+@import './mixins';

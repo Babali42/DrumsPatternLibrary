@@ -1,5 +1,9 @@
 @import "../../styles/styles";
 
+:host {
+  overflow-x: auto;
+}
+
 .play-pause-button {
   height: 40px;
   width: 40px;
@@ -13,24 +17,11 @@
 }
 
 .sequencer-grid {
-  display: flex;
   flex-direction: column;
-}
-
-.sequencer-header{
-  display: flex;
-}
-
-.space {
-  width: 60px;
-  min-width: 60px;
 }
 
 .sequencer {
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  margin-left: 20px;
+  overflow-x: auto;
 }
 
 .beat-name {
