@@ -19,17 +19,17 @@ export class SoundService {
     this.playbackSource = new AudioBufferSourceNode(this.context);
   }
 
-  async playPause() : Promise<void> {
+  async playPause(): Promise<void> {
     this.isPlaying = !this.isPlaying;
     if (this.isPlaying) {
       const loopBuffer = await this.getRenderedBuffer();
       this.playSound(loopBuffer);
-    }else {
+    } else {
       this.pause();
     }
   }
 
-  pause(){
+  pause() {
     this.playbackSource.stop(this.context.currentTime);
     this.reset();
   }
@@ -39,12 +39,14 @@ export class SoundService {
     source.buffer = loopBuffer;
     source.connect(this.context.destination);
     source.loop = true;
+    source.loopStart = source.buffer.duration / 2;
+    source.loopEnd = source.buffer.duration;
     const startTime = this.context.currentTime;
-    source.start(this.context.currentTime);
+    source.start();
 
     const updateDisplay = () => {
       const currentTime = this.context.currentTime - startTime;
-      this.index = Math.trunc(((currentTime*1000)/this.getMillisStepFromBpm())%16);
+      this.index = Math.trunc(((currentTime * 1000) / this.getMillisStepFromBpm()) % 16);
       if (this.isPlaying)
         requestAnimationFrame(updateDisplay);
     };
@@ -65,11 +67,15 @@ export class SoundService {
     return quaterBeat;
   }
 
+  //Rendered sound (twice the grid length)  ████░░░░
+  //Played sound (the doted part is looped) ████░░░░░░░░░░░░░░░░░░░░░░░░
+  //Used to avoid sound clip ;)
   async getRenderedBuffer() {
     const tickLength = this.getTickLength();
-    const offlineContext: OfflineAudioContext = new OfflineAudioContext(1, 16 * tickLength * 44100, 44100);
+    const offlineContext: OfflineAudioContext = new OfflineAudioContext(1, 16 * 2 * tickLength * 44100, 44100);
     this.tracks.forEach((track: Track) => {
-      track.steps.forEach((beat: boolean, i: number) => {
+      const trackSteps = this.getDuplicatedTrackSteps(track);
+      trackSteps.forEach((beat: boolean, i: number) => {
         if (!beat)
           return;
 
@@ -90,6 +96,12 @@ export class SoundService {
   }
 
 
+  private getDuplicatedTrackSteps(track: Track) {
+    const duplicatedTracks = [...track.steps]
+    duplicatedTracks.push(...track.steps);
+    return duplicatedTracks;
+  }
+
   reset(): void {
     this.isPlaying = false;
     this.index = 0;
@@ -109,8 +121,10 @@ export class SoundService {
     trackNames.forEach(x => this.samples.push(new Sample(x)))
     for (const sample of this.samples) {
       this.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
-        .then(() => {})
-        .catch(() => {});
+        .then(() => {
+        })
+        .catch(() => {
+        });
     }
   }
 
