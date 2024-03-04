@@ -74,7 +74,7 @@ export class SoundService {
     const tickLength = this.getTickLength();
     const offlineContext: OfflineAudioContext = new OfflineAudioContext(1, 16 * 2 * tickLength * 44100, 44100);
     this.tracks.forEach((track: Track) => {
-      let trackSteps = this.getDuplicatedTrackSteps(track);
+      const trackSteps = this.getDuplicatedTrackSteps(track);
       trackSteps.forEach((beat: boolean, i: number) => {
         if (!beat)
           return;
@@ -97,7 +97,7 @@ export class SoundService {
 
 
   private getDuplicatedTrackSteps(track: Track) {
-    let duplicatedTracks = [...track.steps]
+    const duplicatedTracks = [...track.steps]
     duplicatedTracks.push(...track.steps);
     return duplicatedTracks;
   }
