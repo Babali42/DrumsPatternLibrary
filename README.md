@@ -1,28 +1,24 @@
-# Drums Pattern Library
+# Drums Pattern Library 🥁🎼🎵
 
-## Intro
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
-**It'll help you compose your drums i promess !**
+## General info
+This project is a library of drums patterns for electronic music composers.
 
-*Babali - 2055 Still working on it*
+Feel free to contribute by adding beats, see in the [assets](src/assets) folder for details.
 
-xD
+## Technologies
+Project is created with:
+* Angular
+* Web audio API
 
-## Development utilities
+## Setup
+To run this project, install it locally using npm:
 
-### Run
 ```
-npm start
-```
-
-### Linter
-Le linter est déclenché sur chaque PR
-```
-npx eslint . --config .eslintrc.js --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
-```
-
-### Deploy
-Les déploiements sont automatiques à chaque PR merge sur master
-```
-ng deploy
+$ npm install
+$ npm start
 ```
