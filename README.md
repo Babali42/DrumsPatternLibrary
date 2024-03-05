@@ -8,7 +8,7 @@
 ## General info
 This project is a library of drums patterns for electronic music composers.
 
-Feel free to contribute by adding beats, see in the assets folder for details.
+Feel free to contribute by adding beats, see in the [assets](src/assets) folder for details.
 
 ## Technologies
 Project is created with:
