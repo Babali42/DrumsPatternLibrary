@@ -13,6 +13,7 @@ export class SoundService {
   private context: AudioContext;
   private tracks: Track[] = [];
   private playbackSource: AudioBufferSourceNode;
+  private stepNumber: number = 16;
 
   constructor() {
     this.context = new AudioContext();
@@ -46,7 +47,7 @@ export class SoundService {
 
     const updateDisplay = () => {
       const currentTime = this.context.currentTime - startTime;
-      this.index = Math.trunc(((currentTime * 1000) / this.getMillisStepFromBpm()) % 16);
+      this.index = Math.trunc(((currentTime * 1000) / this.getMillisStepFromBpm()) % this.stepNumber);
       if (this.isPlaying)
         requestAnimationFrame(updateDisplay);
     };
@@ -72,7 +73,7 @@ export class SoundService {
   //Used to avoid sound clip ;)
   async getRenderedBuffer() {
     const tickLength = this.getTickLength();
-    const offlineContext: OfflineAudioContext = new OfflineAudioContext(1, 16 * 2 * tickLength * 44100, 44100);
+    const offlineContext: OfflineAudioContext = new OfflineAudioContext(1, this.stepNumber * 2 * tickLength * 44100, 44100);
     this.tracks.forEach((track: Track) => {
       const trackSteps = this.getDuplicatedTrackSteps(track);
       trackSteps.forEach((beat: boolean, i: number) => {
@@ -140,4 +141,8 @@ export class SoundService {
   private getTickLength() {
     return 60 / this.bpm / 4;
   };
+
+  setStepNumber(length: number) {
+    this.stepNumber = length;
+  }
 }

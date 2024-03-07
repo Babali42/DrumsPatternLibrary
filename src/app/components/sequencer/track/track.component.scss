@@ -7,9 +7,16 @@
 
 #track {
   display: grid;
-  grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(1, 1fr);
   gap: 4px;
+}
+
+.sixteen-steps {
+  grid-template-columns: repeat(16, 1fr);
+}
+
+.thirty-two-steps {
+  grid-template-columns: repeat(32, 1fr);
 }
 
 .step {
