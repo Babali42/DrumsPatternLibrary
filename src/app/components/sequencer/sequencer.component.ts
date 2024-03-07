@@ -28,6 +28,7 @@ export class SequencerComponent implements OnInit {
         this.soundService.reset();
         this.soundService.setBpm(this.beat.bpm);
         this.soundService.setTracks(this.beat.tracks);
+        this.soundService.setStepNumber(this.beat.tracks[0].steps.length);
       });
     });
   }
