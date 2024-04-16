@@ -37,13 +37,13 @@
 }
 
 .current {
-  background-color: #D6D6D6;
+  background-color: $color2;
 }
 
 .active {
-  background-color: #003b8f;
+  background-color: $color3;
 
   &.current {
-    background-color: #464A50;
+    background-color: $color4;
   }
 }

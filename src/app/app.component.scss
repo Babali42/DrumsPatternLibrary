@@ -1,3 +1,5 @@
+@import "./styles/utils";
+
 .main-container {
   height: 100%;
 }
@@ -17,8 +19,8 @@
     padding: 5px;
 
     &.selected {
-      background-color: black;
-      color: white;
+      background-color: $color1;
+      border: solid 1px black;
     }
 
     &:hover:not(.selected) {
@@ -73,4 +75,13 @@
 
 .pointer {
   cursor: pointer;
+}
+
+#title-image {
+  width: 150px;
+  aspect-ratio: 1;
+}
+
+#title-image-mobile {
+  width: 300px;
 }
