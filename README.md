@@ -1,4 +1,4 @@
-# Drums Pattern Library 🥁🎼🎵
+# Drum Beat Repo 🥁🎼🎵
 
 ## Table of contents
 * [General info](#general-info)
@@ -6,7 +6,7 @@
 * [Setup](#setup)
 
 ## General info
-This project is a library of drums patterns for electronic music composers.
+This project is a repository of drum beats for electronic music composers.
 
 Feel free to contribute by adding beats, see in the [assets](src/assets) folder for details.
 

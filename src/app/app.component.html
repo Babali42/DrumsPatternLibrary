@@ -1,6 +1,6 @@
 <div class="main-container" [ngClass]="{'flex': !isMobileDisplay}">
   <div class="flex column left-menu" *ngIf="!isMobileDisplay">
-    <div class="header"> DRUMS<br> PATTERN<br> LIBRARY</div>
+    <div class="header"> DRUM<br> BEAT<br> REPO</div>
     <div class="flex menu genre mt-40" *ngIf="musicGenres.length != 0">
       <h2>Genre</h2>
       <div class="button pointer" *ngFor="let genre of musicGenres; let i = index;" (click)="selectGenre(i)"
@@ -15,7 +15,7 @@
     </div>
   </div>
   <div *ngIf="isMobileDisplay">
-    <div class="header-mobile">DRUMS PATTERN LIBRARY</div>
+    <div class="header-mobile">DRUM BEAT REPO</div>
     <div class="flex mobile-menu" *ngIf="musicGenres.length != 0">
       <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)">{{ genre.label }}</a>
     </div>

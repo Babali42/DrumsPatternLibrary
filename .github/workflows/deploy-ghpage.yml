@@ -16,8 +16,8 @@ jobs:
         github_access_token: ${{ secrets.GHPAGES }}
         build_configuration: production # The build environment for the app. please look configurations in your angular.json
         deploy_branch: gh-pages # The branch the action should deploy to.
-        base_href: '' # empty 
-        angular_dist_build_folder: dist/drums-pattern-library # The folder where your project is supposed to be after running ng build by the action.
+        base_href: '' # empty
+        angular_dist_build_folder: dist/drum-beat-repo # The folder where your project is supposed to be after running ng build by the action.
 
 permissions:
   contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.
