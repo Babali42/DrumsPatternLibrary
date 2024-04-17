@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DrumsPatternLibrary": {
+    "DrumBeatRepo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/drums-pattern-library",
+            "outputPath": "dist/drum-beat-repo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "DrumsPatternLibrary:build:production"
+              "browserTarget": "DrumBeatRepo:build:production"
             },
             "development": {
-              "browserTarget": "DrumsPatternLibrary:build:development"
+              "browserTarget": "DrumBeatRepo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DrumsPatternLibrary:build"
+            "browserTarget": "DrumBeatRepo:build"
           }
         },
         "deploy": {
