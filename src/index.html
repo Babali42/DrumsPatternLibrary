@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src https: 'self' 'unsafe-inline'; style-src https: 'self' 'unsafe-inline'"/>
   <title>DrumBeatRepo</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 </body>
 </html>
