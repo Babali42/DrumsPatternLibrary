@@ -59,11 +59,13 @@
   gap: 5px;
 
   .item {
-    white-space: nowrap;
-    background-color: darkgrey;
-    color: white;
-    border-radius: 15px;
+    border: solid 1px black;
+    border-radius: 5px;
     padding: 10px;
+
+    &.selected {
+      background-color: $color1;
+    }
   }
 }
 

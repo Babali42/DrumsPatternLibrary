@@ -15,15 +15,22 @@
     </div>
   </div>
   <div *ngIf="isMobileDisplay">
-    <div class="header-mobile">
+    <div class="header-mobile mt-40 mb-40">
       <img src="./assets/images/title-mobile.svg" id="title-image-mobile">
     </div>
-    <div class="flex mobile-menu" *ngIf="musicGenres.length != 0">
-      <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)">{{ genre.label }}</a>
-    </div>
-    <div class="flex mobile-menu" *ngIf="musicGenres.length != 0">
-      <a class="item" *ngFor="let subGenre of musicGenres[selectedGenreIndex].subGenres; let i = index"
-         (click)="selectSubGenre(i)">{{ subGenre.label }}</a>
+    <div class="ml-10">
+      <div>
+        Genre :
+        <div class="flex mobile-menu mb-10" *ngIf="musicGenres.length != 0">
+          Genre :
+          <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)"
+             [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}</a>
+        </div>
+      </div>
+      <div class="flex mobile-menu mb-40" *ngIf="musicGenres.length != 0">
+        <a class="item" *ngFor="let subGenre of musicGenres[selectedGenreIndex].subGenres; let i = index"
+           (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subGenre.label }}</a>
+      </div>
     </div>
   </div>
   <div class="flex content">
