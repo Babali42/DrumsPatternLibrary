@@ -20,9 +20,7 @@
     </div>
     <div class="ml-10">
       <div>
-        Genre :
         <div class="flex mobile-menu mb-10" *ngIf="musicGenres.length != 0">
-          Genre :
           <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)"
              [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}</a>
         </div>
