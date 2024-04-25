@@ -1,9 +1,0 @@
-<div id="track-container">
-  <div class="track-name">
-    <div>{{ this.name }}</div>
-  </div>
-  <div id="track" [ngClass]="this.steps.length == 16 ? 'sixteen-steps' : 'thirty-two-steps'">
-    <div *ngFor="let step of steps; let i = index" class="step" [class.active]="step"
-         [class.current]="i === this.currentStepIndex"></div>
-  </div>
-</div>

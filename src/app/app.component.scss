@@ -1,4 +1,5 @@
 @import "./styles/utils";
+@import "./styles/styles";
 
 .main-container {
   height: 100%;
@@ -87,3 +88,32 @@
 #title-image-mobile {
   width: 300px;
 }
+
+.play-pause-button {
+  height: 40px;
+  width: 40px;
+  min-width: 40px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  border: solid 2px black;
+  font-size: 20px;
+}
+
+.beat-name {
+  height: 40px;
+  @include centered-text;
+  width: 200px;
+  min-width: 200px;
+  font-size: 20px;
+}
+
+.bpm {
+  height: 40px;
+  @include centered-text;
+  width: 120px;
+  min-width: 120px;
+  font-size: 20px;
+}
+
