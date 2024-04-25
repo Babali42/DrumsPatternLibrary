@@ -32,6 +32,13 @@
     </div>
   </div>
   <div class="flex content">
-    <sequencer [fileNameBehaviourSubject]="fileNameBehaviourSubject"></sequencer>
+    <div>
+      <div class="flex">
+        <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
+        <div class="beat-name">{{beat.name | titlecase}}</div>
+        <div class="bpm">{{beat.bpm}} bpm</div>
+      </div>
+      <sequencer [beat]="beat"></sequencer>
+    </div>
   </div>
 </div>

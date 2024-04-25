@@ -3,6 +3,9 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Genre} from './models/genre';
 import {BehaviorSubject} from 'rxjs';
 import {DataService} from './services/data.service';
+import {Beat} from "./models/beat";
+import {SoundService} from "./services/sound.service";
+import {Convert, JsonBeat} from "./models/primary/jsonBeat";
 
 @Component({
   selector: 'app-root',
@@ -15,8 +18,9 @@ export class AppComponent implements OnInit {
   selectedSubGenreIndex: number = 0;
   musicGenres: Genre[] = [];
   fileNameBehaviourSubject: BehaviorSubject<string>;
+  beat: Beat = new Beat('', 120, []);
 
-  constructor(private responsive: BreakpointObserver, private dataService: DataService) {
+  constructor(private responsive: BreakpointObserver, private dataService: DataService, public soundService: SoundService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
   }
 
@@ -30,6 +34,18 @@ export class AppComponent implements OnInit {
 
     this.dataService.getData<Genre[]>('genres').subscribe((result: Genre[]) => {
       this.musicGenres = result;
+    });
+
+    this.fileNameBehaviourSubject.subscribe(fileName => {
+      this.dataService.getData<JsonBeat>(fileName, 'beats/').subscribe((result: JsonBeat) => {
+        this.beat = Convert.toBeat(result);
+        if (this.soundService.isPlaying)
+          this.soundService.pause();
+        this.soundService.reset();
+        this.soundService.setBpm(this.beat.bpm);
+        this.soundService.setTracks(this.beat.tracks);
+        this.soundService.setStepNumber(this.beat.tracks[0].steps.length);
+      });
     });
   }
 
@@ -47,5 +63,14 @@ export class AppComponent implements OnInit {
   updateFileName() {
     const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].fileName;
     this.fileNameBehaviourSubject.next(fileName);
+  }
+
+  toggleIsPlaying(): void {
+    this.soundService.playPause().then(
+      () => {
+      },
+      () => {
+      }
+    );
   }
 }

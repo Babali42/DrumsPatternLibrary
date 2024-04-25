@@ -1,12 +1,15 @@
-<div class="flex">
-  <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-  <div class="beat-name">{{beat.name | titlecase}}</div>
-  <div class="bpm">{{beat.bpm}} bpm</div>
-</div>
 <div class="sequencer">
   <div class="flex sequencer-grid">
     <div *ngFor="let track of beat.tracks">
-      <app-track [track]="track" [current-step-index]="this.soundService.index"></app-track>
+      <div id="track-container">
+        <div class="track-name">
+          <div>{{ track.name }}</div>
+        </div>
+        <div id="track" [ngClass]="track.steps.length == 16 ? 'sixteen-steps' : 'thirty-two-steps'">
+          <div *ngFor="let step of track.steps; let i = index" class="step" [class.active]="step"
+               [class.current]="i === this.soundService.index"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
