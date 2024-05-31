@@ -31,6 +31,10 @@
   grid-template-columns: repeat(32, 1fr);
 }
 
+.sixty-four-steps {
+  grid-template-columns: repeat(64, 1fr);
+}
+
 .step {
   height: 40px;
   width: 40px;
