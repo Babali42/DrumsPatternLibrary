@@ -1,13 +1,13 @@
-<div [ngClass]="{'flex': !isMobileDisplay}">
+<div [ngClass]="{'flex': !isMobileDisplay}" id="app-container">
   <div class="flex column left-menu" *ngIf="!isMobileDisplay">
-    <img src="./assets/images/title.svg" id="title-image">
-    <div class="flex menu genre mt-40" *ngIf="musicGenres.length != 0">
+    <img src="./assets/images/title.svg" id="title-image" alt="">
+    <div class="flex menu genre" *ngIf="musicGenres.length != 0">
       <h2>Genre</h2>
       <div class="button pointer" *ngFor="let genre of musicGenres; let i = index;" (click)="selectGenre(i)"
            [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}
       </div>
     </div>
-    <div class="flex menu mt-40" *ngIf="musicGenres.length != 0">
+    <div class="flex menu" *ngIf="musicGenres.length != 0">
       <h2>Sous-genre</h2>
       <div class="button pointer" *ngFor="let subgenre of musicGenres[selectedGenreIndex].subGenres; let i = index;"
            (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subgenre.label }}
@@ -16,7 +16,7 @@
   </div>
   <div *ngIf="isMobileDisplay">
     <div class="header-mobile mt-40 mb-40">
-      <img src="./assets/images/title-mobile.svg" id="title-image-mobile">
+      <img src="./assets/images/title-mobile.svg" id="title-image-mobile" alt="">
     </div>
     <div class="ml-10">
       <div>
@@ -40,3 +40,7 @@
   <div class="beat-name">{{ beat.name | titlecase }}</div>
   <div class="bpm">{{ beat.bpm }} bpm</div>
 </div>
+<svg class="corner left-top-triangle" aria-hidden="true" *ngIf="isMobileDisplay"/>
+<svg class="corner left-bottom-triangle" aria-hidden="true"/>
+<svg class="corner right-top-triangle" aria-hidden="true"/>
+<svg class="corner right-bottom-triangle" aria-hidden="true"/>
