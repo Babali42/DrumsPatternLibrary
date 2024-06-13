@@ -34,6 +34,7 @@
   flex: 1;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
 .header {
@@ -131,31 +132,4 @@
   width: 75px;
   aspect-ratio: 1;
   clip-path: polygon(0 100%,0 0,100% 100%,0 100%);
-}
-
-.left-bottom-triangle {
-  background: $color4;
-  left: 0;
-  bottom: 0;
-}
-
-.left-top-triangle {
-  background: $color3;
-  left: 0;
-  top: 0;
-  transform: rotate(90deg);
-}
-
-.right-top-triangle {
-  background: $color2;
-  right: 0;
-  top: 0;
-  transform: rotate(180deg);
-}
-
-.right-bottom-triangle {
-  background: $color1;
-  right: 0;
-  bottom: 0;
-  transform: rotate(270deg);
 }
