@@ -8,10 +8,6 @@
   flex-direction: column;
 }
 
-.sequencer {
-  overflow-x: auto;
-}
-
 #track-container {
   display: flex;
   margin: 4px 0 0 0;
@@ -44,14 +40,6 @@
   border: solid 1px black;
 }
 
-.track-name {
-  text-align: end;
-  height: 40px;
-  width: 50px;
-  min-width: 50px;
-  margin-right: 10px;
-}
-
 .current {
   background-color: $color2;
 }
@@ -62,4 +50,19 @@
   &.current {
     background-color: $color4;
   }
+}
+
+.tracks-container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: 4px 14px;
+}
+
+.track-container {
+  display: contents;
+}
+
+.track-name {
+  white-space: nowrap;
+  height: 40px;
 }
