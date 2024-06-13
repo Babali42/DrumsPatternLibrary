@@ -1,17 +1,11 @@
-<div class="sequencer">
-  <div class="flex sequencer-grid">
-    <div *ngFor="let track of beat.tracks">
-      <div id="track-container">
-        <div class="track-name">
-          <div>{{ track.name }}</div>
-        </div>
-        <div id="track" [class.sixteen-steps]="track.steps.length == 16"
-             [class.thirty-two-steps]="track.steps.length == 32"
-             [class.sixty-four-steps]="track.steps.length == 64">
-          <div *ngFor="let step of track.steps; let i = index" class="step" [class.active]="step"
-               [class.current]="i === this.soundService.index"></div>
-        </div>
-      </div>
+<div class="tracks-container">
+  <div *ngFor="let track of beat.tracks" class="track-container">
+    <div class="track-name">{{ track.name }}</div>
+    <div id="track" [class.sixteen-steps]="track.steps.length == 16"
+         [class.thirty-two-steps]="track.steps.length == 32"
+         [class.sixty-four-steps]="track.steps.length == 64">
+      <div *ngFor="let step of track.steps; let i = index" class="step" [class.active]="step"
+           [class.current]="i === this.soundService.index"></div>
     </div>
   </div>
 </div>

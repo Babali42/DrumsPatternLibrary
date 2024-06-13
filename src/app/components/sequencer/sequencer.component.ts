@@ -12,17 +12,5 @@ export class SequencerComponent {
 
   constructor(public soundService: SoundService) {
   }
-
-  calculateClass() {
-    switch (this.beat.tracks.length) {
-      case 16:
-        return "sixteen-steps";
-      case 32:
-        return "thirty-two-steps";
-      case 64:
-        return "sixty-four-steps";
-    }
-    return "";
-  }
 }
 
