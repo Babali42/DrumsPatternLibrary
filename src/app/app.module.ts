@@ -5,15 +5,14 @@ import {SequencerComponent} from './components/sequencer/sequencer.component';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SequencerComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        SequencerComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+
