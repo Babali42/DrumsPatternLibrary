@@ -9,29 +9,29 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.12",
+    "@angular/animations": "^17.3.11",
     "@angular/cdk": "^16.2.14",
-    "@angular/common": "^16.2.12",
-    "@angular/compiler": "^16.2.12",
-    "@angular/core": "^16.2.12",
-    "@angular/forms": "^16.2.12",
-    "@angular/platform-browser": "^16.2.12",
-    "@angular/platform-browser-dynamic": "^16.2.12",
+    "@angular/common": "^17.3.11",
+    "@angular/compiler": "^17.3.11",
+    "@angular/core": "^17.3.11",
+    "@angular/forms": "^17.3.11",
+    "@angular/platform-browser": "^17.3.11",
+    "@angular/platform-browser-dynamic": "^17.3.11",
     "@microsoft/eslint-formatter-sarif": "^2.1.7",
     "eslint": "^8.10.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.3"
+    "zone.js": "~0.14.7"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.2.14",
+    "@angular-devkit/build-angular": "^17.3.8",
     "@angular-eslint/eslint-plugin": "^17.2.0",
-    "@angular/cli": "~16.2.14",
-    "@angular/compiler-cli": "^16.2.12",
+    "@angular/cli": "~17.3.8",
+    "@angular/compiler-cli": "^17.3.11",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "angular-cli-ghpages": "^1.0.7",
     "eslint-config-prettier": "^9.1.0",
-    "typescript": "~5.1.6"
+    "typescript": "~5.4.5"
   }
 }

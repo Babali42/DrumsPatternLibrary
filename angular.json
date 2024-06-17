@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "DrumBeatRepo:build:production"
+              "buildTarget": "DrumBeatRepo:build:production"
             },
             "development": {
-              "browserTarget": "DrumBeatRepo:build:development"
+              "buildTarget": "DrumBeatRepo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DrumBeatRepo:build"
+            "buildTarget": "DrumBeatRepo:build"
           }
         },
         "deploy": {
