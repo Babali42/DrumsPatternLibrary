@@ -41,16 +41,24 @@
 }
 
 .current {
-  background-color: $color2;
+  background: repeating-linear-gradient(-45deg, #fff, #fff 10px, #000 5px, #000 15px);
 }
 
 .active {
   background-color: $color3;
 
   &.current {
-    background-color: $color4;
+    background: repeating-linear-gradient(-45deg, $color3, $color3 10px, #000 5px, #000 15px);
   }
 }
+
+
+.active {
+  background-color: $color3;
+}
+  .active.current {
+    background: repeating-linear-gradient(-45deg, $color3, $color3 10px, #000 5px, #000 15px);
+  }
 
 .tracks-container {
   display: grid;
