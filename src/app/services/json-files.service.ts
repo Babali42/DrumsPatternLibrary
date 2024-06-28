@@ -12,7 +12,7 @@ export class JsonFilesService {
   constructor(private http: HttpClient) {
   }
 
-  getData<T>(fileName: string, folder: string | undefined = undefined): Observable<T> {
+  get<T>(fileName: string, folder: string | undefined = undefined): Observable<T> {
     let url = this.apiUrl;
     if (folder)
       url += folder;
