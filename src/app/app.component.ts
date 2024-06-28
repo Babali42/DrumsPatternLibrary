@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Genre} from './models/genre';
 import {BehaviorSubject} from 'rxjs';
-import {DataService} from './services/data.service';
 import {Beat} from "./models/beat";
 import {SoundService} from "./services/sound.service";
 import {Convert, JsonBeat} from "./models/primary/jsonBeat";
+import {JsonFilesService} from "./services/json-files.service";
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   fileNameBehaviourSubject: BehaviorSubject<string>;
   beat: Beat = new Beat('', 120, []);
 
-  constructor(private responsive: BreakpointObserver, private dataService: DataService, public soundService: SoundService) {
+  constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public soundService: SoundService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
   }
 
@@ -32,12 +32,12 @@ export class AppComponent implements OnInit {
         this.isMobileDisplay = !result.matches;
       });
 
-    this.dataService.getData<Genre[]>('genres').subscribe((result: Genre[]) => {
+    this.jsonFilesService.getData<Genre[]>('genres').subscribe((result: Genre[]) => {
       this.musicGenres = result;
     });
 
     this.fileNameBehaviourSubject.subscribe(fileName => {
-      this.dataService.getData<JsonBeat>(fileName, 'beats/').subscribe((result: JsonBeat) => {
+      this.jsonFilesService.getData<JsonBeat>(fileName, 'beats/').subscribe((result: JsonBeat) => {
         this.beat = Convert.toBeat(result);
         if (this.soundService.isPlaying)
           this.soundService.pause();
