@@ -32,12 +32,12 @@ export class AppComponent implements OnInit {
         this.isMobileDisplay = !result.matches;
       });
 
-    this.jsonFilesService.getData<Genre[]>('genres').subscribe((result: Genre[]) => {
+    this.jsonFilesService.get<Genre[]>('genres').subscribe((result: Genre[]) => {
       this.musicGenres = result;
     });
 
     this.fileNameBehaviourSubject.subscribe(fileName => {
-      this.jsonFilesService.getData<JsonBeat>(fileName, 'beats/').subscribe((result: JsonBeat) => {
+      this.jsonFilesService.get<JsonBeat>(fileName, 'beats/').subscribe((result: JsonBeat) => {
         this.beat = Convert.toBeat(result);
         if (this.soundService.isPlaying)
           this.soundService.pause();
