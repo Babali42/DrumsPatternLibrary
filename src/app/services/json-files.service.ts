@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class JsonFilesService {
   private apiUrl = 'assets/';
   private fileExtension = '.json';
 

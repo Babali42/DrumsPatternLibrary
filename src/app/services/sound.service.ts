@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Sample} from '../models/sample';
 import {Track} from '../models/track';
+import {AudioFilesService} from "./audio-files.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class SoundService {
   private playbackSource: AudioBufferSourceNode;
   private stepNumber: number = 16;
 
-  constructor() {
+  constructor(private audioFilesService: AudioFilesService) {
     this.context = new AudioContext();
     this.playbackSource = new AudioBufferSourceNode(this.context);
   }
@@ -121,21 +122,12 @@ export class SoundService {
   private loadTracks(trackNames: string[]) {
     trackNames.forEach(x => this.samples.push(new Sample(x)))
     for (const sample of this.samples) {
-      this.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
+      this.audioFilesService.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
         .then(() => {
         })
         .catch(() => {
         });
     }
-  }
-
-  private async getAudioBuffer(soundName: string): Promise<AudioBuffer> {
-    const myRequest = new Request(`assets/sounds/${soundName}`);
-    const response = await fetch(myRequest);
-    const arrayBuffer = await response.arrayBuffer();
-    return await this.context.decodeAudioData(arrayBuffer).then((data) => {
-      return data
-    });
   }
 
   private getTickLength() {
