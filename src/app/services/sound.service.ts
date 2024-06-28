@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Sample} from '../models/sample';
 import {Track} from '../models/track';
 import {AudioFilesService} from "./audio-files.service";
+import {SoundGeneratorService} from "./sound-generator.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class SoundService {
   private playbackSource: AudioBufferSourceNode;
   private stepNumber: number = 16;
 
-  constructor(private audioFilesService: AudioFilesService) {
+  constructor(private audioFilesService: AudioFilesService, private soundGeneratorService: SoundGeneratorService) {
     this.context = new AudioContext();
     this.playbackSource = new AudioBufferSourceNode(this.context);
   }
@@ -24,7 +25,7 @@ export class SoundService {
   async playPause(): Promise<void> {
     this.isPlaying = !this.isPlaying;
     if (this.isPlaying) {
-      const loopBuffer = await this.getRenderedBuffer();
+      const loopBuffer = await this.soundGeneratorService.getRenderedBuffer(this.tracks, this.samples, this.bpm, this.stepNumber);
       this.playSound(loopBuffer);
     } else {
       this.pause();
@@ -63,45 +64,10 @@ export class SoundService {
 
   private getMillisStepFromBpm(): number {
     const beat = 60000 / this.bpm;
-    let quaterBeat = beat / 4;
-    quaterBeat = Math.min(quaterBeat, 1000);
-    quaterBeat = Math.max(quaterBeat, 10);
-    return quaterBeat;
-  }
-
-  //Rendered sound (twice the grid length)  ████░░░░
-  //Played sound (the doted part is looped) ████░░░░░░░░░░░░░░░░░░░░░░░░
-  //Used to avoid sound clip ;)
-  async getRenderedBuffer() {
-    const tickLength = this.getTickLength();
-    const offlineContext: OfflineAudioContext = new OfflineAudioContext(1, this.stepNumber * 2 * tickLength * 44100, 44100);
-    this.tracks.forEach((track: Track) => {
-      const trackSteps = this.getDuplicatedTrackSteps(track);
-      trackSteps.forEach((beat: boolean, i: number) => {
-        if (!beat)
-          return;
-
-        const audioBuffer = this.samples.find(x => x.fileName === track.fileName)!.sample!;
-        const audioBufferSourceNode = offlineContext.createBufferSource();
-        audioBufferSourceNode.buffer = audioBuffer;
-        audioBufferSourceNode.connect(offlineContext.destination);
-
-        const when = i * tickLength;
-        audioBufferSourceNode.start(when);
-      });
-    });
-
-    offlineContext.oncomplete = (event: OfflineAudioCompletionEvent) => {
-      return event.renderedBuffer;
-    }
-    return await offlineContext.startRendering();
-  }
-
-
-  private getDuplicatedTrackSteps(track: Track) {
-    const duplicatedTracks = [...track.steps]
-    duplicatedTracks.push(...track.steps);
-    return duplicatedTracks;
+    let quarterBeat = beat / 4;
+    quarterBeat = Math.min(quarterBeat, 1000);
+    quarterBeat = Math.max(quarterBeat, 10);
+    return quarterBeat;
   }
 
   reset(): void {
@@ -129,10 +95,6 @@ export class SoundService {
         });
     }
   }
-
-  private getTickLength() {
-    return 60 / this.bpm / 4;
-  };
 
   setStepNumber(length: number) {
     this.stepNumber = length;
