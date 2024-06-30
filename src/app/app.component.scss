@@ -20,8 +20,8 @@
     padding: 5px;
 
     &.selected {
-      background-color: $color1;
-      border: solid 1px black;
+      background-color: var(--menuButtonColor);
+      border: solid 1px var(--borderColor);
     }
 
     &:hover:not(.selected) {
@@ -62,12 +62,12 @@
   gap: 5px;
 
   .item {
-    border: solid 1px black;
+    border: solid 1px var(--borderColor);
     border-radius: 5px;
     padding: 10px;
 
     &.selected {
-      background-color: $color1;
+      background-color: var(--menuButtonColor);
     }
   }
 }
@@ -95,11 +95,11 @@
   height: 40px;
   width: 40px;
   min-width: 40px;
-  background-color: black;
-  color: white;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
   border-radius: 4px;
   cursor: pointer;
-  border: solid 2px black;
+  border: solid 2px var(--borderColor);
   font-size: 20px;
 }
 
