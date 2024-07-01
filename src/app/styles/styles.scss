@@ -2,14 +2,12 @@
 @import './utils';
 @import './mixins';
 
-//body.dark{
-body {
+body.dark{
   @include darken();
   background-color: var(--backgroundColor);
   color: var(--textColor);
 }
 body.light {
-//body {
   @include lighten();
   background-color: var(--backgroundColor);
   color: var(--textColor);

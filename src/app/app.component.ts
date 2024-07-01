@@ -6,6 +6,8 @@ import {Beat} from "./models/beat";
 import {SoundService} from "./services/sound.service";
 import {Convert, JsonBeat} from "./models/primary/jsonBeat";
 import {JsonFilesService} from "./services/json-files.service";
+import {Mode} from "./models/mode-toggle.model";
+import {ModeToggleService} from "./services/mode-toggle.service";
 
 @Component({
   selector: 'app-root',
@@ -19,9 +21,13 @@ export class AppComponent implements OnInit {
   musicGenres: Genre[] = [];
   fileNameBehaviourSubject: BehaviorSubject<string>;
   beat: Beat = new Beat('', 120, []);
+  private currentMode: Mode = Mode.DARK;
 
-  constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public soundService: SoundService) {
+  constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public soundService: SoundService, private modeToggleService: ModeToggleService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
+    this.modeToggleService.modeChanged$.subscribe((mode: Mode) => {
+      this.currentMode = mode;
+    });
   }
 
   ngOnInit(): void {
