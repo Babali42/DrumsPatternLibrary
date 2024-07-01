@@ -34,31 +34,23 @@
 .step {
   height: 40px;
   width: 40px;
-  background-color: white;
+  background-color: var(--backgroundColor);
   border-radius: 4px;
   cursor: pointer;
-  border: solid 1px black;
+  border: solid 1px var(--borderColor);
 }
 
 .current {
-  background: repeating-linear-gradient(-45deg, #fff, #fff 10px, #000 5px, #000 15px);
+  background: repeating-linear-gradient(-45deg, var(--backgroundColor), var(--backgroundColor) 10px, var(--textColor) 5px, var(--textColor) 15px);
 }
 
 .active {
-  background-color: $color3;
+  background-color: $color3_purple;
 
   &.current {
-    background: repeating-linear-gradient(-45deg, $color3, $color3 10px, #000 5px, #000 15px);
+    background: repeating-linear-gradient(-45deg, $color3_purple, $color3_purple 10px, var(--backgroundColor) 5px, var(--backgroundColor) 15px);
   }
 }
-
-
-.active {
-  background-color: $color3;
-}
-  .active.current {
-    background: repeating-linear-gradient(-45deg, $color3, $color3 10px, #000 5px, #000 15px);
-  }
 
 .tracks-container {
   display: grid;
