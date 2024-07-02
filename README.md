@@ -19,6 +19,13 @@ Project is created with:
 To run this project, install it locally using npm:
 
 ```
-$ npm install
-$ npm start
+npm install
+npm start
+```
+
+To build and serve this project locally using npm:
+
+```
+npm run build
+http-server dist/drum-beat-repo
 ```
