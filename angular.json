@@ -28,12 +28,23 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/styles/base.scss",
+              "src/app/styles/mixins.scss",
+              "src/app/styles/utils.scss",
               "src/app/styles/styles.scss"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
               "budgets": [
                 {
                   "type": "initial",
