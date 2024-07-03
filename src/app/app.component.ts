@@ -33,10 +33,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.responsive.observe([
       Breakpoints.Web,
-    ])
-      .subscribe(result => {
-        this.isMobileDisplay = !result.matches;
-      });
+    ]).subscribe(result => {
+      this.isMobileDisplay = !result.matches;
+    });
 
     this.jsonFilesService.get<Genre[]>('genres').subscribe((result: Genre[]) => {
       this.musicGenres = result;
