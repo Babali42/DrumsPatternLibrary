@@ -18,6 +18,10 @@
     border-radius: 5px;
     width: 90%;
     padding: 5px;
+    background-color: var(--backgroundColor);
+    border: none;
+    text-align: left;
+    color: var(--textColor);
 
     &.selected {
       background-color: var(--menuButtonColor);

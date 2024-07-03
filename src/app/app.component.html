@@ -1,35 +1,35 @@
 <main [ngClass]="{'flex': !isMobileDisplay}" id="app-container">
-  <div class="flex column left-menu" *ngIf="!isMobileDisplay">
-    <img src="./assets/images/title.svg" id="title-image" alt="">
-    <div class="flex menu genre" *ngIf="musicGenres.length != 0">
+  <nav class="flex column left-menu" *ngIf="!isMobileDisplay">
+    <img src="./assets/images/title.svg" id="title-image" alt="Website Title">
+    <section class="flex menu genre" *ngIf="musicGenres.length != 0">
       <h2>Genre</h2>
-      <div class="button pointer" *ngFor="let genre of musicGenres; let i = index;" (click)="selectGenre(i)"
-           [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}
-      </div>
-    </div>
-    <div class="flex menu" *ngIf="musicGenres.length != 0">
-      <h2>Sous-genre</h2>
-      <div class="button pointer" *ngFor="let subgenre of musicGenres[selectedGenreIndex].subGenres; let i = index;"
-           (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subgenre.label }}
-      </div>
-    </div>
-  </div>
+      <button class="button pointer" *ngFor="let genre of musicGenres; let i = index;" (click)="selectGenre(i)"
+              [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}
+      </button>
+    </section>
+    <section class="flex menu" *ngIf="musicGenres.length != 0">
+      <h2>Sub-genre</h2>
+      <button class="button pointer" *ngFor="let subgenre of musicGenres[selectedGenreIndex].subGenres; let i = index;"
+              (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subgenre.label }}
+      </button>
+    </section>
+  </nav>
   <div *ngIf="isMobileDisplay">
-    <div class="header-mobile mt-40 mb-40">
-      <img src="./assets/images/title-mobile.svg" id="title-image-mobile" alt="">
-    </div>
-    <div class="ml-10">
-      <div>
+    <header class="header-mobile mt-40 mb-40">
+      <img src="./assets/images/title-mobile.svg" id="title-image-mobile" alt="Website Title">
+    </header>
+    <nav class="ml-10">
+      <section>
         <div class="flex mobile-menu mb-10" *ngIf="musicGenres.length != 0">
           <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)"
              [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}</a>
         </div>
-      </div>
-      <div class="flex mobile-menu mb-40" *ngIf="musicGenres.length != 0">
+      </section>
+      <section class="flex mobile-menu mb-40" *ngIf="musicGenres.length != 0">
         <a class="item" *ngFor="let subGenre of musicGenres[selectedGenreIndex].subGenres; let i = index"
            (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subGenre.label }}</a>
-      </div>
-    </div>
+      </section>
+    </nav>
   </div>
   <section class="flex content">
     <sequencer [beat]="beat"></sequencer>
