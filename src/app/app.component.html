@@ -1,4 +1,4 @@
-<div [ngClass]="{'flex': !isMobileDisplay}" id="app-container">
+<main [ngClass]="{'flex': !isMobileDisplay}" id="app-container">
   <div class="flex column left-menu" *ngIf="!isMobileDisplay">
     <img src="./assets/images/title.svg" id="title-image" alt="">
     <div class="flex menu genre" *ngIf="musicGenres.length != 0">
@@ -31,10 +31,10 @@
       </div>
     </div>
   </div>
-  <div class="flex content">
+  <section class="flex content">
     <sequencer [beat]="beat"></sequencer>
-  </div>
-</div>
+  </section>
+</main>
 <footer class="flex">
   <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
   <div class="beat-name">{{ beat.name | titlecase }}</div>
