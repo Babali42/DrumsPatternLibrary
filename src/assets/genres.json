@@ -96,6 +96,10 @@
       {
         "label": "Reggaeton",
         "fileName": "dancehall-reggaeton"
+      },
+      {
+        "label": "Standard",
+        "fileName": "dancehall-standard"
       }
     ]
   }
