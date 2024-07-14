@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Genre} from './models/genre';
 import {BehaviorSubject} from 'rxjs';
@@ -77,5 +77,17 @@ export class AppComponent implements OnInit {
       () => {
       }
     );
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.code == "Space") {
+      this.soundService.playPause().then(
+        () => {
+        },
+        () => {
+        }
+      );
+    }
   }
 }
