@@ -89,5 +89,14 @@
         "fileName": "dub"
       }
     ]
+  },
+  {
+    "label": "Dancehall",
+    "subGenres" : [
+      {
+        "label": "Reggaeton",
+        "fileName": "dancehall-reggaeton"
+      }
+    ]
   }
 ]

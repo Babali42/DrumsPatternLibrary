@@ -66,8 +66,12 @@ export class AppComponent implements OnInit {
   }
 
   updateFileName() {
-    const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].fileName;
-    this.fileNameBehaviourSubject.next(fileName);
+    console.log(this.musicGenres);
+    console.log(this.selectedGenreIndex);
+    console.log(this.selectedSubGenreIndex);
+    const nextFileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].fileName;
+    console.log(nextFileName);
+    this.fileNameBehaviourSubject.next(nextFileName);
   }
 
   toggleIsPlaying(): void {
