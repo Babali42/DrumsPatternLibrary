@@ -5,17 +5,17 @@
     {
       "name": "Snare",
       "fileName": "metal/snare.mp3",
-      "steps": [" ", " ", " ", " ", "X", " ", " ", " ", " ", " ", " ", " ", "X", " ", " ", " "]
+      "steps": "    X       X   "
     },
     {
       "name": "Hats",
       "fileName": "metal/hat.mp3",
-      "steps": ["X", " ", " ", " ", "X", " ", " ", " ", "X", " ", " ", " ", "X", " ", " ", " "]
+      "steps": "X   X   X   X   "
     },
     {
       "name": "Kick",
       "fileName": "metal/kick.mp3",
-      "steps": ["X", " ", " ", " ", " ", " ", " ", " ", "X", " ", " ", " ", " ", " ", " ", " "]
+      "steps": "X       X       "
     }
   ]
 }

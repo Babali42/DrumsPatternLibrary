@@ -5,17 +5,17 @@
     {
       "name": "Snare",
       "fileName": "drum-n-bass/snare.wav",
-      "steps": [" ", " ", " ", " ", "X", " ", " ", " ", " ", " ", " ", " ", "X", " ", " ", " "]
+      "steps": "    X       X   "
     },
     {
       "name": "Hats",
       "fileName": "drum-n-bass/hat.wav",
-      "steps": ["X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"]
+      "steps": "XXXXXXXXXXXXXXXX"
     },
     {
       "name": "Kick",
       "fileName": "drum-n-bass/kick.wav",
-      "steps": ["X", " ", " ", " ", " ", " ", " ", " ", " ", " ", "X", " ", " ", " ", " ", " "]
+      "steps": "X         X     "
     }
   ]
 }

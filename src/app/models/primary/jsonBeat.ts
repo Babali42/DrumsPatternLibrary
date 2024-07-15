@@ -15,9 +15,6 @@ export class Convert{
   }
 
   private static toTrack(jsonTrack: JsonTrack): Track {
-    const steps = jsonTrack.steps
-      .map(x => x.trim())
-      .map(x => Boolean(x));
-    return new Track(jsonTrack.name, jsonTrack.fileName, steps);
+    return new Track(jsonTrack.name, jsonTrack.fileName, Array.from(jsonTrack.steps).map(x => x == "X"));
   }
 }
