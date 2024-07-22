@@ -5,12 +5,12 @@
     {
       "name": "Snare (accent)",
       "fileName": "techno/snare.wav",
-      "steps": "    X       X   "
+      "steps": "    X        X  "
     },
     {
       "name": "Snare (main)",
       "fileName": "drum-n-bass/snare.wav",
-      "steps": "    X  X X   X   "
+      "steps": "    X  X X   X  "
     },
     {
       "name": "Hats",
@@ -20,7 +20,7 @@
     {
       "name": "Kick",
       "fileName": "techno/kick.wav",
-      "steps": "X X      XX     "
+      "steps": "X X       XX    "
     }
   ],
   "source": "https://onlinesequencer.net/2502318"
