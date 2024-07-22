@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {SoundService} from '../../services/sound.service';
 import {Beat} from '../../models/beat';
 import { NgFor } from '@angular/common';
+import {StepLengths} from "../../models/primary/jsonBeat";
 
 @Component({
     selector: 'sequencer',
@@ -15,5 +16,7 @@ export class SequencerComponent {
 
   constructor(public soundService: SoundService) {
   }
+
+  protected readonly StepLengths = StepLengths;
 }
 
