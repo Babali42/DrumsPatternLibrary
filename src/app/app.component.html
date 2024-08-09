@@ -1,3 +1,17 @@
+<body>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    Sidebar Header
+    <button class="close-btn" onclick="closeSidebar()">X</button>
+  </div>
+  <p>DrumBeatRepo is a rhythm library.</p>
+  <p>It is intended for composers or curious musicians.</p>
+  <p>To contribute code/samples the repo is public and can be found at <a href="www.github.com/babali42/drumbeatrepo">github.com/babali42/drumbeatrepo</a>
+  </p>
+  <p>Enjoy your musical journey !</p>
+  <p>Babali</p>
+</div>
 <main [ngClass]="{'flex': !isMobileDisplay}" id="app-container">
   <nav class="flex column left-menu" *ngIf="!isMobileDisplay">
     <img src="./assets/images/title.svg" id="title-image" alt="Website Title">
@@ -40,3 +54,4 @@
   <div class="beat-name">{{ beat.name | titlecase }}</div>
   <div class="bpm">{{ beat.bpm }} bpm</div>
 </footer>
+</body>

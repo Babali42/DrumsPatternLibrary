@@ -137,3 +137,52 @@ footer {
   aspect-ratio: 1;
   clip-path: polygon(0 100%,0 0,100% 100%,0 100%);
 }
+
+/* Sidebar container */
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #333;
+  padding-top: 20px;
+  transition: width 0.3s ease;
+}
+
+/* Header inside the sidebar */
+.sidebar-header {
+  padding: 15px;
+  color: white;
+  background-color: #444;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Close button */
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Main content */
+.content {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Hidden sidebar state */
+.sidebar.closed {
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar.closed + .content {
+  margin-left: 0;
+}
