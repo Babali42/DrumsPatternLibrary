@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SoundService} from '../../services/sound.service';
+import {SoundWebApi} from '../../services/sound-web-api';
 import {Beat} from '../../models/beat';
 import { NgFor } from '@angular/common';
 import { StepLengths } from 'src/app/models/step-lengths';
@@ -14,7 +14,7 @@ import { StepLengths } from 'src/app/models/step-lengths';
 export class SequencerComponent {
   @Input() beat: Beat = new Beat('', 120, []);
 
-  constructor(public soundService: SoundService) {
+  constructor(public sound: SoundWebApi) {
   }
 
   protected readonly StepLengths = StepLengths;

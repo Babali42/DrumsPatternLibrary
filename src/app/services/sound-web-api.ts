@@ -3,11 +3,12 @@ import {Sample} from '../models/sample';
 import {Track} from '../models/track';
 import {AudioFilesService} from "./audio-files.service";
 import {SoundGeneratorService} from "./sound-generator.service";
+import {Sound} from "./Sound";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SoundService {
+export class SoundWebApi implements Sound {
   bpm: number = 120;
   isPlaying: boolean = false;
   index: number = 0;

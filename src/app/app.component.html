@@ -36,7 +36,7 @@
   </section>
 </main>
 <footer class="flex">
-  <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
+  <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.sound.isPlaying ? "⏸" : "▶" }}</button>
   <div class="beat-name">{{ beat.name | titlecase }}</div>
   <div class="bpm">{{ beat.bpm }} bpm</div>
 </footer>

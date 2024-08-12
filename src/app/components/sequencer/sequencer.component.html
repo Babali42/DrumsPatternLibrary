@@ -5,7 +5,7 @@
          [class.thirty-two-steps]="track.steps.length == StepLengths.thirty_two"
          [class.sixty-four-steps]="track.steps.length == StepLengths.sixty_four">
       <div *ngFor="let step of track.steps; let i = index" class="step" [class.active]="step"
-           [class.current]="i === this.soundService.index"></div>
+           [class.current]="i === this.sound.index"></div>
     </div>
   </article>
 </section>
