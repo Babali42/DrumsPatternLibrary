@@ -3,13 +3,12 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Genre} from './models/genre';
 import {BehaviorSubject} from 'rxjs';
 import {Beat} from "./models/beat";
-import {SoundService} from "./services/sound.service";
-import {Convert, JsonBeat} from "./models/primary/jsonBeat";
 import {JsonFilesService} from "./services/json-files.service";
 import {Mode} from "./models/mode-toggle.model";
 import {ModeToggleService} from "./services/mode-toggle.service";
 import {JsonBeat} from "./models/primary/json-beat";
 import {Convert} from "./models/primary/convert";
+import {SoundTone} from "./services/sound-tone";
 
 @Component({
   selector: 'app-root',
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit {
   beat: Beat = new Beat('', 120, []);
   private currentMode: Mode = Mode.DARK;
 
-  constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public sound: SoundWebApi, private modeToggleService: ModeToggleService) {
+  constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public sound: SoundTone, private modeToggleService: ModeToggleService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
     this.modeToggleService.modeChanged$.subscribe((mode: Mode) => {
       this.currentMode = mode;

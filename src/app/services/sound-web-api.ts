@@ -3,7 +3,7 @@ import {Sample} from '../models/sample';
 import {Track} from '../models/track';
 import {AudioFilesService} from "./audio-files.service";
 import {SoundGeneratorService} from "./sound-generator.service";
-import {Sound} from "./Sound";
+import {Sound} from "./sound";
 
 @Injectable({
   providedIn: 'root'
