@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "test": "jest"
   },
   "private": true,
   "dependencies": {
@@ -24,9 +25,12 @@
     "@angular-devkit/build-angular": "^17.3.8",
     "@angular-eslint/eslint-plugin": "^17.2.0",
     "@angular/cli": "~17.3.8",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "eslint-config-prettier": "^9.1.0",
+    "ts-jest": "^29.2.4",
     "typescript": "~5.4.5"
   }
 }
