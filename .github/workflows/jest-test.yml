@@ -17,14 +17,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
 
       - name: Install dependencies
-        run: npm ci
-
-      - name: Verify Jest installation
-        run: npx jest --version  # Verify if Jest is installed and accessible
+        run: npm install
 
       - name: Run Jest tests
         run: npm run test
