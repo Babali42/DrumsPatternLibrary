@@ -1,5 +1,5 @@
 import {describe, expect} from '@jest/globals';
-import {Convert} from "./jsonBeat";
+import {Convert} from "./convert";
 
 describe('Primary beat', () => {
   it.each([

@@ -4,10 +4,11 @@ import {Genre} from './models/genre';
 import {BehaviorSubject} from 'rxjs';
 import {Beat} from "./models/beat";
 import {SoundService} from "./services/sound.service";
-import {Convert, JsonBeat} from "./models/primary/jsonBeat";
 import {JsonFilesService} from "./services/json-files.service";
 import {Mode} from "./models/mode-toggle.model";
 import {ModeToggleService} from "./services/mode-toggle.service";
+import {JsonBeat} from "./models/primary/json-beat";
+import {Convert} from "./models/primary/convert";
 
 @Component({
   selector: 'app-root',
