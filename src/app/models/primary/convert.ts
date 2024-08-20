@@ -1,18 +1,8 @@
-import {JsonTrack} from "./jsonTrack";
+import {JsonBeat} from "./json-beat";
 import {Beat} from "../beat";
+import {JsonTrack} from "./json-track";
 import {Track} from "../track";
-
-export interface JsonBeat {
-  name: string;
-  bpm: number;
-  tracks: JsonTrack[];
-}
-
-export const StepLengths = {
-  sixteen: 16,
-  thirty_two: 32,
-  sixty_four: 64
-}
+import {StepLengths} from "../step-lengths";
 
 export class Convert {
   public static toBeat(jsonBeat: JsonBeat): Beat {
