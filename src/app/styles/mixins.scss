@@ -12,9 +12,14 @@ $textColor_dark: white;
 $borderColor_light: black;
 $borderColor_dark: white;
 
+$sideBarColor_light: #EBFBFF;
+$sideBarColor_dark: #312c30;
+
 // mixin that enables css variables in light mode
 @mixin lighten() {
   --backgroundColor: #{$bgColor_light};
+  --sideBarColor: #{$sideBarColor_light};
+  --sideBarHeaderColor: #{$color1_light_blue};
   --textColor: #{$textColor_light};
   --borderColor: #{$borderColor_light};
   --menuButtonColor: #{$color1_light_blue};
@@ -23,6 +28,8 @@ $borderColor_dark: white;
 // mixin that enables css variables in dark mode
 @mixin darken() {
   --backgroundColor: #{$bgColor_dark};
+  --sideBarColor: #{$sideBarColor_dark};
+  --sideBarHeaderColor: #{$color3_purple};
   --textColor: #{$textColor_dark};
   --borderColor: #{$borderColor_dark};
   --menuButtonColor: #{$color3_purple};

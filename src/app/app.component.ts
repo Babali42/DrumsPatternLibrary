@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   fileNameBehaviourSubject: BehaviorSubject<string>;
   beat: Beat = new Beat('', 120, []);
   private currentMode: Mode = Mode.DARK;
+  isSideBarDisplayed: boolean = true;
 
   constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public soundService: SoundService, private modeToggleService: ModeToggleService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
