@@ -39,27 +39,37 @@ export class SoundTone implements Sound {
     Tone.start().then(() => {
       const players = {};
 
+      const buffers = {}; // Object to hold the preloaded buffers
+      // @ts-ignore
+      const loadPromises = []; // Array to hold loading promises
+
       tracks.forEach(track => {
+        const buffer = new Tone.Buffer("assets\\sounds\\" + track.fileName);
         // @ts-ignore
-        players[track.name] = new Tone.Player({
-          url: "assets\\sounds\\" + track.fileName,
-          loop: false, // Ensure the sample plays fully without looping
-        }).toDestination();
+        buffers[track.name] = buffer;
+        loadPromises.push(buffer.loaded);
       });
 
-      // Create a single sequence to orchestrate all tracks
-      const stepsPerTrack = tracks.map(track => track.steps);
-      const totalSteps = tracks[0].steps.length;
+      // @ts-ignore
+      Promise.all(loadPromises).then(() => {
+        // Create a single sequence to orchestrate all tracks
+        const stepsPerTrack = tracks.map(track => track.steps);
+        const totalSteps = tracks[0].steps.length;
 
-      this.sequence = new Tone.Sequence((time, stepIndex) => {
-        tracks.forEach((track, trackIndex) => {
-          const shouldPlay = stepsPerTrack[trackIndex][stepIndex];
-          if (shouldPlay) {
-            // @ts-ignore
-            players[track.name].start(time);
-          }
-        });
-      }, Array.from({length: totalSteps}, (_, i) => i), "16n");
+        this.sequence = new Tone.Sequence((time, stepIndex) => {
+          tracks.forEach((track, trackIndex) => {
+            const shouldPlay = stepsPerTrack[trackIndex][stepIndex];
+
+            if (shouldPlay) {
+              // Create a new player instance using the preloaded buffer
+              const newPlayer = new Tone.Player("assets\\sounds\\" + track.fileName, () => {
+                newPlayer.start(time);
+                newPlayer.onstop = () => newPlayer.dispose();
+              }).toDestination();
+            }
+          });
+        }, Array.from({length: totalSteps}, (_, i) => i), "16n");
+      });
     });
   }
 }
