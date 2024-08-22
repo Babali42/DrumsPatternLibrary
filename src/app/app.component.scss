@@ -137,3 +137,69 @@ footer {
   aspect-ratio: 1;
   clip-path: polygon(0 100%,0 0,100% 100%,0 100%);
 }
+
+/* Sidebar container */
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: var(--sideBarColor);
+
+  section {
+    padding: 0 10px;
+  }
+
+  a:link {
+    color: var(--menuButtonColor);
+  }
+
+  a:visited {
+    color: green;
+  }
+
+  a:hover {
+    color: hotpink;
+    cursor: pointer;
+  }
+
+  a:active {
+    color: blue;
+  }
+}
+
+/* Header inside the sidebar */
+.sidebar-header {
+  padding: 15px;
+  background-color: var(--sideBarHeaderColor);
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Close button */
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--borderColor);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Main content */
+.content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Hidden sidebar state */
+.sidebar.closed {
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar.closed + .content {
+  margin-left: 0;
+}
