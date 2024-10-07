@@ -18,5 +18,6 @@ export class SequencerComponent {
   }
 
   protected readonly StepLengths = StepLengths;
+  protected readonly Math = Math;
 }
 
