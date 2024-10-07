@@ -1,5 +1,9 @@
 @import "../../styles/styles";
 
+$step-size: 40px;
+$border-radius: 4px;
+$gap: 4px;
+
 :host {
   overflow-x: auto;
 }
@@ -10,52 +14,68 @@
 
 #track-container {
   display: flex;
-  margin: 4px 0 0 0;
+  margin-top: $gap;
 }
 
 #track {
   display: grid;
   grid-template-rows: repeat(1, 1fr);
-  gap: 4px;
+  gap: $gap;
 }
 
-.sixteen-steps {
-  grid-template-columns: repeat(16, 1fr);
+@mixin step-grid($columns) {
+  grid-template-columns: repeat($columns, 1fr);
 }
 
-.thirty-two-steps {
-  grid-template-columns: repeat(32, 1fr);
-}
-
-.sixty-four-steps {
-  grid-template-columns: repeat(64, 1fr);
-}
+.sixteen-steps { @include step-grid(16); }
+.thirty-two-steps { @include step-grid(32); }
+.sixty-four-steps { @include step-grid(64); }
 
 .step {
-  height: 40px;
-  width: 40px;
+  height: $step-size;
+  width: $step-size;
   background-color: var(--backgroundColor);
-  border-radius: 4px;
+  border-radius: $border-radius;
   cursor: pointer;
-  border: solid 1px var(--borderColor);
+  border: 1px solid var(--borderColor);
 }
 
 .current {
-  background: repeating-linear-gradient(-45deg, var(--backgroundColor), var(--backgroundColor) 10px, var(--textColor) 5px, var(--textColor) 15px);
+  background: repeating-linear-gradient(
+      -45deg,
+      var(--backgroundColor), var(--backgroundColor) 10px,
+      var(--textColor) 5px, var(--textColor) 15px
+  );
 }
 
-.active {
+.active, .active.highlight {
   background-color: $color3_purple;
 
   &.current {
-    background: repeating-linear-gradient(-45deg, $color3_purple, $color3_purple 10px, var(--backgroundColor) 5px, var(--backgroundColor) 15px);
+    background: repeating-linear-gradient(
+        -45deg,
+        $color3_purple, $color3_purple 10px,
+        var(--backgroundColor) 5px, var(--backgroundColor) 15px
+    );
   }
+}
+
+.highlight {
+  background: var(--gridHighLightColor);
+}
+
+.current.highlight {
+  background: repeating-linear-gradient(
+      -45deg,
+      var(--gridHighLightColor), var(--gridHighLightColor) 10px,
+      var(--textColor) 5px, var(--textColor) 15px
+  );
 }
 
 .tracks-container {
   display: grid;
   grid-template-columns: max-content auto;
-  gap: 4px 14px;
+  gap: $gap 14px;
 }
 
 .track-container {
@@ -64,5 +84,5 @@
 
 .track-name {
   white-space: nowrap;
-  height: 40px;
+  height: $step-size;
 }
