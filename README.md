@@ -2,7 +2,7 @@
 
 ### A rhythm library for playing drum beats in the browser!
 
-Welcome to the **Drum Beat Repository**, a project built to help musicians, producers, and developers work with drum patterns using the latest web technologies. This library leverages **Angular** and the **Web Audio API** to deliver a smooth, interactive drum sequencing experience right in your browser.
+Welcome to the **Drum Beat Repository**, a project built to help musicians, producers, and developers work with drum patterns. This library leverages **Angular** and the **Web Audio API** to deliver a smooth, interactive drum sequencing experience right in your browser.
 
 ## 🚀 Features
 
@@ -25,7 +25,7 @@ To run the project locally, follow these steps:
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/your-repo/drum-beat-repo.git
+    git clone https://github.com/Babali42/drumbeatrepo.git
     cd drum-beat-repo
     ```
 
