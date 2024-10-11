@@ -28,10 +28,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/app/styles/base.scss",
-              "src/app/styles/mixins.scss",
-              "src/app/styles/utils.scss",
-              "src/app/styles/styles.scss"
+              "src/styles/base.scss",
+              "src/styles/mixins.scss",
+              "src/styles/utils.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
