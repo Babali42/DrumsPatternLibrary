@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Sample} from '../models/sample';
-import {Track} from '../models/track';
+import {Sample} from '../domain/sample';
+import {Track} from '../domain/track';
 import {AudioFilesService} from "./audio-files.service";
 import {SoundGeneratorService} from "./sound-generator.service";
 
@@ -86,7 +86,7 @@ export class SoundService {
   }
 
   private loadTracks(trackNames: string[]) {
-    trackNames.forEach(x => this.samples.push(new Sample(x)))
+    trackNames.forEach(x => this.samples.push({fileName: x}))
     for (const sample of this.samples) {
       this.audioFilesService.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
         .then(() => {

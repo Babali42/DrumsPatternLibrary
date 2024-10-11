@@ -2,7 +2,7 @@ import { DOCUMENT } from "@angular/common";
 import { Inject, Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 //import { ModeStorage, MODE_STORAGE_SERVICE } from "./mode-storage.service";
-import { Mode } from "../models/mode-toggle.model";
+import { Mode } from "./mode-toggle.model";
 
 /**
  * Angular service that provides the mode toggle feature.

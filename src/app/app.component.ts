@@ -1,14 +1,14 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Genre} from './models/genre';
 import {BehaviorSubject} from 'rxjs';
-import {Beat} from "./models/beat";
+import {Beat} from "./domain/beat";
 import {SoundService} from "./services/sound.service";
 import {JsonFilesService} from "./services/json-files.service";
-import {Mode} from "./models/mode-toggle.model";
+import {Mode} from "./services/mode-toggle.model";
 import {ModeToggleService} from "./services/mode-toggle.service";
-import {JsonBeat} from "./models/primary/json-beat";
-import {Convert} from "./models/primary/convert";
+import {JsonBeat} from "./obsolete-models/primary/json-beat";
+import {Convert} from "./obsolete-models/primary/convert";
+import {Genre} from "./domain/genre";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   selectedSubGenreIndex: number = 0;
   musicGenres: Genre[] = [];
   fileNameBehaviourSubject: BehaviorSubject<string>;
-  beat: Beat = new Beat('', 120, []);
+  beat: Beat = {name: '', bpm: 120, tracks: []};
   private currentMode: Mode = Mode.DARK;
 
   constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public soundService: SoundService, private modeToggleService: ModeToggleService) {
