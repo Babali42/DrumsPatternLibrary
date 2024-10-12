@@ -6,8 +6,8 @@ import {SoundService} from "./services/sound.service";
 import {JsonFilesService} from "./services/json-files.service";
 import {Mode} from "./services/mode-toggle.model";
 import {ModeToggleService} from "./services/mode-toggle.service";
-import {JsonBeat} from "./obsolete-models/primary/json-beat";
-import {Convert} from "./obsolete-models/primary/convert";
+import {JsonBeat} from "./obsolete-models/json-beat";
+import {Convert} from "./obsolete-models/convert";
 import {Genre} from "./domain/genre";
 
 @Component({

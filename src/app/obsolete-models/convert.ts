@@ -1,7 +1,7 @@
 import {JsonBeat} from "./json-beat";
-import {Beat} from "../../domain/beat";
+import {Beat} from "../domain/beat";
 import {JsonTrack} from "./json-track";
-import {Track} from "../../domain/track";
+import {Track} from "../domain/track";
 
 export class Convert {
   public static toBeat(jsonBeat: JsonBeat): Beat {
