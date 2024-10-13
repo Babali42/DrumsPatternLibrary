@@ -1,14 +1,12 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, map} from 'rxjs';
 import {Beat} from "./domain/beat";
 import {SoundService} from "./services/sound.service";
-import {JsonFilesService} from "./services/json-files.service";
-import {Mode} from "./services/mode-toggle.model";
 import {ModeToggleService} from "./services/mode-toggle.service";
-import {JsonBeat} from "./obsolete-models/json-beat";
-import {Convert} from "./obsolete-models/convert";
 import {Genre} from "./domain/genre";
+import IManageGenres from "./domain/ports/secondary/i-manage-genres";
+import {IManageBeats} from "./domain/ports/secondary/i-manage-beats";
 
 @Component({
   selector: 'app-root',
@@ -21,14 +19,15 @@ export class AppComponent implements OnInit {
   selectedSubGenreIndex: number = 0;
   musicGenres: Genre[] = [];
   fileNameBehaviourSubject: BehaviorSubject<string>;
-  beat: Beat = {name: '', bpm: 120, tracks: []};
-  private currentMode: Mode = Mode.DARK;
+  beat: Beat = {id: '', bpm: 120, tracks: []};
 
-  constructor(private responsive: BreakpointObserver, private jsonFilesService: JsonFilesService, public soundService: SoundService, private modeToggleService: ModeToggleService) {
+  constructor(private responsive: BreakpointObserver,
+              @Inject('IManageGenres') private _genresManager: IManageGenres,
+              @Inject('IManageBeats') private _beatsManager: IManageBeats,
+              public soundService: SoundService,
+              private modeToggleService: ModeToggleService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
-    this.modeToggleService.modeChanged$.subscribe((mode: Mode) => {
-      this.currentMode = mode;
-    });
+    this.modeToggleService.modeChanged$.subscribe();
   }
 
   ngOnInit(): void {
@@ -38,13 +37,13 @@ export class AppComponent implements OnInit {
       this.isMobileDisplay = !result.matches;
     });
 
-    this.jsonFilesService.get<Genre[]>('genres').subscribe((result: Genre[]) => {
-      this.musicGenres = result;
-    });
+    this._genresManager.getGenres().pipe(map(genres => {
+      this.musicGenres = genres
+    })).subscribe();
 
     this.fileNameBehaviourSubject.subscribe(fileName => {
-      this.jsonFilesService.get<JsonBeat>(fileName, 'beats/').subscribe((result: JsonBeat) => {
-        this.beat = Convert.toBeat(result);
+      this._beatsManager.getBeat(fileName).subscribe((result: Beat) => {
+        this.beat = result;
         if (this.soundService.isPlaying)
           this.soundService.pause();
         this.soundService.reset();
