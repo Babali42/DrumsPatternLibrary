@@ -1,17 +1,33 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
-import {SequencerComponent} from './components/sequencer/sequencer.component';
 import {HttpClientModule} from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import {InMemoryDataService} from "./adapters/secondary/in-memory-data.service";
+import {SequencerComponent} from "./components/sequencer/sequencer.component";
+import {GenresAdapterService} from "./adapters/secondary/genres-adapter.service";
+import {BeatsAdapterService} from "./adapters/secondary/beats-adapter-service";
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        SequencerComponent
-    ],
-    bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    ),
+    SequencerComponent
+  ],
+  declarations: [AppComponent],
+  providers: [
+    // Inject adapters into domain classes
+    {provide: 'IManageGenres', useClass: GenresAdapterService},
+    {provide: 'IManageBeats', useClass: BeatsAdapterService},
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

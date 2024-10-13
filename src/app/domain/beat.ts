@@ -1,7 +1,7 @@
 import { Track } from "./track";
 
 export interface Beat {
-  name: string;
+  id: string;
   bpm: number;
   tracks: Track[];
 }
