@@ -8,12 +8,12 @@ import {Genre} from "../../domain/genre";
 @Injectable({ providedIn: 'root' })
 export class GenresAdapterService implements IManageGenres {
 
-  private heroesUrl = 'api/genres';  // URL to web api
+  private genresUrl = 'api/genres';
 
   constructor(private http: HttpClient) { }
 
   getGenres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(this.heroesUrl).pipe(
+    return this.http.get<Genre[]>(this.genresUrl).pipe(
       catchError(this.handleHttpError())
     );
   }

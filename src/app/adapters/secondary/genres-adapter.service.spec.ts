@@ -4,7 +4,7 @@ import { of, throwError } from 'rxjs';
 import {GenresAdapterService} from "./genres-adapter.service";
 import {Genre} from "../../domain/genre";
 
-describe('HeroAdapterService', () => {
+describe('GenreAdapterService', () => {
   let service: GenresAdapterService;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
@@ -21,14 +21,14 @@ describe('HeroAdapterService', () => {
   });
 
   it('should return expected genres', (done: DoneFn) => {
-    const expectedHeroes: Genre[] =
+    const expectedGenres: Genre[] =
       [{ label: "A", subGenres: [] }, { label: "B", subGenres: [] }];
 
-    httpClientSpy.get.and.returnValue(of(expectedHeroes));
+    httpClientSpy.get.and.returnValue(of(expectedGenres));
 
     service.getGenres().subscribe({
         next: genres => {
-          expect(genres).toEqual(expectedHeroes);
+          expect(genres).toEqual(expectedGenres);
           done();
         },
         error: done.fail
