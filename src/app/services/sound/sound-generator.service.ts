@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {Track} from "../domain/track";
-import {Sample} from "../domain/sample";
+import {Track} from "../../domain/track";
+import {Sample} from "../../domain/sample";
 
 @Injectable({providedIn: "root"})
 export class SoundGeneratorService {

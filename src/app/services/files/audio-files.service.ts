@@ -1,6 +1,3 @@
-import {Injectable} from "@angular/core";
-
-@Injectable({providedIn: "root"})
 export class AudioFilesService {
   async getAudioBuffer(soundName: string): Promise<AudioBuffer> {
     const myRequest = new Request(`assets/sounds/${soundName}`);

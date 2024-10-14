@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Sample} from '../domain/sample';
-import {Track} from '../domain/track';
-import {AudioFilesService} from "./audio-files.service";
+import {Sample} from '../../domain/sample';
+import {Track} from '../../domain/track';
+import {AudioFilesService} from "../files/audio-files.service";
 import {SoundGeneratorService} from "./sound-generator.service";
 
 @Injectable({
@@ -16,8 +16,9 @@ export class SoundService {
   private tracks: Track[] = [];
   private playbackSource: AudioBufferSourceNode;
   private stepNumber: number = 16;
+  private audioFilesService = new AudioFilesService();
 
-  constructor(private audioFilesService: AudioFilesService, private soundGeneratorService: SoundGeneratorService) {
+  constructor(private soundGeneratorService: SoundGeneratorService) {
     this.context = new AudioContext();
     this.playbackSource = new AudioBufferSourceNode(this.context);
   }

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SoundService} from '../../services/sound.service';
+import {SoundService} from '../../services/sound/sound.service';
 import {Beat} from '../../domain/beat';
 import { NgFor } from '@angular/common';
 import { StepLengths } from './models/step-lengths';
