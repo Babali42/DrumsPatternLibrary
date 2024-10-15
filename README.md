@@ -45,7 +45,11 @@ To run the project locally, follow these steps:
 
 ## 🌱 How to Contribute
 
-Contributions are **welcome**! Whether you want to improve the code, add new features, or contribute drum patterns, we encourage you to get involved. Here's how you can contribute:
+Contributions are **welcome**!
+
+You can edit the linked GitHub project's kanban board !
+
+### Or
 
 1. Fork the repository
 2. Create a new branch (`git checkout -b feature-branch`)
