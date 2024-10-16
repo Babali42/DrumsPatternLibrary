@@ -1,42 +1,53 @@
-<main [ngClass]="{'flex': !isMobileDisplay}" id="app-container">
-  <nav class="flex column left-menu" *ngIf="!isMobileDisplay">
-    <img src="./assets/images/title.svg" id="title-image" alt="Website Title">
-    <section class="flex menu genre" *ngIf="musicGenres.length != 0">
-      <h2>Genre</h2>
-      <button class="button pointer" *ngFor="let genre of musicGenres; let i = index;" (click)="selectGenre(i)"
-              [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}
-      </button>
-    </section>
-    <section class="flex menu" *ngIf="musicGenres.length != 0">
-      <h2>Sub-genre</h2>
-      <button class="button pointer" *ngFor="let subgenre of musicGenres[selectedGenreIndex].subGenres; let i = index;"
-              (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subgenre.label }}
-      </button>
-    </section>
-  </nav>
-  <div *ngIf="isMobileDisplay">
-    <header class="header-mobile mt-40 mb-40">
-      <img src="./assets/images/title-mobile.svg" id="title-image-mobile" alt="Website Title">
-    </header>
-    <nav class="ml-10">
-      <section>
-        <div class="flex mobile-menu mb-10" *ngIf="musicGenres.length != 0">
-          <a class="item" *ngFor="let genre of musicGenres; let i = index" (click)="selectGenre(i)"
-             [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}</a>
-        </div>
+<ng-container *ngIf="!isMobileDisplay">
+  <main class="flex app-container">
+    <nav class="flex column left-menu">
+      <img src="./assets/images/title.svg" id="title-image" alt="Website Title">
+      <section class="flex menu genre" *ngIf="musicGenres.length != 0">
+        <h2>Genre</h2>
+        <button class="button pointer" *ngFor="let genre of musicGenres; let i = index;" (click)="selectGenre(i)"
+                [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}
+        </button>
       </section>
-      <section class="flex mobile-menu mb-40" *ngIf="musicGenres.length != 0">
-        <a class="item" *ngFor="let subGenre of musicGenres[selectedGenreIndex].subGenres; let i = index"
-           (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subGenre.label }}</a>
+      <section class="flex menu" *ngIf="musicGenres.length != 0">
+        <h2>Sub-genre</h2>
+        <button class="button pointer" *ngFor="let subgenre of musicGenres[selectedGenreIndex].subGenres; let i = index;"
+                (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subgenre.label }}
+        </button>
       </section>
     </nav>
-  </div>
-  <section class="flex content">
-    <sequencer [beat]="beat"></sequencer>
-  </section>
-</main>
-<footer class="flex">
-  <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-  <div class="beat-name">{{ beat.id | titlecase }}</div>
-  <div class="bpm">{{ beat.bpm }} bpm</div>
-</footer>
+    <section class="flex content">
+      <sequencer [beat]="beat"></sequencer>
+    </section>
+  </main>
+  <footer class="flex">
+    <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
+    <div class="beat-name">{{ beat.id | titlecase }}</div>
+    <div class="bpm">{{ beat.bpm }} bpm</div>
+  </footer>
+</ng-container>
+
+<ng-container *ngIf="isMobileDisplay && isLandscape">
+  <main [ngClass]="{'flex': !isMobileDisplay}" class="app-container">
+    <div *ngIf="isMobileDisplay">
+      <header class="header-mobile mt-40 mb-40">
+        <img src="./assets/images/title-mobile.svg" class="title-image-mobile" alt="Website Title">
+      </header>
+    </div>
+    <section class="flex content">
+      <sequencer [beat]="beat"></sequencer>
+    </section>
+  </main>
+  <footer class="flex">
+    <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
+    <div class="beat-name">{{ beat.id | titlecase }}</div>
+    <div class="bpm">{{ beat.bpm }} bpm</div>
+  </footer>
+</ng-container>
+
+<ng-container *ngIf="isMobileDisplay && isPortrait">
+  <header class="header-mobile mt-40 mb-40">
+    <img src="./assets/images/title-mobile.svg" class="title-image-mobile" alt="Website Title">
+  </header>
+  <h1>Only available in landscape mode</h1>
+  <h3>Turn your device !</h3>
+</ng-container>

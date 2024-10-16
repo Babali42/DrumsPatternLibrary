@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   musicGenres: Genre[] = [];
   fileNameBehaviourSubject: BehaviorSubject<string>;
   beat: Beat = {id: '', bpm: 120, tracks: []};
+  isPortrait: boolean = false;
+  isLandscape: boolean = false;
 
   constructor(private responsive: BreakpointObserver,
               @Inject('IManageGenres') private _genresManager: IManageGenres,
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit {
               private modeToggleService: ModeToggleService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
     this.modeToggleService.modeChanged$.subscribe();
+    this.checkOrientation();
   }
 
   ngOnInit(): void {
@@ -89,5 +92,16 @@ export class AppComponent implements OnInit {
         }
       );
     }
+  }
+
+  @HostListener('window:orientationchange', ['$event'])
+  onOrientationChange(event: Event) {
+    this.checkOrientation();
+  }
+
+  checkOrientation() {
+    const orientation = window.screen.orientation.angle;
+    this.isPortrait = orientation === 0 || orientation === 180;
+    this.isLandscape = orientation === 90 || orientation === -90;
   }
 }
