@@ -7,6 +7,7 @@ import {ModeToggleService} from "./services/light-dark-mode/mode-toggle.service"
 import {Genre} from "./domain/genre";
 import IManageGenres from "./domain/ports/secondary/i-manage-genres";
 import {IManageBeats} from "./domain/ports/secondary/i-manage-beats";
+import { Mode } from './services/light-dark-mode/mode-toggle.model';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   beat: Beat = {id: '', bpm: 120, tracks: []};
   isPortrait: boolean = false;
   isLandscape: boolean = false;
+  mode: Mode = Mode.LIGHT;
 
   constructor(private responsive: BreakpointObserver,
               @Inject('IManageGenres') private _genresManager: IManageGenres,
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit {
               public soundService: SoundService,
               private modeToggleService: ModeToggleService) {
     this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
-    this.modeToggleService.modeChanged$.subscribe();
+    this.modeToggleService.modeChanged$.subscribe(x => this.mode = x);
     this.checkOrientation();
   }
 
@@ -104,4 +106,6 @@ export class AppComponent implements OnInit {
     this.isPortrait = orientation === 0 || orientation === 180;
     this.isLandscape = orientation === 90 || orientation === -90;
   }
+
+  protected readonly Mode = Mode;
 }

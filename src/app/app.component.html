@@ -48,6 +48,12 @@
   <header class="header-mobile mt-40 mb-40">
     <img src="./assets/images/title-mobile.svg" class="title-image-mobile" alt="Website Title">
   </header>
-  <h1>Only available in landscape mode</h1>
-  <h3>Turn your device !</h3>
+  <div style="justify-content: center; display: flex; flex-direction: row; margin: 50px">
+    <img *ngIf="mode == Mode.LIGHT" src="./assets/images/light/orientation.png" class="portrait-to-landscape-image" alt="Portrait to landscape image">
+    <img *ngIf="mode == Mode.DARK"  src="./assets/images/dark/orientation.png" class="portrait-to-landscape-image" alt="Portrait to landscape image">
+  </div>
+  <div class="ml-10">
+    <h1>Only available in landscape mode</h1>
+    <h3>Turn your device !</h3>
+  </div>
 </ng-container>
