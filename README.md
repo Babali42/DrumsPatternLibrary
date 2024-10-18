@@ -47,17 +47,7 @@ To run the project locally, follow these steps:
 
 Contributions are **welcome**!
 
-You can edit the linked GitHub project's kanban board !
-
-### Or
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-branch`)
-3. Make your changes and commit (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Open a Pull Request (PR) — I'll review it!
-
-Feel free to reach out if you have any questions or ideas!
+See the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 ## 📧 Contact
 
