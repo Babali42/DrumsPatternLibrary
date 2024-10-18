@@ -62,3 +62,8 @@ Feel free to reach out if you have any questions or ideas!
 ## 📧 Contact
 
 For questions, suggestions, or just to say hi, you can reach me via [email](mailto:bab07ali@gmail.com) or create an issue in the repository.
+
+## License
+
+- The code in this repository is licensed under the [GNU GENERAL PUBLIC LICENSE](LICENSE).
+- All non-code content (such as ui concept and custom beat/rhythm) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
