@@ -27,12 +27,7 @@
 </ng-container>
 
 <ng-container *ngIf="isMobileDisplay && isLandscape">
-  <main [ngClass]="{'flex': !isMobileDisplay}" class="app-container">
-    <div *ngIf="isMobileDisplay">
-      <header class="header-mobile mt-40 mb-40">
-        <img src="./assets/images/title-mobile.svg" class="title-image-mobile" alt="Website Title">
-      </header>
-    </div>
+  <main class="app-container">
     <section class="flex content">
       <sequencer [beat]="beat"></sequencer>
     </section>
