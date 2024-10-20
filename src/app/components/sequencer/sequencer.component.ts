@@ -12,7 +12,7 @@ import { StepLengths } from './models/step-lengths';
     imports: [NgFor]
 })
 export class SequencerComponent {
-  @Input() beat: Beat = {id: '', bpm: 120, tracks: []};
+  @Input() beat: Beat = {id: '', label: '', bpm: 120, tracks: []};
 
   constructor(public soundService: SoundService) {
   }

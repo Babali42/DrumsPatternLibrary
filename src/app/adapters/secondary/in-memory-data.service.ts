@@ -22,7 +22,7 @@ export class InMemoryDataService implements InMemoryDbService {
         label: "Techno",
         subGenres: [
           {label: "4 on the floor", fileName: "techno"},
-          {label: "Off-Beat Clap", fileName: "off-beat-techno-clap"},
+          {label: "Offbeat Clap", fileName: "off-beat-techno-clap"},
           {label: "Gabber", fileName: "gabber"}
         ]
       },
@@ -70,6 +70,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const metalBeat: Beat = {
       id: "metal",
+      label: "Metal",
       bpm: 180,
       tracks: [
         {
@@ -92,6 +93,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const technoBeat: Beat = {
       id: "techno",
+      label: "4 on the floor",
       bpm: 128,
       tracks: [
         {
@@ -114,6 +116,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const rockBeat: Beat = {
       id: "rock-beat",
+      label: "Rock",
       bpm: 145,
       tracks: [
         {
@@ -136,6 +139,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const rockBeatVariation: Beat = {
       id: "rock-beat-variation",
+      label: "Rock variation",
       bpm: 145,
       tracks: [
         {
@@ -158,6 +162,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const psytranceBeat: Beat = {
       id: "psytrance",
+      label: "Psytrance",
       bpm: 135,
       tracks: [
         {
@@ -190,6 +195,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const offBeatTechnoClap: Beat = {
       id: "off-beat-techno-clap",
+      label: "OffBeat clap",
       bpm: 128,
       tracks: [
         {
@@ -212,6 +218,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const jerseyClubBeat: Beat = {
       id: "jersey-club",
+      label: "Jersey club",
       bpm: 140,
       tracks: [
         {
@@ -240,6 +247,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const halfTimeGroove: Beat = {
       id: "half-time-groove",
+      label: "Half time groove",
       bpm: 145,
       tracks: [
         {
@@ -262,6 +270,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const garageTwoStep: Beat = {
       id: "garage",
+      label: "Garage",
       bpm: 130,
       tracks: [
         {
@@ -284,6 +293,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const gabberBeat: Beat = {
       id: "gabber",
+      label: "Gabber",
       bpm: 200,
       tracks: [
         {
@@ -311,6 +321,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const ebmBeat: Beat = {
       id: "ebm",
+      label: "EBM",
       bpm: 120,
       tracks: [
         {
@@ -346,6 +357,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const dubBeat: Beat = {
       id: "dub",
+      label: "Dub",
       bpm: 140,
       tracks: [
         {
@@ -391,6 +403,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const blastBeat: Beat = {
       id: "blast-beat",
+      label: "Blast beat",
       bpm: 180,
       tracks: [
         {
@@ -413,6 +426,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const breakcoreBeat: Beat = {
       id: "breakcore",
+      label: "Breakcore",
       bpm: 180,
       tracks: [
         {
@@ -441,6 +455,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const drumAndBassBeat: Beat = {
       id: "drum-n-bass",
+      label: "Drum & bass",
       bpm: 170,
       tracks: [
         {
@@ -463,6 +478,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const standardDancehallBeat: Beat = {
       id: "dancehall-standard",
+      label: "Standard dancehall",
       bpm: 105,
       tracks: [
         {
@@ -485,6 +501,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const reggaetonBeat: Beat = {
       id: "dancehall-reggaeton",
+      label: "Reggaeton",
       bpm: 105,
       tracks: [
         {
@@ -507,6 +524,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const modernDancehallBeat: Beat = {
       id: "dancehall-modern",
+      label: "Modern dancehall",
       bpm: 105,
       tracks: [
         {
