@@ -22,7 +22,7 @@ describe('BeatsAdapterService', () => {
 
   it('should return expected beat', (done: DoneFn) => {
     const expectedBeat: Beat =
-      { id: "dancehall-reggaeton", bpm: 180, tracks: [] };
+      { id: "dancehall-reggaeton", label: "Dancehall Reggaeton", bpm: 180, tracks: [] };
 
 
     httpClientSpy.get.and.returnValue(of(expectedBeat));

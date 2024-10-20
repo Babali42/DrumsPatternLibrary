@@ -8,6 +8,7 @@ import {Genre} from "./domain/genre";
 import IManageGenres from "./domain/ports/secondary/i-manage-genres";
 import {IManageBeats} from "./domain/ports/secondary/i-manage-beats";
 import { Mode } from './services/light-dark-mode/mode-toggle.model';
+import {SubGenre} from "./domain/sub-genre";
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   selectedSubGenreIndex: number = 0;
   musicGenres: Genre[] = [];
   fileNameBehaviourSubject: BehaviorSubject<string>;
-  beat: Beat = {id: '', bpm: 120, tracks: []};
+  beat: Beat = {id: '', label: '', bpm: 120, tracks: []};
   isPortrait: boolean = false;
   isLandscape: boolean = false;
   mode: Mode = Mode.LIGHT;

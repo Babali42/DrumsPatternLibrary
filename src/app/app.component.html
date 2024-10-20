@@ -21,7 +21,7 @@
   </main>
   <footer class="flex">
     <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-    <div class="beat-name">{{ beat.id | titlecase }}</div>
+    <div class="beat-name">{{ beat.label }}</div>
     <div class="bpm">{{ beat.bpm }} bpm</div>
   </footer>
 </ng-container>
@@ -34,7 +34,7 @@
   </main>
   <footer class="flex">
     <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-    <div class="beat-name">{{ beat.id | titlecase }}</div>
+    <div class="beat-name">{{ beat.label }}</div>
     <div class="bpm">{{ beat.bpm }} bpm</div>
   </footer>
 </ng-container>
