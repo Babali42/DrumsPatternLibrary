@@ -1,4 +1,4 @@
 export interface SubGenre {
   label: string;
-  fileName: string;
+  beatId: string;
 }

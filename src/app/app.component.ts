@@ -8,7 +8,6 @@ import {Genre} from "./domain/genre";
 import IManageGenres from "./domain/ports/secondary/i-manage-genres";
 import {IManageBeats} from "./domain/ports/secondary/i-manage-beats";
 import { Mode } from './services/light-dark-mode/mode-toggle.model';
-import {SubGenre} from "./domain/sub-genre";
 
 @Component({
   selector: 'app-root',
@@ -20,7 +19,7 @@ export class AppComponent implements OnInit {
   selectedGenreIndex: number = 0;
   selectedSubGenreIndex: number = 0;
   musicGenres: Genre[] = [];
-  fileNameBehaviourSubject: BehaviorSubject<string>;
+  beatIdBehaviourSubject: BehaviorSubject<string>;
   beat: Beat = {id: '', label: '', bpm: 120, tracks: []};
   isPortrait: boolean = false;
   isLandscape: boolean = false;
@@ -31,7 +30,7 @@ export class AppComponent implements OnInit {
               @Inject('IManageBeats') private _beatsManager: IManageBeats,
               public soundService: SoundService,
               private modeToggleService: ModeToggleService) {
-    this.fileNameBehaviourSubject = new BehaviorSubject<string>('metal');
+    this.beatIdBehaviourSubject = new BehaviorSubject<string>('metal');
     this.modeToggleService.modeChanged$.subscribe(x => this.mode = x);
     this.checkOrientation();
   }
@@ -47,8 +46,8 @@ export class AppComponent implements OnInit {
       this.musicGenres = genres
     })).subscribe();
 
-    this.fileNameBehaviourSubject.subscribe(fileName => {
-      this._beatsManager.getBeat(fileName).subscribe((result: Beat) => {
+    this.beatIdBehaviourSubject.subscribe(beatId => {
+      this._beatsManager.getBeat(beatId).subscribe((result: Beat) => {
         this.beat = result;
         if (this.soundService.isPlaying)
           this.soundService.pause();
@@ -63,17 +62,17 @@ export class AppComponent implements OnInit {
   selectGenre(i: number) {
     this.selectedGenreIndex = i;
     this.selectedSubGenreIndex = 0;
-    this.updateFileName();
+    this.updateBeat();
   }
 
   selectSubGenre(i: number) {
     this.selectedSubGenreIndex = i;
-    this.updateFileName();
+    this.updateBeat();
   }
 
-  updateFileName() {
-    const fileName = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].fileName;
-    this.fileNameBehaviourSubject.next(fileName);
+  updateBeat() {
+    const beatId = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].beatId;
+    this.beatIdBehaviourSubject.next(beatId);
   }
 
   toggleIsPlaying(): void {

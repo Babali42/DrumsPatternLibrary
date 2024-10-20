@@ -1,69 +1,70 @@
 import {InMemoryDbService} from "angular-in-memory-web-api";
 import {Injectable} from "@angular/core";
 import {Beat} from "../../domain/beat";
+import {Genre} from "../../domain/genre";
 
 @Injectable({
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb(): NonNullable<unknown> {
-    const genres = [
+    const genres: Genre[] = [
       {
         label: "Metal",
         subGenres: [
-          {label: "Metal", fileName: "metal"},
-          {label: "Rock", fileName: "rock-beat"},
-          {label: "Rock variation", fileName: "rock-beat-variation"},
-          {label: "Half time groove", fileName: "half-time-groove"},
-          {label: "Blast beat", fileName: "blast-beat"}
+          {label: "Metal", beatId: "metal"},
+          {label: "Rock", beatId: "rock-beat"},
+          {label: "Rock variation", beatId: "rock-beat-variation"},
+          {label: "Half time groove", beatId: "half-time-groove"},
+          {label: "Blast beat", beatId: "blast-beat"}
         ]
       },
       {
         label: "Techno",
         subGenres: [
-          {label: "4 on the floor", fileName: "techno"},
-          {label: "Offbeat Clap", fileName: "off-beat-techno-clap"},
-          {label: "Gabber", fileName: "gabber"}
+          {label: "4 on the floor", beatId: "techno"},
+          {label: "Offbeat Clap", beatId: "off-beat-techno-clap"},
+          {label: "Gabber", beatId: "gabber"}
         ]
       },
       {
         label: "Breakbeat",
         subGenres: [
-          {label: "Jersey club", fileName: "jersey-club"},
-          {label: "Breakcore", fileName: "breakcore"}
+          {label: "Jersey club", beatId: "jersey-club"},
+          {label: "Breakcore", beatId: "breakcore"}
         ]
       },
       {
         label: "Garage",
         subGenres: [
-          {label: "2 Step", fileName: "garage"},
-          {label: "Drum & Bass", fileName: "drum-n-bass"}
+          {label: "2 Step", beatId: "garage"},
+          {label: "Drum & Bass", beatId: "drum-n-bass"}
         ]
       },
       {
         label: "Trance",
         subGenres: [
-          {label: "Psytrance", fileName: "psytrance"}
+          {label: "Psytrance", beatId: "psytrance"}
         ]
       },
       {
         label: "Indus",
         subGenres: [
-          {label: "EBM", fileName: "ebm"}
+          {label: "EBM", beatId: "ebm"}
         ]
       },
       {
         label: "Dub",
         subGenres: [
-          {label: "Dub", fileName: "dub"}
+          {label: "Dub", beatId: "dub"}
         ]
       },
       {
         label: "Dancehall",
         subGenres: [
-          {label: "Reggaeton", fileName: "dancehall-reggaeton"},
-          {label: "Standard", fileName: "dancehall-standard"},
-          {label: "Modern", fileName: "dancehall-modern"}
+          {label: "Reggaeton", beatId: "dancehall-reggaeton"},
+          {label: "Standard", beatId: "dancehall-standard"},
+          {label: "Modern", beatId: "dancehall-modern"}
         ]
       }
     ];
