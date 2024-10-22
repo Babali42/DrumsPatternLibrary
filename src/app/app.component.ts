@@ -1,12 +1,11 @@
 import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {BehaviorSubject, map} from 'rxjs';
+import {map, Subject} from 'rxjs';
 import {Beat} from "./domain/beat";
 import {SoundService} from "./services/sound/sound.service";
 import {ModeToggleService} from "./services/light-dark-mode/mode-toggle.service";
 import {Genre} from "./domain/genre";
 import IManageGenres from "./domain/ports/secondary/i-manage-genres";
-import {IManageBeats} from "./domain/ports/secondary/i-manage-beats";
 import { Mode } from './services/light-dark-mode/mode-toggle.model';
 
 @Component({
@@ -19,18 +18,16 @@ export class AppComponent implements OnInit {
   selectedGenreIndex: number = 0;
   selectedBeatIndex: number = 0;
   musicGenres: Genre[] = [];
-  beatIdBehaviourSubject: BehaviorSubject<string>;
-  beat: Beat = {id: '', label: '', bpm: 120, tracks: []};
+  beatBehaviourSubject: Subject<Beat>;
   isPortrait: boolean = false;
   isLandscape: boolean = false;
   mode: Mode = Mode.LIGHT;
 
   constructor(private responsive: BreakpointObserver,
               @Inject('IManageGenres') private _genresManager: IManageGenres,
-              @Inject('IManageBeats') private _beatsManager: IManageBeats,
               public soundService: SoundService,
               private modeToggleService: ModeToggleService) {
-    this.beatIdBehaviourSubject = new BehaviorSubject<string>('metal');
+    this.beatBehaviourSubject = new Subject<Beat>();
     this.modeToggleService.modeChanged$.subscribe(x => this.mode = x);
     this.checkOrientation();
   }
@@ -43,19 +40,17 @@ export class AppComponent implements OnInit {
     });
 
     this._genresManager.getGenres().pipe(map(genres => {
-      this.musicGenres = genres
+      this.musicGenres = genres;
+      this.beatBehaviourSubject.next(this.musicGenres[0].beats[0])
     })).subscribe();
 
-    this.beatIdBehaviourSubject.subscribe(beatId => {
-      this._beatsManager.getBeat(beatId).subscribe((result: Beat) => {
-        this.beat = result;
-        if (this.soundService.isPlaying)
-          this.soundService.pause();
+    this.beatBehaviourSubject.subscribe(beat => {
+      if (this.soundService.isPlaying)
+        this.soundService.pause();
         this.soundService.reset();
-        this.soundService.setBpm(this.beat.bpm);
-        this.soundService.setTracks(this.beat.tracks);
-        this.soundService.setStepNumber(this.beat.tracks[0].steps.length);
-      });
+        this.soundService.setBpm(beat.bpm);
+        this.soundService.setTracks(beat.tracks);
+        this.soundService.setStepNumber(beat.tracks[0].steps.length);
     });
   }
 
@@ -71,8 +66,8 @@ export class AppComponent implements OnInit {
   }
 
   updateBeat() {
-    const beatId = this.musicGenres[this.selectedGenreIndex].beats[this.selectedBeatIndex].id;
-    this.beatIdBehaviourSubject.next(beatId);
+    const beat = this.musicGenres[this.selectedGenreIndex].beats[this.selectedBeatIndex];
+    this.beatBehaviourSubject.next(beat);
   }
 
   toggleIsPlaying(): void {

@@ -6,7 +6,6 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import {InMemoryDataService} from "./adapters/secondary/in-memory-data.service";
 import {SequencerComponent} from "./components/sequencer/sequencer.component";
 import {GenresAdapterService} from "./adapters/secondary/genres-adapter.service";
-import {BeatsAdapterService} from "./adapters/secondary/beats-adapter-service";
 
 @NgModule({
   imports: [
@@ -24,8 +23,7 @@ import {BeatsAdapterService} from "./adapters/secondary/beats-adapter-service";
   declarations: [AppComponent],
   providers: [
     // Inject adapters into domain classes
-    {provide: 'IManageGenres', useClass: GenresAdapterService},
-    {provide: 'IManageBeats', useClass: BeatsAdapterService},
+    {provide: 'IManageGenres', useClass: GenresAdapterService}
   ],
   bootstrap: [AppComponent]
 })
