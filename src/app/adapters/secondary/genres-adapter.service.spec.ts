@@ -22,7 +22,7 @@ describe('GenreAdapterService', () => {
 
   it('should return expected genres', (done: DoneFn) => {
     const expectedGenres: Genre[] =
-      [{ label: "A", subGenres: [] }, { label: "B", subGenres: [] }];
+      [{ label: "A", beats: [] }, { label: "B", beats: [] }];
 
     httpClientSpy.get.and.returnValue(of(expectedGenres));
 

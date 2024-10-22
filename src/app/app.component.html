@@ -9,9 +9,9 @@
         </button>
       </section>
       <section class="flex menu" *ngIf="musicGenres.length != 0">
-        <h2>Sub-genre</h2>
-        <button class="button pointer" *ngFor="let subgenre of musicGenres[selectedGenreIndex].subGenres; let i = index;"
-                (click)="selectSubGenre(i)" [ngClass]="{'selected':i==selectedSubGenreIndex}">{{ subgenre.label }}
+        <h2>Beats</h2>
+        <button class="button pointer" *ngFor="let beat of musicGenres[selectedGenreIndex].beats; let i = index;"
+                (click)="selectBeat(i)" [ngClass]="{'selected':i==selectedBeatIndex}">{{ beat.label }}
         </button>
       </section>
     </nav>

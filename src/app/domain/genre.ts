@@ -1,6 +1,6 @@
-import {SubGenre} from "./sub-genre";
+import {Beat} from "./beat";
 
 export interface Genre {
   label: string;
-  subGenres: SubGenre[];
+  beats: Beat[];
 }

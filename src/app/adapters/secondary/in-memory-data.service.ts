@@ -8,67 +8,6 @@ import {Genre} from "../../domain/genre";
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb(): NonNullable<unknown> {
-    const genres: Genre[] = [
-      {
-        label: "Metal",
-        subGenres: [
-          {label: "Metal", beatId: "metal"},
-          {label: "Rock", beatId: "rock-beat"},
-          {label: "Rock variation", beatId: "rock-beat-variation"},
-          {label: "Half time groove", beatId: "half-time-groove"},
-          {label: "Blast beat", beatId: "blast-beat"}
-        ]
-      },
-      {
-        label: "Techno",
-        subGenres: [
-          {label: "4 on the floor", beatId: "techno"},
-          {label: "Offbeat Clap", beatId: "off-beat-techno-clap"},
-          {label: "Gabber", beatId: "gabber"}
-        ]
-      },
-      {
-        label: "Breakbeat",
-        subGenres: [
-          {label: "Jersey club", beatId: "jersey-club"},
-          {label: "Breakcore", beatId: "breakcore"}
-        ]
-      },
-      {
-        label: "Garage",
-        subGenres: [
-          {label: "2 Step", beatId: "garage"},
-          {label: "Drum & Bass", beatId: "drum-n-bass"}
-        ]
-      },
-      {
-        label: "Trance",
-        subGenres: [
-          {label: "Psytrance", beatId: "psytrance"}
-        ]
-      },
-      {
-        label: "Indus",
-        subGenres: [
-          {label: "EBM", beatId: "ebm"}
-        ]
-      },
-      {
-        label: "Dub",
-        subGenres: [
-          {label: "Dub", beatId: "dub"}
-        ]
-      },
-      {
-        label: "Dancehall",
-        subGenres: [
-          {label: "Reggaeton", beatId: "dancehall-reggaeton"},
-          {label: "Standard", beatId: "dancehall-standard"},
-          {label: "Modern", beatId: "dancehall-modern"}
-        ]
-      }
-    ];
-
     const metalBeat: Beat = {
       id: "metal",
       label: "Metal",
@@ -547,7 +486,43 @@ export class InMemoryDataService implements InMemoryDbService {
     };
 
 
-    const beats: Beat[] = [modernDancehallBeat, standardDancehallBeat, reggaetonBeat, drumAndBassBeat ,breakcoreBeat, blastBeat, dubBeat, ebmBeat, metalBeat, technoBeat, rockBeat, rockBeatVariation, psytranceBeat, offBeatTechnoClap, jerseyClubBeat, halfTimeGroove, garageTwoStep, gabberBeat];
+    const beats: Beat[] = [modernDancehallBeat, standardDancehallBeat, reggaetonBeat, drumAndBassBeat, breakcoreBeat, blastBeat, dubBeat, ebmBeat, metalBeat, technoBeat, rockBeat, rockBeatVariation, psytranceBeat, offBeatTechnoClap, jerseyClubBeat, halfTimeGroove, garageTwoStep, gabberBeat];
+
+    const genres: Genre[] = [
+      {
+        label: "Metal",
+        beats: [metalBeat, halfTimeGroove, rockBeat, rockBeatVariation, blastBeat]
+      },
+      {
+        label: "Techno",
+        beats: [technoBeat, gabberBeat, offBeatTechnoClap]
+      },
+      {
+        label: "Breakbeat",
+        beats: [jerseyClubBeat, breakcoreBeat]
+      },
+      {
+        label: "Garage",
+        beats: [garageTwoStep, drumAndBassBeat]
+      },
+      {
+        label: "Trance",
+        beats: [psytranceBeat]
+      },
+      {
+        label: "Indus",
+        beats: [ebmBeat]
+      },
+      {
+        label: "Dub",
+        beats: [dubBeat]
+      },
+      {
+        label: "Dancehall",
+        beats: [reggaetonBeat, standardDancehallBeat, modernDancehallBeat]
+      }
+    ];
+
 
     return {genres, beats};
   }
