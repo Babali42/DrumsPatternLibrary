@@ -485,6 +485,77 @@ export class InMemoryDataService implements InMemoryDbService {
       ]
     };
 
+    const punkBeatQuarterNoteGroove: Beat = {
+      id: "punk-beat-quarter-note-groove",
+      label: "Quarter note groove",
+      bpm: 170,
+      tracks: [
+        {
+          name: "Hats",
+          fileName: "metal/hat.mp3",
+          steps: "X___X___X___X___".split('').map(step => step === 'X')
+        },
+        {
+          name: "Snare",
+          fileName: "metal/snare.mp3",
+          steps: "____X_______X___".split('').map(step => step === 'X')
+        },
+        {
+          name: "Kick",
+          fileName: "metal/kick.mp3",
+          steps: "X_______X_______".split('').map(step => step === 'X')
+        }
+      ]
+      //source : https://freedrumlessons.com/drum-lessons/punk-drum-beats.php
+    }
+
+    const punkBeatQuarterNoteGrooveVariation: Beat = {
+      id: "punk-beat-quarter-note-groove-variation",
+      label: "Quarter note groove variation",
+      bpm: 170,
+      tracks: [
+        {
+          name: "Hats",
+          fileName: "metal/hat.mp3",
+          steps: "X___X___X___X___".split('').map(step => step === 'X')
+        },
+        {
+          name: "Snare",
+          fileName: "metal/snare.mp3",
+          steps: "____X_______X___".split('').map(step => step === 'X')
+        },
+        {
+          name: "Kick",
+          fileName: "metal/kick.mp3",
+          steps: "X_X_____X_X_____".split('').map(step => step === 'X')
+        }
+      ]
+      //source : https://freedrumlessons.com/drum-lessons/punk-drum-beats.php
+    }
+
+    const punkBeatEightNoteFill: Beat = {
+      id: "punk-beat-eight-note-fill",
+      label: "Eight note fill",
+      bpm: 170,
+      tracks: [
+        {
+          name: "Hats",
+          fileName: "metal/hat.mp3",
+          steps: "X_X_X_X_X_X_X_X_".split('').map(step => step === 'X')
+        },
+        {
+          name: "Snare",
+          fileName: "metal/snare.mp3",
+          steps: "____X_______X___".split('').map(step => step === 'X')
+        },
+        {
+          name: "Kick",
+          fileName: "metal/kick.mp3",
+          steps: "X_X___X_X_X_____".split('').map(step => step === 'X')
+        }
+      ]
+      //source : https://freedrumlessons.com/drum-lessons/punk-drum-beats.php
+    }
 
     const beats: Beat[] = [modernDancehallBeat, standardDancehallBeat, reggaetonBeat, drumAndBassBeat, breakcoreBeat, blastBeat, dubBeat, ebmBeat, metalBeat, technoBeat, rockBeat, rockBeatVariation, psytranceBeat, offBeatTechnoClap, jerseyClubBeat, halfTimeGroove, garageTwoStep, gabberBeat];
 
@@ -521,6 +592,10 @@ export class InMemoryDataService implements InMemoryDbService {
         label: "Metal",
         beats: [metalBeat, halfTimeGroove, rockBeat, rockBeatVariation, blastBeat]
       },
+      {
+        label: "Punk",
+        beats: [punkBeatQuarterNoteGroove, punkBeatQuarterNoteGrooveVariation, punkBeatEightNoteFill]
+      }
     ];
 
 
