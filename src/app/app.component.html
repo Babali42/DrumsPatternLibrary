@@ -4,38 +4,38 @@
       <img src="./assets/images/title.svg" id="title-image" alt="Website Title">
       <section class="flex menu genre" *ngIf="musicGenres.length != 0">
         <h2>Genre</h2>
-        <button class="button pointer" *ngFor="let genre of musicGenres; let i = index;" (click)="selectGenre(i)"
-                [ngClass]="{'selected':i==selectedGenreIndex}">{{ genre.label }}
+        <button class="button pointer" *ngFor="let genre of musicGenres" (click)="selectGenre(genre)"
+                [ngClass]="{'selected':genre.label==selectedGenre.label}">{{ genre.label }}
         </button>
       </section>
       <section class="flex menu" *ngIf="musicGenres.length != 0">
         <h2>Beats</h2>
-        <button class="button pointer" *ngFor="let beat of musicGenres[selectedGenreIndex].beats; let i = index;"
-                (click)="selectBeat(i)" [ngClass]="{'selected':i==selectedBeatIndex}">{{ beat.label }}
+        <button class="button pointer" *ngFor="let beat of selectedGenre.beats"
+                (click)="selectBeat(beat)" [ngClass]="{'selected':beat.id==selectedBeat.id}">{{ beat.label }}
         </button>
       </section>
     </nav>
     <section class="flex content">
-      <sequencer [beat]="beat"></sequencer>
+      <sequencer [beat]="selectedBeat"></sequencer>
     </section>
   </main>
   <footer class="flex">
     <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-    <div class="beat-name">{{ beat.label }}</div>
-    <div class="bpm">{{ beat.bpm }} bpm</div>
+    <div class="beat-name">{{ selectedBeat.label }}</div>
+    <div class="bpm">{{ selectedBeat.bpm }} bpm</div>
   </footer>
 </ng-container>
 
 <ng-container *ngIf="isMobileDisplay && isLandscape">
   <main class="app-container">
     <section class="flex content">
-      <sequencer [beat]="beat"></sequencer>
+      <sequencer [beat]="selectedBeat"></sequencer>
     </section>
   </main>
   <footer class="flex">
     <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-    <div class="beat-name">{{ beat.label }}</div>
-    <div class="bpm">{{ beat.bpm }} bpm</div>
+    <div class="beat-name">{{ selectedBeat.label }}</div>
+    <div class="bpm">{{ selectedBeat.bpm }} bpm</div>
   </footer>
 </ng-container>
 

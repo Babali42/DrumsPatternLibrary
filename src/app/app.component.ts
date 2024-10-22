@@ -15,8 +15,8 @@ import { Mode } from './services/light-dark-mode/mode-toggle.model';
 })
 export class AppComponent implements OnInit {
   isMobileDisplay: boolean = true;
-  selectedGenreIndex: number = 0;
-  selectedBeatIndex: number = 0;
+  selectedGenre: Genre = {label : "metal", beats: []};
+  selectedBeat: Beat = {id: "metal", label: "Metal", bpm: 128, tracks: []};
   musicGenres: Genre[] = [];
   beatBehaviourSubject: Subject<Beat>;
   isPortrait: boolean = false;
@@ -41,7 +41,9 @@ export class AppComponent implements OnInit {
 
     this._genresManager.getGenres().pipe(map(genres => {
       this.musicGenres = genres;
-      this.beatBehaviourSubject.next(this.musicGenres[0].beats[0])
+      this.selectedGenre = this.musicGenres[0];
+      this.selectedBeat = this.selectedGenre.beats[0];
+      this.beatBehaviourSubject.next(this.selectedBeat)
     })).subscribe();
 
     this.beatBehaviourSubject.subscribe(beat => {
@@ -54,20 +56,19 @@ export class AppComponent implements OnInit {
     });
   }
 
-  selectGenre(i: number) {
-    this.selectedGenreIndex = i;
-    this.selectedBeatIndex = 0;
+  selectGenre(genre: Genre) {
+    this.selectedGenre = genre;
+    this.selectedBeat = this.selectedGenre.beats[0];
     this.updateBeat();
   }
 
-  selectBeat(i: number) {
-    this.selectedBeatIndex = i;
+  selectBeat(beat: Beat) {
+    this.selectedBeat = beat;
     this.updateBeat();
   }
 
   updateBeat() {
-    const beat = this.musicGenres[this.selectedGenreIndex].beats[this.selectedBeatIndex];
-    this.beatBehaviourSubject.next(beat);
+    this.beatBehaviourSubject.next(this.selectedBeat);
   }
 
   toggleIsPlaying(): void {
