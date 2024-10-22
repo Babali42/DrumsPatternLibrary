@@ -9,7 +9,7 @@
         </button>
       </section>
       <section class="flex menu" *ngIf="musicGenres.length != 0">
-        <h2>Beats</h2>
+        <h2>{{this.selectedGenre.label}} beats</h2>
         <button class="button pointer" *ngFor="let beat of selectedGenre.beats"
                 (click)="selectBeat(beat)" [ngClass]="{'selected':beat.id==selectedBeat.id}">{{ beat.label }}
         </button>
