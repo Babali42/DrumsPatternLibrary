@@ -6,7 +6,7 @@ import {SoundService} from "./services/sound/sound.service";
 import {ModeToggleService} from "./services/light-dark-mode/mode-toggle.service";
 import {Genre} from "./domain/genre";
 import IManageGenres from "./domain/ports/secondary/i-manage-genres";
-import { Mode } from './services/light-dark-mode/mode-toggle.model';
+import {Mode} from './services/light-dark-mode/mode-toggle.model';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +15,15 @@ import { Mode } from './services/light-dark-mode/mode-toggle.model';
 })
 export class AppComponent implements OnInit {
   isMobileDisplay: boolean = true;
-  selectedGenre: Genre = {label : "metal", beats: []};
+  selectedGenre: Genre = {label: "metal", beats: []};
   selectedBeat: Beat = {id: "metal", label: "Metal", bpm: 128, tracks: []};
   musicGenres: Genre[] = [];
   beatBehaviourSubject: Subject<Beat>;
   isPortrait: boolean = false;
   isLandscape: boolean = false;
   mode: Mode = Mode.LIGHT;
+
+  protected readonly Mode = Mode;
 
   constructor(private responsive: BreakpointObserver,
               @Inject('IManageGenres') private _genresManager: IManageGenres,
@@ -41,33 +43,26 @@ export class AppComponent implements OnInit {
 
     this._genresManager.getGenres().pipe(map(genres => {
       this.musicGenres = genres;
-      this.selectedGenre = this.musicGenres[0];
-      this.selectedBeat = this.selectedGenre.beats[0];
-      this.beatBehaviourSubject.next(this.selectedBeat)
+      this.selectGenre(this.musicGenres[0]);
     })).subscribe();
 
     this.beatBehaviourSubject.subscribe(beat => {
       if (this.soundService.isPlaying)
         this.soundService.pause();
-        this.soundService.reset();
-        this.soundService.setBpm(beat.bpm);
-        this.soundService.setTracks(beat.tracks);
-        this.soundService.setStepNumber(beat.tracks[0].steps.length);
+      this.soundService.reset();
+      this.soundService.setBpm(beat.bpm);
+      this.soundService.setTracks(beat.tracks);
+      this.soundService.setStepNumber(beat.tracks[0].steps.length);
     });
   }
 
-  selectGenre(genre: Genre) {
+  selectGenre(genre: Genre): void {
     this.selectedGenre = genre;
-    this.selectedBeat = this.selectedGenre.beats[0];
-    this.updateBeat();
+    this.selectBeat(this.selectedGenre.beats[0]);
   }
 
-  selectBeat(beat: Beat) {
+  selectBeat(beat: Beat): void {
     this.selectedBeat = beat;
-    this.updateBeat();
-  }
-
-  updateBeat() {
     this.beatBehaviourSubject.next(this.selectedBeat);
   }
 
@@ -81,27 +76,20 @@ export class AppComponent implements OnInit {
   }
 
   @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
+  handleKeyboardEvent(event: KeyboardEvent): void {
     if (event.code == "Space") {
-      this.soundService.playPause().then(
-        () => {
-        },
-        () => {
-        }
-      );
+      this.toggleIsPlaying();
     }
   }
 
   @HostListener('window:orientationchange', ['$event'])
-  onOrientationChange(event: Event) {
+  onOrientationChange(event: Event): void {
     this.checkOrientation();
   }
 
-  checkOrientation() {
+  checkOrientation(): void {
     const orientation = window.screen.orientation.angle;
     this.isPortrait = orientation === 0 || orientation === 180;
     this.isLandscape = orientation === 90 || orientation === -90;
   }
-
-  protected readonly Mode = Mode;
 }
