@@ -17,7 +17,7 @@ import { Mode } from './services/light-dark-mode/mode-toggle.model';
 export class AppComponent implements OnInit {
   isMobileDisplay: boolean = true;
   selectedGenreIndex: number = 0;
-  selectedSubGenreIndex: number = 0;
+  selectedBeatIndex: number = 0;
   musicGenres: Genre[] = [];
   beatIdBehaviourSubject: BehaviorSubject<string>;
   beat: Beat = {id: '', label: '', bpm: 120, tracks: []};
@@ -61,17 +61,17 @@ export class AppComponent implements OnInit {
 
   selectGenre(i: number) {
     this.selectedGenreIndex = i;
-    this.selectedSubGenreIndex = 0;
+    this.selectedBeatIndex = 0;
     this.updateBeat();
   }
 
-  selectSubGenre(i: number) {
-    this.selectedSubGenreIndex = i;
+  selectBeat(i: number) {
+    this.selectedBeatIndex = i;
     this.updateBeat();
   }
 
   updateBeat() {
-    const beatId = this.musicGenres[this.selectedGenreIndex].subGenres[this.selectedSubGenreIndex].beatId;
+    const beatId = this.musicGenres[this.selectedGenreIndex].beats[this.selectedBeatIndex].id;
     this.beatIdBehaviourSubject.next(beatId);
   }
 
