@@ -490,37 +490,37 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const genres: Genre[] = [
       {
-        label: "Metal",
-        beats: [metalBeat, halfTimeGroove, rockBeat, rockBeatVariation, blastBeat]
-      },
-      {
         label: "Techno",
         beats: [technoBeat, gabberBeat, offBeatTechnoClap]
-      },
-      {
-        label: "Breakbeat",
-        beats: [jerseyClubBeat, breakcoreBeat]
       },
       {
         label: "Garage",
         beats: [garageTwoStep, drumAndBassBeat]
       },
       {
-        label: "Trance",
-        beats: [psytranceBeat]
+        label: "Breakbeat",
+        beats: [jerseyClubBeat, breakcoreBeat]
       },
       {
-        label: "Indus",
-        beats: [ebmBeat]
+        label: "Dancehall",
+        beats: [reggaetonBeat, standardDancehallBeat, modernDancehallBeat]
+      },
+      {
+        label: "Trance",
+        beats: [psytranceBeat]
       },
       {
         label: "Dub",
         beats: [dubBeat]
       },
       {
-        label: "Dancehall",
-        beats: [reggaetonBeat, standardDancehallBeat, modernDancehallBeat]
-      }
+        label: "Indus",
+        beats: [ebmBeat]
+      },
+      {
+        label: "Metal",
+        beats: [metalBeat, halfTimeGroove, rockBeat, rockBeatVariation, blastBeat]
+      },
     ];
 
 
