@@ -1,4 +1,18 @@
-<section class="tracks-container">
+<div class="sequencer-header">
+  <div class="label">
+    <span class="small">Genre : </span>
+    <span class="large">{{genre.label}}</span>
+  </div>
+  <div class="label">
+    <span class="small">Beat : </span>
+    <span class="large">{{beat.label}}</span>
+  </div>
+  <div class="label">
+    <span class="small">Tempo : </span>
+    <span class="large">{{beat.bpm}}</span>
+  </div>
+</div>
+<section class="tracks-container" style="margin-top: 90px">
   <article *ngFor="let track of beat.tracks" class="track-container">
     <h3 class="track-name">{{ track.name }}</h3>
     <div id="track" [class.sixteen-steps]="track.steps.length == StepLengths.sixteen"
