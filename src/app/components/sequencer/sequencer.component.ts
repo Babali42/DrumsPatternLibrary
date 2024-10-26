@@ -3,6 +3,7 @@ import {SoundService} from '../../services/sound/sound.service';
 import {Beat} from '../../domain/beat';
 import { NgFor } from '@angular/common';
 import { StepLengths } from './models/step-lengths';
+import {Genre} from "../../domain/genre";
 
 @Component({
     selector: 'sequencer',
@@ -13,6 +14,7 @@ import { StepLengths } from './models/step-lengths';
 })
 export class SequencerComponent {
   @Input() beat: Beat = {id: '', label: '', bpm: 120, tracks: []};
+  @Input() genre: Genre = {label: '', beats: []};
 
   constructor(public soundService: SoundService) {
   }

@@ -16,26 +16,22 @@
       </section>
     </nav>
     <section class="flex content">
-      <sequencer [beat]="selectedBeat"></sequencer>
+      <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
     </section>
   </main>
   <footer class="flex">
     <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-    <div class="beat-name">{{ selectedBeat.label }}</div>
-    <div class="bpm">{{ selectedBeat.bpm }} bpm</div>
   </footer>
 </ng-container>
 
 <ng-container *ngIf="isMobileDisplay && isLandscape">
   <main class="app-container">
     <section class="flex content">
-      <sequencer [beat]="selectedBeat"></sequencer>
+      <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
     </section>
   </main>
   <footer class="flex">
     <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-    <div class="beat-name">{{ selectedBeat.label }}</div>
-    <div class="bpm">{{ selectedBeat.bpm }} bpm</div>
   </footer>
 </ng-container>
 

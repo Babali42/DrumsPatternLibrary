@@ -27,9 +27,17 @@ $gap: 4px;
   grid-template-columns: repeat($columns, 1fr);
 }
 
-.sixteen-steps { @include step-grid(16); }
-.thirty-two-steps { @include step-grid(32); }
-.sixty-four-steps { @include step-grid(64); }
+.sixteen-steps {
+  @include step-grid(16);
+}
+
+.thirty-two-steps {
+  @include step-grid(32);
+}
+
+.sixty-four-steps {
+  @include step-grid(64);
+}
 
 .step {
   height: $step-size;
@@ -86,3 +94,21 @@ $gap: 4px;
   white-space: nowrap;
   height: $step-size;
 }
+
+.sequencer-header {
+  position: absolute;
+
+  .label {
+    vertical-align: bottom;
+
+    .small {
+      font-size: small;
+    }
+
+    .large {
+      font-size: large;
+      font-weight: bold;
+    }
+  }
+}
+
