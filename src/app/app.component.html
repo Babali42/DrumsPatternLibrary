@@ -1,50 +1,85 @@
 <ng-container *ngIf="!isMobileDisplay">
   <main class="flex app-container">
     <nav class="flex column left-menu">
-      <img src="./assets/images/title.svg" id="title-image" alt="Website Title">
+      <img
+        src="./assets/images/title.svg"
+        id="title-image"
+        alt="Website Title"
+      />
       <section class="flex menu genre" *ngIf="musicGenres.length != 0">
         <h2>Genre</h2>
-        <button class="button pointer" *ngFor="let genre of musicGenres" (click)="selectGenre(genre)"
-                [ngClass]="{'selected':genre.label==selectedGenre.label}">{{ genre.label }}
+        <button
+          class="button pointer"
+          *ngFor="let genre of musicGenres"
+          (click)="selectGenre(genre)"
+          [ngClass]="{ selected: genre.label == selectedGenre.label }"
+        >
+          {{ genre.label }}
         </button>
       </section>
       <section class="flex menu" *ngIf="musicGenres.length != 0">
-        <h2>{{this.selectedGenre.label}} beats</h2>
-        <button class="button pointer" *ngFor="let beat of selectedGenre.beats"
-                (click)="selectBeat(beat)" [ngClass]="{'selected':beat.id==selectedBeat.id}">{{ beat.label }}
+        <h2>{{ this.selectedGenre.label }} beats</h2>
+        <button
+          class="button pointer"
+          *ngFor="let beat of selectedGenre.beats"
+          (click)="selectBeat(beat)"
+          [ngClass]="{ selected: beat.id == selectedBeat.id }"
+        >
+          {{ beat.label }}
         </button>
       </section>
     </nav>
     <section class="flex content">
+      <button class="play-pause-button" (click)="toggleIsPlaying()">
+        {{ this.soundService.isPlaying ? "⏸" : "▶" }}
+      </button>
       <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
     </section>
   </main>
-  <footer class="flex">
-    <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-  </footer>
 </ng-container>
 
 <ng-container *ngIf="isMobileDisplay && isLandscape">
   <main class="app-container">
     <section class="flex content">
+      <button class="play-pause-button" (click)="toggleIsPlaying()">
+        {{ this.soundService.isPlaying ? "⏸" : "▶" }}
+      </button>
       <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
     </section>
   </main>
-  <footer class="flex">
-    <button class="play-pause-button" (click)="toggleIsPlaying()">{{ this.soundService.isPlaying ? "⏸" : "▶" }}</button>
-  </footer>
 </ng-container>
 
 <ng-container *ngIf="isMobileDisplay && isPortrait">
   <header class="header-mobile mt-40 mb-40">
-    <img src="./assets/images/title-mobile.svg" class="title-image-mobile" alt="Website Title">
+    <img
+      src="./assets/images/title-mobile.svg"
+      class="title-image-mobile"
+      alt="Website Title"
+    />
   </header>
-  <div style="justify-content: center; display: flex; flex-direction: row; margin: 50px">
-    <img *ngIf="mode == Mode.LIGHT" src="./assets/images/light/orientation.png" class="portrait-to-landscape-image" alt="Portrait to landscape image">
-    <img *ngIf="mode == Mode.DARK"  src="./assets/images/dark/orientation.png" class="portrait-to-landscape-image" alt="Portrait to landscape image">
+  <div
+    style="
+      justify-content: center;
+      display: flex;
+      flex-direction: row;
+      margin: 50px;
+    "
+  >
+    <img
+      *ngIf="mode == Mode.LIGHT"
+      src="./assets/images/light/orientation.png"
+      class="portrait-to-landscape-image"
+      alt="Portrait to landscape image"
+    />
+    <img
+      *ngIf="mode == Mode.DARK"
+      src="./assets/images/dark/orientation.png"
+      class="portrait-to-landscape-image"
+      alt="Portrait to landscape image"
+    />
   </div>
   <div class="ml-10">
     <h1>Only available in landscape mode</h1>
-    <h3>Turn your device !</h3>
+    <h3>Turn your device!</h3>
   </div>
 </ng-container>
