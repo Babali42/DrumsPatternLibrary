@@ -40,13 +40,6 @@
   align-items: center;
   overflow: auto;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.content button {
-  margin-top: 2rem;
-  justify-content: center;
 }
 
 .header {
@@ -96,18 +89,6 @@
   .portrait-to-landscape-image {
     width: 100px;
   }
-}
-
-.play-pause-button {
-  height: 40px;
-  width: 40px;
-  min-width: 40px;
-  background-color: var(--backgroundColor);
-  color: var(--textColor);
-  border-radius: 4px;
-  cursor: pointer;
-  border: solid 2px var(--borderColor);
-  font-size: 20px;
 }
 
 .beat-name {

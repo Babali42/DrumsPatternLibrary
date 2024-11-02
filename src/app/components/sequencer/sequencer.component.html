@@ -1,15 +1,22 @@
-<div class="sequencer-header">
-  <div class="label">
-    <span class="small">Genre : </span>
-    <span class="large">{{genre.label}}</span>
+<div class="sequencer-header flex">
+  <div>
+    <div class="label">
+      <span class="small">Genre : </span>
+      <span class="large">{{genre.label}}</span>
+    </div>
+    <div class="label">
+      <span class="small">Beat : </span>
+      <span class="large">{{beat.label}}</span>
+    </div>
+    <div class="label">
+      <span class="small">Tempo : </span>
+      <span class="large">{{beat.bpm}}</span>
+    </div>
   </div>
-  <div class="label">
-    <span class="small">Beat : </span>
-    <span class="large">{{beat.label}}</span>
-  </div>
-  <div class="label">
-    <span class="small">Tempo : </span>
-    <span class="large">{{beat.bpm}}</span>
+  <div class="play-button-container">
+    <button class="play-pause-button" (click)="toggleIsPlaying()">
+      {{ this.soundService.isPlaying ? "⏸" : "▶" }}
+    </button>
   </div>
 </div>
 <section class="tracks-container">

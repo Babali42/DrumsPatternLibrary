@@ -19,6 +19,15 @@ export class SequencerComponent {
   constructor(public soundService: SoundService) {
   }
 
+  toggleIsPlaying(): void {
+    this.soundService.playPause().then(
+      () => {
+      },
+      () => {
+      }
+    );
+  }
+
   protected readonly StepLengths = StepLengths;
   protected readonly Math = Math;
 }

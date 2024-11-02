@@ -28,9 +28,6 @@
       </section>
     </nav>
     <section class="flex content">
-      <button class="play-pause-button" (click)="toggleIsPlaying()">
-        {{ this.soundService.isPlaying ? "⏸" : "▶" }}
-      </button>
       <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
     </section>
   </main>
@@ -39,9 +36,6 @@
 <ng-container *ngIf="isMobileDisplay && isLandscape">
   <main class="app-container">
     <section class="flex content">
-      <button class="play-pause-button" (click)="toggleIsPlaying()">
-        {{ this.soundService.isPlaying ? "⏸" : "▶" }}
-      </button>
       <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
     </section>
   </main>

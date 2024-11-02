@@ -111,5 +111,22 @@ $gap: 4px;
       font-weight: bold;
     }
   }
+
+  .play-button-container {
+    margin-left: 200px;
+    align-self: center;
+
+    .play-pause-button {
+      height: 40px;
+      width: 40px;
+      min-width: 40px;
+      background-color: var(--backgroundColor);
+      color: var(--textColor);
+      border-radius: 4px;
+      cursor: pointer;
+      border: solid 2px var(--borderColor);
+      font-size: 20px;
+    }
+  }
 }
 
