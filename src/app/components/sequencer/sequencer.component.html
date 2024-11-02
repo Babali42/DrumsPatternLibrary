@@ -12,7 +12,7 @@
     <span class="large">{{beat.bpm}}</span>
   </div>
 </div>
-<section class="tracks-container" style="margin-top: 90px">
+<section class="tracks-container">
   <article *ngFor="let track of beat.tracks" class="track-container">
     <h3 class="track-name">{{ track.name }}</h3>
     <div id="track" [class.sixteen-steps]="track.steps.length == StepLengths.sixteen"

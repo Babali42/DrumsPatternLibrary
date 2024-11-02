@@ -68,22 +68,6 @@
   white-space: nowrap;
 }
 
-.mobile-menu {
-  width: 100%;
-  overflow-x: auto;
-  gap: 5px;
-
-  .item {
-    border: solid 1px var(--borderColor);
-    border-radius: 5px;
-    padding: 10px;
-
-    &.selected {
-      background-color: var(--menuButtonColor);
-    }
-  }
-}
-
 .header-mobile {
   font-size: 30px;
   width: 100%;
@@ -103,8 +87,15 @@
   width: 300px;
 }
 
-.portrait-to-landscape-image {
-  width: 100px;
+.portrait-to-landscape {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+
+  .portrait-to-landscape-image {
+    width: 100px;
+  }
 }
 
 .play-pause-button {
@@ -117,14 +108,6 @@
   cursor: pointer;
   border: solid 2px var(--borderColor);
   font-size: 20px;
-  /* Add a little space between the arranger and the button */
-}
-
-.sorting-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  /* Make sure to take up the full width */
 }
 
 .beat-name {
@@ -142,14 +125,6 @@
   min-width: 120px;
   font-size: 20px;
 }
-
-// footer {
-//   position: relative;
-//   bottom: 0;
-//   width: 100%;
-//   justify-content: center;
-//   margin-bottom: 20px;
-// }
 
 .corner {
   position: absolute;

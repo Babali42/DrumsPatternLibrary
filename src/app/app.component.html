@@ -12,8 +12,7 @@
           class="button pointer"
           *ngFor="let genre of musicGenres"
           (click)="selectGenre(genre)"
-          [ngClass]="{ selected: genre.label == selectedGenre.label }"
-        >
+          [ngClass]="{ selected: genre.label == selectedGenre.label }">
           {{ genre.label }}
         </button>
       </section>
@@ -23,8 +22,7 @@
           class="button pointer"
           *ngFor="let beat of selectedGenre.beats"
           (click)="selectBeat(beat)"
-          [ngClass]="{ selected: beat.id == selectedBeat.id }"
-        >
+          [ngClass]="{ selected: beat.id == selectedBeat.id }">
           {{ beat.label }}
         </button>
       </section>
@@ -57,14 +55,7 @@
       alt="Website Title"
     />
   </header>
-  <div
-    style="
-      justify-content: center;
-      display: flex;
-      flex-direction: row;
-      margin: 50px;
-    "
-  >
+  <div class="portrait-to-landscape">
     <img
       *ngIf="mode == Mode.LIGHT"
       src="./assets/images/light/orientation.png"
