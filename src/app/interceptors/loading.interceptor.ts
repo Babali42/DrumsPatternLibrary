@@ -8,7 +8,7 @@ import { finalize } from 'rxjs/operators';
 export class LoadingInterceptor implements HttpInterceptor {
   constructor(private loader: LoadingBarService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.loader.start();
     return next.handle(req).pipe(finalize(() => this.loader.complete()));
   }
