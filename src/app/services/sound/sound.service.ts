@@ -3,6 +3,7 @@ import {Sample} from '../../domain/sample';
 import {Track} from '../../domain/track';
 import {AudioFilesService} from "../files/audio-files.service";
 import {SoundGeneratorService} from "./sound-generator.service";
+import { LoadingBarService } from '@ngx-loading-bar/core';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,10 @@ export class SoundService {
   private stepNumber: number = 16;
   private audioFilesService = new AudioFilesService();
 
-  constructor(private soundGeneratorService: SoundGeneratorService) {
+  constructor(
+    private soundGeneratorService: SoundGeneratorService,
+    private loader: LoadingBarService
+  ) {
     this.context = new AudioContext();
     this.playbackSource = new AudioBufferSourceNode(this.context);
   }
@@ -87,15 +91,17 @@ export class SoundService {
   }
 
   private loadTracks(trackNames: string[]) {
-    trackNames.forEach(x => this.samples.push({fileName: x}))
-    for (const sample of this.samples) {
-      this.audioFilesService.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
-        .then(() => {
-        })
-        .catch(() => {
-        });
-    }
-  }
+  this.loader.start(); 
+  trackNames.forEach(x => this.samples.push({ fileName: x }));
+  const loadPromises = this.samples.map(sample =>
+    this.audioFilesService.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
+  );
+
+  Promise.all(loadPromises)
+    .then(() => this.loader.complete())
+    .catch(() => this.loader.complete()); 
+}
+
 
   setStepNumber(length: number) {
     this.stepNumber = length;
