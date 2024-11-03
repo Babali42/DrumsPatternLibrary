@@ -17,6 +17,7 @@
     "@angular/core": "^17.3.11",
     "@angular/platform-browser": "^17.3.11",
     "@angular/platform-browser-dynamic": "^17.3.11",
+    "@ngx-loading-bar/core": "^7.0.0",
     "angular-in-memory-web-api": "^0.17.0",
     "eslint": "^8.10.0",
     "rxjs": "~7.5.0",
