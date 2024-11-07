@@ -9,6 +9,7 @@ import {GenresAdapterService} from "./adapters/secondary/genres-adapter.service"
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import {environment} from "../environments/environment";
 
 @NgModule({
   imports: [
@@ -19,9 +20,9 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
+    environment.httpClientInMemory ? HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false}
-    ),
+    ) : [],
     SequencerComponent
   ],
   declarations: [AppComponent],
