@@ -26,13 +26,11 @@ describe('GenreAdapterService', () => {
 
     httpClientSpy.get.and.returnValue(of(expectedGenres));
 
-    service.getGenres().subscribe({
-        next: genres => {
-          expect(genres).toEqual(expectedGenres);
-          done();
-        },
-        error: done.fail
-      });
+    service.getGenres().then(genres => {
+      expect(genres).toEqual(expectedGenres);
+      done()
+    }).catch(() => {});
+
     expect(httpClientSpy.get).toHaveBeenCalledOnceWith('api/genres');
   });
 
@@ -45,13 +43,12 @@ describe('GenreAdapterService', () => {
 
     httpClientSpy.get.and.returnValue(throwError(() => errorResponse));
 
-    service.getGenres().subscribe({
-      next: _ => done.fail('expected an error, not genres'),
-      error: error  => {
-        expect(error.name).toEqual('Error');
-        expect(error.message).toContain('test 404 error');
+    service.getGenres()
+      .then(() => {})
+      .catch((error) => {
+        expect(error.name).toEqual('(FiberFailure) Error');
+        expect(error.message).toContain('Can\'t get genres');
         done();
-      }
-    });
+      });
   });
 });

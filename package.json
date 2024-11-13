@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^17.3.11",
     "@ngx-loading-bar/core": "^7.0.0",
     "angular-in-memory-web-api": "^0.17.0",
+    "effect": "^3.10.14",
     "eslint": "^8.10.0",
     "rxjs": "~7.5.0",
     "zone.js": "~0.14.7"
