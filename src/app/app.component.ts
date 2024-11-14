@@ -1,6 +1,6 @@
 import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {map, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {Beat} from "./domain/beat";
 import {SoundService} from "./services/sound/sound.service";
 import {ModeToggleService} from "./services/light-dark-mode/mode-toggle.service";
@@ -41,10 +41,10 @@ export class AppComponent implements OnInit {
       this.isMobileDisplay = !result.matches;
     });
 
-    this._genresManager.getGenres().pipe(map(genres => {
+    this._genresManager.getGenres().then(genres => {
       this.musicGenres = genres;
       this.selectGenre(this.musicGenres[0]);
-    })).subscribe();
+    }).catch(error => { console.log(error); });
 
     this.beatBehaviourSubject.subscribe(beat => {
       if (this.soundService.isPlaying)
