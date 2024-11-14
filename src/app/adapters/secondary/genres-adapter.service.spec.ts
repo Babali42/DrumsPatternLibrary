@@ -9,7 +9,7 @@ describe('GenreAdapterService', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
+    httpClientSpy = jasmine.createSpyObj<HttpClient>('HttpClient', ['get', 'post', 'put', 'delete']);
     TestBed.configureTestingModule({
       providers: [{ provide: HttpClient, useValue: httpClientSpy }]
     });
