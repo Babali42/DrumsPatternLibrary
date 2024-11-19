@@ -49,6 +49,12 @@ Contributions are **welcome**!
 
 See the [CONTRIBUTING](CONTRIBUTING.md) file.
 
+### Contributors
+
+A big thanks to the project contributors!
+- [Kireo](https://github.com/khg051203)
+- [GiaHuy0031](https://github.com/GiaHuy0031)
+
 ## 📧 Contact
 
 For questions, suggestions, or just to say hi, you can reach me via [email](mailto:bab07ali@gmail.com) or create an issue in the repository.
