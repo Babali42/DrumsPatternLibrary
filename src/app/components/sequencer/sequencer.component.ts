@@ -13,8 +13,8 @@ import {Genre} from "../../domain/genre";
     imports: [NgFor]
 })
 export class SequencerComponent {
-  @Input() beat: Beat = {id: '', label: '', bpm: 120, tracks: []};
-  @Input() genre: Genre = {label: '', beats: []};
+  @Input() beat = {} as Beat;
+  @Input() genre = {} as Genre;
 
   constructor(public soundService: SoundService) {
   }

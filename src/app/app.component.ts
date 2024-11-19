@@ -15,8 +15,8 @@ import {Mode} from './services/light-dark-mode/mode-toggle.model';
 })
 export class AppComponent implements OnInit {
   isMobileDisplay: boolean = true;
-  selectedGenre: Genre = {label: "metal", beats: []};
-  selectedBeat: Beat = {id: "metal", label: "Metal", bpm: 128, tracks: []};
+  selectedGenre = {} as Genre;
+  selectedBeat = {} as Beat;
   musicGenres: Genre[] = [];
   beatBehaviourSubject: Subject<Beat>;
   isPortrait: boolean = false;
