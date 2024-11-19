@@ -3,8 +3,13 @@
   margin: 0;
 }
 
-main, div, p, h1, h3 {
-  font-family: 'Kanit', sans-serif;
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
 }
 
 a {
