@@ -14,15 +14,51 @@ $gap: 4px;
   flex-direction: column;
 }
 
-#track-container {
-  display: flex;
-  margin-top: $gap;
-}
-
 #track {
   display: grid;
   grid-template-rows: repeat(1, 1fr);
   gap: $gap;
+
+  .step {
+    height: $step-size;
+    width: $step-size;
+    background-color: var(--backgroundColor);
+    border-radius: $border-radius;
+    cursor: pointer;
+    border: 1px solid var(--borderColor);
+  }
+
+  .current {
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--backgroundColor), var(--backgroundColor) 10px,
+        var(--textColor) 5px, var(--textColor) 15px
+    );
+  }
+
+  .active, .active.highlight {
+    background-color: $color3_purple;
+
+    &.current {
+      background: repeating-linear-gradient(
+          -45deg,
+          $color3_purple, $color3_purple 10px,
+          var(--backgroundColor) 5px, var(--backgroundColor) 15px
+      );
+    }
+  }
+
+  .highlight {
+    background: var(--gridHighLightColor);
+  }
+
+  .current.highlight {
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--gridHighLightColor), var(--gridHighLightColor) 10px,
+        var(--textColor) 5px, var(--textColor) 15px
+    );
+  }
 }
 
 @mixin step-grid($columns) {
@@ -41,47 +77,6 @@ $gap: 4px;
   @include step-grid(64);
 }
 
-.step {
-  height: $step-size;
-  width: $step-size;
-  background-color: var(--backgroundColor);
-  border-radius: $border-radius;
-  cursor: pointer;
-  border: 1px solid var(--borderColor);
-}
-
-.current {
-  background: repeating-linear-gradient(
-      -45deg,
-      var(--backgroundColor), var(--backgroundColor) 10px,
-      var(--textColor) 5px, var(--textColor) 15px
-  );
-}
-
-.active, .active.highlight {
-  background-color: $color3_purple;
-
-  &.current {
-    background: repeating-linear-gradient(
-        -45deg,
-        $color3_purple, $color3_purple 10px,
-        var(--backgroundColor) 5px, var(--backgroundColor) 15px
-    );
-  }
-}
-
-.highlight {
-  background: var(--gridHighLightColor);
-}
-
-.current.highlight {
-  background: repeating-linear-gradient(
-      -45deg,
-      var(--gridHighLightColor), var(--gridHighLightColor) 10px,
-      var(--textColor) 5px, var(--textColor) 15px
-  );
-}
-
 .tracks-container {
   grid-column-start: 2;
   grid-row-start: 2;
@@ -98,12 +93,8 @@ $gap: 4px;
 
   .track-name {
     white-space: nowrap;
-    height: $step-size + $gap;
+    height: calc($step-size + $gap);
   }
-}
-
-.track-container {
-  display: contents;
 }
 
 .sequencer-header {

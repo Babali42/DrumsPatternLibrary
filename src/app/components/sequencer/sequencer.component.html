@@ -22,12 +22,10 @@
     </div>
   </div>
   <div class="tracks-name">
-    <h3 *ngFor="let track of beat.tracks" class="track-name">
-      {{ track.name }}
-    </h3>
+    <h3 *ngFor="let track of beat.tracks" class="track-name">{{ track.name }}</h3>
   </div>
   <section class="tracks-container">
-    <article *ngFor="let track of beat.tracks" class="track-container">
+    <article *ngFor="let track of beat.tracks">
       <div id="track" [class.sixteen-steps]="track.steps.length == StepLengths.sixteen"
            [class.thirty-two-steps]="track.steps.length == StepLengths.thirty_two"
            [class.sixty-four-steps]="track.steps.length == StepLengths.sixty_four">
