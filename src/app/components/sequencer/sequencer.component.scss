@@ -88,6 +88,7 @@ $gap: 4px;
 }
 
 .tracks-name {
+  margin-top: 10px;
   grid-column-start: 1;
   grid-row-start: 2;
 
@@ -113,21 +114,22 @@ $gap: 4px;
       font-weight: bold;
     }
   }
+}
 
-  .play-button-container {
-    margin-left: 200px;
-    align-self: center;
+.play-button-container {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  justify-content: center;
+  align-items: center;
 
-    .play-pause-button {
-      height: 40px;
-      width: 40px;
-      min-width: 40px;
-      background-color: var(--backgroundColor);
-      color: var(--textColor);
-      border-radius: 4px;
-      cursor: pointer;
-      border: solid 2px var(--borderColor);
-      font-size: 20px;
-    }
+  .play-pause-button {
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
   }
 }

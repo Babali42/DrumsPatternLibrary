@@ -1,4 +1,9 @@
 <div id="main-container">
+  <div class="play-button-container flex">
+    <button class="play-pause-button" (click)="toggleIsPlaying()">
+      {{ this.soundService.isPlaying ? "⏸" : "▶" }}
+    </button>
+  </div>
   <div class="sequencer-header flex">
     <div>
       <div class="label">
@@ -14,11 +19,6 @@
         <span class="large">{{ beat.bpm }}</span>
         <span class="small"> bpm</span>
       </div>
-    </div>
-    <div class="play-button-container">
-      <button class="play-pause-button" (click)="toggleIsPlaying()">
-        {{ this.soundService.isPlaying ? "⏸" : "▶" }}
-      </button>
     </div>
   </div>
   <div class="tracks-name">
