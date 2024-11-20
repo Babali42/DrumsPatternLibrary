@@ -4,8 +4,10 @@ $step-size: 40px;
 $border-radius: 4px;
 $gap: 4px;
 
-:host {
-  overflow-x: auto;
+#main-container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: 10px
 }
 
 .sequencer-grid {
@@ -81,23 +83,32 @@ $gap: 4px;
 }
 
 .tracks-container {
+  grid-column-start: 2;
+  grid-row-start: 2;
+
   display: grid;
-  grid-template-columns: max-content auto;
-  gap: $gap 14px;
-  margin-top: 90px
+  grid-template-columns: auto;
+  gap: $gap;
+  overflow-x: auto;
+}
+
+.tracks-name {
+  grid-column-start: 1;
+  grid-row-start: 2;
+
+  .track-name {
+    white-space: nowrap;
+    height: $step-size + $gap;
+  }
 }
 
 .track-container {
   display: contents;
 }
 
-.track-name {
-  white-space: nowrap;
-  height: $step-size;
-}
-
 .sequencer-header {
-  position: absolute;
+  grid-column-start: 2;
+  grid-row-start: 1;
 
   .label {
     vertical-align: bottom;
@@ -129,4 +140,3 @@ $gap: 4px;
     }
   }
 }
-
