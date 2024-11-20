@@ -55,6 +55,17 @@ A big thanks to the project contributors!
 - [Kireo](https://github.com/khg051203)
 - [GiaHuy0031](https://github.com/GiaHuy0031)
 
+## 📚 References
+
+<details>
+  <summary>Misc. references used in this project</summary>
+
+  - https://rsms.me/inter/
+  - https://github.com/PahanPerera/angular-light-dark-app
+  - https://effect.website/
+  - https://github.com/simonwhitaker/github-fork-ribbon-css
+</details>
+
 ## 📧 Contact
 
 For questions, suggestions, or just to say hi, you can reach me via [email](mailto:bab07ali@gmail.com) or create an issue in the repository.
