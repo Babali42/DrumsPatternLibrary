@@ -24,7 +24,6 @@ $gap: 4px;
     width: $step-size;
     background-color: var(--backgroundColor);
     border-radius: $border-radius;
-    cursor: pointer;
     border: 1px solid var(--borderColor);
   }
 
@@ -128,7 +127,6 @@ $gap: 4px;
     min-width: 40px;
     background-color: var(--backgroundColor);
     color: var(--textColor);
-    cursor: pointer;
     font-size: 20px;
     border: none;
   }

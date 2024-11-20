@@ -5,7 +5,8 @@
 
 :root {
   font-family: Inter, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  font-feature-settings: 'liga' 1, 'calt' 1, 'ss01' on;
+
 }
 
 @supports (font-variation-settings: normal) {
