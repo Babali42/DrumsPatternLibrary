@@ -3,7 +3,7 @@ import {Sample} from '../../domain/sample';
 import {Track} from '../../domain/track';
 import {AudioFilesService} from "../files/audio-files.service";
 import {SoundGeneratorService} from "./sound-generator.service";
-import { LoadingBarService } from '@ngx-loading-bar/core';
+import {LoadingBarService} from '@ngx-loading-bar/core';
 
 @Injectable({
   providedIn: 'root'
@@ -91,16 +91,16 @@ export class SoundService {
   }
 
   private loadTracks(trackNames: string[]) {
-  this.loader.start(); 
-  trackNames.forEach(x => this.samples.push({ fileName: x }));
-  const loadPromises = this.samples.map(sample =>
-    this.audioFilesService.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
-  );
+    this.loader.start();
+    trackNames.forEach(x => this.samples.push({fileName: x}));
+    const loadPromises = this.samples.map(sample =>
+      this.audioFilesService.getAudioBuffer(sample.fileName).then(arrayBuffer => sample.sample = arrayBuffer)
+    );
 
-  Promise.all(loadPromises)
-    .then(() => this.loader.complete())
-    .catch(() => this.loader.complete()); 
-}
+    Promise.all(loadPromises)
+      .then(() => this.loader.complete())
+      .catch(() => this.loader.complete());
+  }
 
 
   setStepNumber(length: number) {
