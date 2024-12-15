@@ -18,6 +18,10 @@ on:
 
 jobs:
   eslint:
+    defaults:
+      run:
+        working-directory: ./frontend
+
     name: Run eslint scanning
     runs-on: ubuntu-latest
     permissions:
@@ -32,17 +36,29 @@ jobs:
         run: |
           npm install eslint@8.10.0
           npm install @microsoft/eslint-formatter-sarif@2.1.7
+          npx eslint --version
+          npm list @microsoft/eslint-formatter-sarif
 
       - name: Run ESLint
         run: npx eslint .
           --config .eslintrc.js
           --ext .ts
           --format @microsoft/eslint-formatter-sarif
-          --output-file eslint-results.sarif
+          --output-file eslint-results.sarif || exit 0
         continue-on-error: true
+
+      - name: Check ESLint Output
+        run: |
+          pwd
+          ls -la
+
+      - name: Verify ESLint output
+        run: |
+          ls -l eslint-results.sarif
+          cat eslint-results.sarif
 
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: eslint-results.sarif
+          sarif_file: frontend/eslint-results.sarif
           wait-for-processing: true

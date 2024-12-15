@@ -1,6 +1,7 @@
 ﻿module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
+  ignorePatterns: [".eslintrc.js", "karma.conf.js"],
   plugins: [
     "@angular-eslint/eslint-plugin",
     "@typescript-eslint"
