@@ -5,6 +5,9 @@ on:
       - main
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: ./frontend
 
     runs-on: ubuntu-latest
 
