@@ -1,9 +1,24 @@
+# Front-end
+
 ## 🛠️ Technologies
 
 This project is built with:
 
 - **Angular**: Modern, component-based front-end framework.
 - **Web Audio API**: Direct access to audio capabilities of the browser for smooth sound manipulation and playback.
+
+## 📚 References
+
+<details>
+  <summary>Misc. references used in this project</summary>
+
+- https://rsms.me/inter/
+- https://github.com/PahanPerera/angular-light-dark-app
+- https://effect.website/
+- https://github.com/simonwhitaker/github-fork-ribbon-css
+- Host : https://pages.github.com/
+</details>
+
 
 ## ⚙️ Local Setup
 

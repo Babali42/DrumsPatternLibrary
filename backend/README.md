@@ -1,4 +1,23 @@
-# Drum Beat Repo back-end
+# Back-end
+
+## 🛠️ Technologies
+
+This project is built with:
+
+- **Scala**: Modern language both functional and OOP, best of the two world !
+- **Play**: A minimalistic back-end framework for the jvm languages, easy to test
+- **MongoDB**: A noSQL database to store beats and groovy rhythms :)
+
+## 📚 References
+
+<details>
+  <summary>Misc. references used in this project</summary>
+
+- https://www.docker.com/
+- Back-end hosting : https://render.com/
+- Database hosting : https://www.mongodb.com/products/platform/cloud
+</details>
+
 
 ## Run
 
