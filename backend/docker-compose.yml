@@ -1,0 +1,36 @@
+services:
+  mongo-db-service:
+    container_name: mongo-db
+    image: mongo:4.2
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_DATABASE=auth
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express-service:
+    container_name: mongo-express
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo-dev
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_BASICAUTH=false
+    ports:
+      - '8081:8081'
+
+  drum-beat-repo-app-service:
+    container_name: drum-beat-repo-app
+    image: drum-beat-repo-app-image
+    environment:
+      - DATABASE_CONNECTION_STRING=mongodb://admin:pass@mongo-db-service:27017
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mongo-db-service
+
+volumes:
+  mongo-data:
