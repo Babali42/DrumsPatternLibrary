@@ -16,10 +16,6 @@ RUN sbt clean compile stage
 # Use a lightweight JRE image for running the app
 FROM openjdk:11-jre-slim
 
-# Define a build argument
-ARG API_KEY
-ENV PLAY_HTTP_SECRET_KEY=${API_KEY}
-
 # Set the working directory inside the container
 WORKDIR /app
 

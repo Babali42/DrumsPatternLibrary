@@ -13,24 +13,27 @@ This project is built with:
 <details>
   <summary>Misc. references used in this project</summary>
 
-- https://www.docker.com/
 - Back-end hosting : https://render.com/
 - Database hosting : https://www.mongodb.com/products/platform/cloud
+- https://www.docker.com/
+- Database client : https://www.mongodb.com/docs/mongodb-shell/install/
+- REST API client : https://github.com/usebruno/bruno
 </details>
 
+## ▶️ Run the backend
+### 1. Create the env file :
 
-## Run
+copy the .env.sample file in the current folder, and rename the copy in .env
 
-Run mongo db & mongo express
-
+### 2. Execute the back-end in docker
+Run mongo db & mongo express & the app
 ```docker-compose up```
 
+## 🛠️ Debug the backend
+### Run DrumBeatRepo alone (don't forget to stop the corresponding docker container)
 ```sbt run```
 
-## Execute the tests
-
-```docker-compose up```
-
+## 🔫 Execute the tests
 ```sbt test```
 
 ## Useful links
