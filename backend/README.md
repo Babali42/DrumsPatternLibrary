@@ -26,8 +26,15 @@ This project is built with:
 copy the .env.sample file in the current folder, and rename the copy in .env
 
 ### 2. Execute the back-end in docker
-Run mongo db & mongo express & the app
-```docker-compose up```
+
+Go to the backend folder
+```cd ./backend/```
+
+Build app image
+```docker build -t drum-beat-repo-app-image .```
+
+Run mongo db and the previous image
+```docker-compose up -d```
 
 ## 🛠️ Debug the backend
 ### Run DrumBeatRepo alone (don't forget to stop the corresponding docker container)
@@ -35,6 +42,10 @@ Run mongo db & mongo express & the app
 
 ## 🔫 Execute the tests
 ```sbt test```
+
+## Access the database
+
+Use the connection string ```mongodb://admin:pass@127.0.0.1:27017/admin```
 
 ## Useful links
 
