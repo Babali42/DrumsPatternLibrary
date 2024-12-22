@@ -1,9 +1,15 @@
-### Seed Database Tutorial (Windows)
+# Seed Database Tutorial
 
-Run powershell : ``powershell``
+## 1. Set environment variable
 
-Create an environment varible in powershell : ``$Env:DATABASE_CONNECTION_STRING = "value"``
+- windows : 
+Run powershell : ``powershell`` ``$Env:DATABASE_CONNECTION_STRING = "value"``
 
-Go to script folder : ``cd \backend\mongoDB\``
+- mac :
+In terminal : ``Export DATABASE_CONNECTION_STRING = value``
 
-Run script : ``node seed.js``
+## 2. Run script (in the same terminal)
+
+``cd \backend\mongoDB\``
+
+``node seed.js``
