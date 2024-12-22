@@ -1,0 +1,15 @@
+meta {
+  name: GetGenres
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host}}/genres/
+  body: none
+  auth: none
+}
+
+vars:pre-request {
+  host: http://localhost:9000
+}
