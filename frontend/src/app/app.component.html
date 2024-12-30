@@ -29,7 +29,7 @@
       </section>
     </nav>
     <section class="flex content">
-      <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
+      <router-outlet></router-outlet>
     </section>
   </main>
 </ng-container>
@@ -37,7 +37,7 @@
 <ng-container *ngIf="isMobileDisplay && isLandscape">
   <main class="app-container">
     <section class="flex content">
-      <sequencer [beat]="selectedBeat" [genre]="selectedGenre"></sequencer>
+      <router-outlet></router-outlet>
     </section>
   </main>
 </ng-container>

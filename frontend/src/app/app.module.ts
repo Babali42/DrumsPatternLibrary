@@ -11,10 +11,11 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LoadingInterceptor} from './interceptors/loading.interceptor';
 import {environment} from "../environments/environment";
 import {provideRouter, RouterOutlet, Routes} from "@angular/router";
+import {BeatCreatorComponent} from "./components/beat-creator/beat-creator.component";
 
 export const routes: Routes = [
   { path: '', component: SequencerComponent },
-  { path: 'add-beat', component: SequencerComponent }
+  { path: 'add-beat', component: BeatCreatorComponent }
 ];
 import {IManageGenresToken} from "./domain/ports/secondary/i-manage-genres";
 
