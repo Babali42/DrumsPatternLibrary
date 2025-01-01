@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
     this.selectedBeat = beat;
     this.router.navigate([], {
       relativeTo: this.route, // Use the current route as a base
-      queryParams: { genre: "techno", beat: beat.id },
+      queryParams: { genre: this.selectedGenre.label, beat: beat.id },
       queryParamsHandling: 'merge', // Merge with existing query params (optional)
     }).then(success => console.log('Navigation success:', success))
       .catch(err => console.error('Navigation error:', err));

@@ -19,6 +19,7 @@ export class SequencerComponent implements OnInit {
   beat = {} as Beat;
   genre = {} as Genre;
   beatBehaviourSubject: Subject<Beat>;
+  private genres : Genre[] = [];
 
   constructor(@Inject(IManageGenresToken)  private _genresManager: IManageGenres,
               public soundService: SoundService,
@@ -27,14 +28,16 @@ export class SequencerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectGenre('Techno', undefined);
+
     this.route.queryParamMap.subscribe((params) => {
-      const selectedBeat = params.get('beat') || 'defaultBeat';
-      const selectedGenre = params.get('genre') || 'defaultGenre';
-      this.beatBehaviourSubject.next({id: selectedBeat} as Beat);
+      const selectedBeat = params.get('beat') || undefined;
+      const selectedGenre = params.get('genre') || 'Techno';
+      this.selectGenre(selectedGenre, selectedBeat);
     });
 
     this._genresManager.getGenres().then(genres => {
-      this.selectGenre(genres[0]);
+      this.genres = genres;
     }).catch(error => { console.log(error); });
 
     this.beatBehaviourSubject.subscribe(beat => {
@@ -63,9 +66,16 @@ export class SequencerComponent implements OnInit {
     }
   }
 
-  selectGenre(genre: Genre): void {
-    this.genre = genre;
-    this.selectBeat(this.genre.beats[0]);
+  selectGenre(genre: string, beat: string | undefined): void {
+    if(!(this.genres.length > 0)){
+      return
+    }
+
+    // @ts-ignore
+    this.genre = this.genres.find(x => x.label == genre);
+
+    const beatToSelect = beat != undefined ? this.genre.beats.find(x => x.id == beat) : this.genre.beats[0];
+    this.selectBeat(beatToSelect!!);
   }
 
   selectBeat(beat: Beat): void {

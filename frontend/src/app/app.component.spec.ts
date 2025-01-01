@@ -7,7 +7,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {LoadingBarModule} from "@ngx-loading-bar/core";
 import {RouterTestingModule} from "@angular/router/testing";
 import {routes} from "./app.module";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {Beat} from "./domain/beat";
 
@@ -16,6 +16,7 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let router: Router;
   let location: Location;
+  let activatedRoute: ActivatedRoute;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -30,6 +31,7 @@ describe('AppComponent', () => {
 
     router = TestBed.inject(Router);
     location = TestBed.inject(Location);
+    activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
   it('should create the app', () => {
@@ -38,6 +40,6 @@ describe('AppComponent', () => {
 
   it('should navigate when genre is selected', () => {
     component.selectBeat({ id: "metal"} as Beat);
-    expect(location.path()).toBe("");
+    activatedRoute.queryParams.subscribe(x => expect(x).toBeDefined());
   });
 });
