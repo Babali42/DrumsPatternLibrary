@@ -10,6 +10,7 @@ import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LoadingInterceptor} from './interceptors/loading.interceptor';
 import {environment} from "../environments/environment";
+import {IManageGenresToken} from "./domain/ports/secondary/i-manage-genres";
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import {environment} from "../environments/environment";
   declarations: [AppComponent],
   providers: [
     // Inject adapters into domain classes
-    {provide: 'IManageGenres', useClass: GenresAdapterService},
+    {provide: IManageGenresToken, useClass: GenresAdapterService},
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
