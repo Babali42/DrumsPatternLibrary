@@ -5,7 +5,7 @@ import {Beat} from "./domain/beat";
 import {SoundService} from "./services/sound/sound.service";
 import {ModeToggleService} from "./services/light-dark-mode/mode-toggle.service";
 import {Genre} from "./domain/genre";
-import IManageGenres from "./domain/ports/secondary/i-manage-genres";
+import IManageGenres, {IManageGenresToken} from "./domain/ports/secondary/i-manage-genres";
 import {Mode} from './services/light-dark-mode/mode-toggle.model';
 
 @Component({
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   protected readonly Mode = Mode;
 
   constructor(private responsive: BreakpointObserver,
-              @Inject('IManageGenres') private _genresManager: IManageGenres,
+              @Inject(IManageGenresToken) private _genresManager: IManageGenres,
               public soundService: SoundService,
               private modeToggleService: ModeToggleService) {
     this.beatBehaviourSubject = new Subject<Beat>();
