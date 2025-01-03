@@ -1,12 +1,11 @@
 import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Subject} from 'rxjs';
 import {Beat} from "./domain/beat";
-import {SoundService} from "./services/sound/sound.service";
 import {ModeToggleService} from "./services/light-dark-mode/mode-toggle.service";
 import {Genre} from "./domain/genre";
 import IManageGenres, {IManageGenresToken} from "./domain/ports/secondary/i-manage-genres";
 import {Mode} from './services/light-dark-mode/mode-toggle.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit {
   selectedGenre = {} as Genre;
   selectedBeat = {} as Beat;
   musicGenres: Genre[] = [];
-  beatBehaviourSubject: Subject<Beat>;
+
   isPortrait: boolean = false;
   isLandscape: boolean = false;
   mode: Mode = Mode.LIGHT;
@@ -27,9 +26,8 @@ export class AppComponent implements OnInit {
 
   constructor(private responsive: BreakpointObserver,
               @Inject(IManageGenresToken) private _genresManager: IManageGenres,
-              public soundService: SoundService,
-              private modeToggleService: ModeToggleService) {
-    this.beatBehaviourSubject = new Subject<Beat>();
+              private modeToggleService: ModeToggleService,
+              private router: Router) {
     this.modeToggleService.modeChanged$.subscribe(x => this.mode = x);
     this.checkOrientation();
   }
@@ -45,15 +43,6 @@ export class AppComponent implements OnInit {
       this.musicGenres = genres;
       this.selectGenre(this.musicGenres[0]);
     }).catch(error => { console.log(error); });
-
-    this.beatBehaviourSubject.subscribe(beat => {
-      if (this.soundService.isPlaying)
-        this.soundService.pause();
-      this.soundService.reset();
-      this.soundService.setBpm(beat.bpm);
-      this.soundService.setTracks(beat.tracks);
-      this.soundService.setStepNumber(beat.tracks[0].steps.length);
-    });
   }
 
   selectGenre(genre: Genre): void {
@@ -63,23 +52,17 @@ export class AppComponent implements OnInit {
 
   selectBeat(beat: Beat): void {
     this.selectedBeat = beat;
-    this.beatBehaviourSubject.next(this.selectedBeat);
+    this.navigateToBeat(beat)
+      .then(success => console.log('Navigation success:', success))
+      .catch(err => console.error('Navigation error:', err));
   }
 
-  toggleIsPlaying(): void {
-    this.soundService.playPause().then(
-      () => {
-      },
-      () => {
-      }
-    );
-  }
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent): void {
-    if (event.code == "Space") {
-      this.toggleIsPlaying();
-    }
+  navigateToBeat(beat: Beat) {
+    return this.router.navigate([""], {
+      queryParams: {genre: this.selectedGenre.label, beat: beat.id},
+      queryParamsHandling: 'merge', // Merge with existing query params (optional)
+      replaceUrl: true,
+    });
   }
 
   @HostListener('window:orientationchange', ['$event'])
