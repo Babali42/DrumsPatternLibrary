@@ -1,4 +1,4 @@
-import {Component, HostListener, Inject, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {SoundService} from '../../services/sound/sound.service';
 import {Beat} from '../../domain/beat';
 import {NgFor} from '@angular/common';
@@ -28,16 +28,13 @@ export class SequencerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectGenre('Techno', undefined);
-
-    this.route.queryParamMap.subscribe((params) => {
-      const selectedBeat = params.get('beat') || undefined;
-      const selectedGenre = params.get('genre') || 'Techno';
-      this.selectGenre(selectedGenre, selectedBeat);
-    });
-
     this._genresManager.getGenres().then(genres => {
       this.genres = genres;
+      this.route.queryParamMap.subscribe((params) => {
+        const selectedBeat = params.get('beat') || undefined;
+        const selectedGenre = params.get('genre') || 'Techno';
+        this.selectGenre(selectedGenre, selectedBeat);
+      });
     }).catch(error => { console.log(error); });
 
     this.beatBehaviourSubject.subscribe(beat => {
