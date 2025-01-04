@@ -18,6 +18,7 @@ export class SoundService {
   private playbackSource: AudioBufferSourceNode;
   private stepNumber: number = 16;
   private audioFilesService = new AudioFilesService();
+  private loopBuffer: AudioBuffer | null = null;
 
   constructor(
     private soundGeneratorService: SoundGeneratorService,
@@ -30,8 +31,15 @@ export class SoundService {
   async playPause(): Promise<void> {
     this.isPlaying = !this.isPlaying;
     if (this.isPlaying) {
-      const loopBuffer = await this.soundGeneratorService.getRenderedBuffer(this.tracks, this.samples, this.bpm, this.stepNumber);
-      this.playSound(loopBuffer);
+      if (!this.loopBuffer) {
+        this.loopBuffer = await this.soundGeneratorService.getRenderedBuffer(
+          this.tracks,
+          this.samples,
+          this.bpm,
+          this.stepNumber
+        );
+      }
+      this.playSound(this.loopBuffer);
     } else {
       this.pause();
     }

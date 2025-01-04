@@ -36,7 +36,9 @@ describe("sound", () => {
   });
 
   it("should call the soundGenerator once when play twice", async () => {
-    await soundService.playPause();
+    await soundService.playPause();//play
+    await soundService.playPause();//pause
+    await soundService.playPause();//play
     // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(soundGeneratorService.getRenderedBuffer).toHaveBeenCalledTimes(1);
   });
