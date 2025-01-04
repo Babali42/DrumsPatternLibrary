@@ -44,3 +44,15 @@ To run the project locally, follow these steps:
     ```
 
 4. Visit `http://localhost:4200` in your browser to see the app in action.
+
+## Run test locally
+
+Run test :
+```bash
+npm run test
+```
+
+Watch test :
+```bash
+npm run ng test --watch
+```
