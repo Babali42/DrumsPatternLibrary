@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {SoundService} from "../../services/sound/sound.service";
 
 @Component({
   selector: 'app-bpm-input',
@@ -8,23 +9,29 @@ import {Component, Input} from '@angular/core';
   styleUrl: './bpm-input.component.scss'
 })
 export class BpmInputComponent {
-  maxBpm = 300;
-  minBpm = 20;
-  @Input() bpm : number = 128;
+  maxBpm = SoundService.maxBpm;
+  minBpm = SoundService.minBpm;
+  @Input() bpm : number = SoundService.minBpm;
+  @Output() bpmChange = new EventEmitter<number>();
 
   incrementBpm() {
-    this.bpm = Math.min(this.bpm+1, this.maxBpm);
+    this.updateBpm(Math.min(this.bpm+1, this.maxBpm));
   }
 
   decrementBpm() {
-    this.bpm = Math.max(this.bpm-1, this.minBpm);
+    this.updateBpm(Math.max(this.bpm-1, this.minBpm));
   }
 
   updateNumber(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    let newValue = Number(inputElement.value);
-    newValue = Math.min(newValue, this.maxBpm);
-    newValue = Math.max(newValue, this.minBpm);
-    this.bpm = newValue;
+    let value = Number(inputElement.value);
+    value = Math.min(value, this.maxBpm);
+    value = Math.max(value, this.minBpm);
+    this.updateBpm(value);
+  }
+
+  private updateBpm(value: number): void {
+    this.bpm = value;
+    this.bpmChange.emit(this.bpm);
   }
 }
