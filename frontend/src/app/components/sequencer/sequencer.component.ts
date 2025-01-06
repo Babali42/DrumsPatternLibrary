@@ -7,13 +7,14 @@ import {Genre} from "../../domain/genre";
 import { ActivatedRoute } from '@angular/router';
 import IManageGenres, {IManageGenresToken} from "../../domain/ports/secondary/i-manage-genres";
 import {Subject} from "rxjs";
+import {BpmInputComponent} from "../bpm-input/bpm-input.component";
 
 @Component({
   selector: 'sequencer',
   templateUrl: './sequencer.component.html',
   styleUrls: ['./sequencer.component.scss'],
   standalone: true,
-  imports: [NgFor]
+  imports: [NgFor, BpmInputComponent]
 })
 export class SequencerComponent implements OnInit {
   beat = {} as Beat;
