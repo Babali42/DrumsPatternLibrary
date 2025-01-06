@@ -113,6 +113,10 @@ $gap: 4px;
       font-weight: bold;
     }
   }
+
+  div + div {
+    margin-top: 3px;
+  }
 }
 
 .play-button-container {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-bpm-input',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './bpm-input.component.scss'
 })
 export class BpmInputComponent {
-
+  @Input() bpm : number = 128;
 }
