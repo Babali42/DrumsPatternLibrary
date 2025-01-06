@@ -4,16 +4,17 @@ import {Beat} from '../../domain/beat';
 import {NgFor} from '@angular/common';
 import {StepLengths} from './models/step-lengths';
 import {Genre} from "../../domain/genre";
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import IManageGenres, {IManageGenresToken} from "../../domain/ports/secondary/i-manage-genres";
 import {Subject} from "rxjs";
+import {BpmInputComponent} from "../bpm-input/bpm-input.component";
 
 @Component({
   selector: 'sequencer',
   templateUrl: './sequencer.component.html',
   styleUrls: ['./sequencer.component.scss'],
   standalone: true,
-  imports: [NgFor]
+  imports: [NgFor, BpmInputComponent]
 })
 export class SequencerComponent implements OnInit {
   beat = {} as Beat;
@@ -78,5 +79,18 @@ export class SequencerComponent implements OnInit {
 
   protected readonly StepLengths = StepLengths;
   protected readonly Math = Math;
+
+  changeBeatBpm($event: number) {
+    const isPlaying = this.soundService.isPlaying;
+    this.soundService.setBpm($event);
+    this.soundService.generateLoopBuffer().then(
+      () => {
+        if(isPlaying)
+          this.soundService.play();
+      },
+      () => {
+      }
+    );
+  }
 }
 

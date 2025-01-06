@@ -4,8 +4,7 @@
       {{ this.soundService.isPlaying ? "⏸" : "▶" }}
     </button>
   </div>
-  <div class="sequencer-header flex">
-    <div>
+  <div class="sequencer-header">
       <div class="label">
         <span class="small">Genre : </span>
         <span class="large">{{ genre.label }}</span>
@@ -14,12 +13,11 @@
         <span class="small">Beat : </span>
         <span class="large">{{ beat.label }}</span>
       </div>
-      <div class="label">
+      <div class="flex label" style="align-items: center; gap: 5px; margin-top: 2px">
         <span class="small">Tempo : </span>
-        <span class="large">{{ beat.bpm }}</span>
+        <app-bpm-input [bpm]="beat.bpm" (bpmChange)="changeBeatBpm($event)"></app-bpm-input>
         <span class="small"> bpm</span>
       </div>
-    </div>
   </div>
   <div class="tracks-name">
     <h3 *ngFor="let track of beat.tracks" class="track-name">{{ track.name }}</h3>

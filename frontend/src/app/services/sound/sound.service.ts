@@ -9,6 +9,8 @@ import {LoadingBarService} from '@ngx-loading-bar/core';
   providedIn: 'root'
 })
 export class SoundService {
+  static maxBpm = 300;
+  static minBpm = 30;
   bpm: number = 120;
   isPlaying: boolean = false;
   index: number = 0;
@@ -39,7 +41,7 @@ export class SoundService {
           this.stepNumber
         );
       }
-      this.playSound(this.loopBuffer);
+      this.play();
     } else {
       this.pause();
     }
@@ -117,5 +119,20 @@ export class SoundService {
 
   setStepNumber(length: number) {
     this.stepNumber = length;
+  }
+
+  async generateLoopBuffer(): Promise<void> {
+    this.loopBuffer = await this.soundGeneratorService.getRenderedBuffer(
+      this.tracks,
+      this.samples,
+      this.bpm,
+      this.stepNumber
+    );
+  }
+
+  play() : void {
+    if(!this.loopBuffer)
+      return;
+    this.playSound(this.loopBuffer);
   }
 }

@@ -1,0 +1,39 @@
+/* From Uiverse.io by Cybercom682 */
+.number-control {
+  display: flex;
+  align-items: center;
+
+  .number-left::before,
+  .number-right::after {
+    content: attr(data-content);
+    background-color: var(--backgroundColor);;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--borderColor);;
+    width: 20px;
+    color: var(--textColor);
+    cursor: pointer;
+  }
+
+  .number-left::before {
+    content: "-";
+  }
+
+  .number-right::after {
+    content: "+";
+  }
+
+  .number-quantity {
+    padding: 0.25rem;
+    width: 50px;
+    height: 12px;
+    -moz-appearance: textfield;
+    border: 0;
+    border-top: 1px solid var(--borderColor);
+    border-bottom: 1px solid var(--borderColor);
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+  }
+}
+
