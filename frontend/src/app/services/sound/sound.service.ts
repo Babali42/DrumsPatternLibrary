@@ -88,6 +88,10 @@ export class SoundService {
     this.index = 0;
   }
 
+  resetLoopBuffer(): void {
+    this.loopBuffer = null;
+  }
+
   setBpm(bpm: number): void {
     this.bpm = bpm;
   }
