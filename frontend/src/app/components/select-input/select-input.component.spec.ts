@@ -11,7 +11,7 @@ describe('SelectInputComponent', () => {
       imports: [SelectInputComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(SelectInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -19,5 +19,17 @@ describe('SelectInputComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit petChange when a new pet is selected', () => {
+    //Arrange
+    spyOn(component.selectChange, 'emit');
+
+    //Act
+    component.selectedElement = 'gabber';
+    component.onSelectChange();
+
+    //Assert
+    expect(component.selectChange.emit).toHaveBeenCalledWith('gabber');
   });
 });

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 
@@ -12,4 +12,9 @@ import {NgForOf} from "@angular/common";
 export class SelectInputComponent {
   @Input() elements: string[] = [];
   @Input() selectedElement: string ="";
+  @Output() selectChange = new EventEmitter<string>();
+
+  onSelectChange() {
+    this.selectChange.emit(this.selectedElement);
+  }
 }
