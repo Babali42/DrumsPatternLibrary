@@ -11,7 +11,8 @@ import {NgForOf} from "@angular/common";
 })
 export class SelectInputComponent {
   @Input() elements: string[] = [];
-  @Input() selectedElement: string ="";
+  @Input() selectedElement: string = "";
+  @Input() placeHolder: string = "";
   @Output() selectChange = new EventEmitter<string>();
 
   onSelectChange() {

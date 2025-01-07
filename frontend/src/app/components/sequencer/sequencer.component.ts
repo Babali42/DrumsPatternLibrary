@@ -23,6 +23,8 @@ export class SequencerComponent implements OnInit {
   beatBehaviourSubject: Subject<Beat>;
   genres: string[] = [];
   selectedGenreLabel: string = "";
+  beats: string[] = [];
+  selectedBeatLabel: string = "";
 
   constructor(@Inject(IManageGenresToken)  private _genresManager: IManageGenres,
               public soundService: SoundService,
@@ -70,6 +72,8 @@ export class SequencerComponent implements OnInit {
     if (!firstGenre) return;
 
     this.genre = firstGenre;
+    this.selectedGenreLabel = firstGenre.label;
+    this.beats = firstGenre.beats.map(x => x.label);
 
     const beatToSelect = beat ? firstGenre.beats.find(x => x.id === beat) : firstGenre.beats[0];
     this.selectBeat(beatToSelect);
@@ -78,7 +82,8 @@ export class SequencerComponent implements OnInit {
   selectBeat(beatToSelect: Beat | undefined): void {
     if (beatToSelect == undefined) return;
     this.beat = beatToSelect;
-    this.beatBehaviourSubject.next(this.beat)
+    this.beatBehaviourSubject.next(this.beat);
+    this.selectedBeatLabel = this.beat.label;
   }
 
   protected readonly StepLengths = StepLengths;

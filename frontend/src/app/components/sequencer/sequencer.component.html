@@ -7,11 +7,17 @@
   <div class="sequencer-header">
       <div class="label">
         <span class="small">Genre : </span>
-          <app-select-input [elements]="genres" [selectedElement]="selectedGenreLabel"></app-select-input>
+        <app-select-input [elements]="genres"
+                          [selectedElement]="selectedGenreLabel"
+                          placeHolder="Choose genre">
+        </app-select-input>
       </div>
       <div class="label">
         <span class="small">Beat : </span>
-        <span class="large">{{ beat.label }}</span>
+        <app-select-input [elements]="beats"
+                          [selectedElement]="selectedBeatLabel"
+                          placeHolder="Choose {{selectedGenreLabel}} beat">
+        </app-select-input>
       </div>
       <div class="flex label" style="align-items: center; gap: 5px; margin-top: 2px">
         <span class="small">Tempo : </span>
