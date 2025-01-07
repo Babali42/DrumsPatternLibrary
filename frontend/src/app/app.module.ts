@@ -19,7 +19,6 @@ export const routes: Routes = [
   { path: 'add-beat', component: BeatCreatorComponent }
 ];
 import {IManageGenresToken} from "./domain/ports/secondary/i-manage-genres";
-import {SelectInputComponent} from "./components/select-input/select-input.component";
 
 @NgModule({
   imports: [
