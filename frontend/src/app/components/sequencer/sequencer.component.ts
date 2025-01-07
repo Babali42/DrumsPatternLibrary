@@ -21,10 +21,11 @@ export class SequencerComponent implements OnInit {
   beat = {} as Beat;
   genre = {} as  Genre;
   beatBehaviourSubject: Subject<Beat>;
-  genres: string[] = [];
+  genresLabel: string[] = [];
   selectedGenreLabel: string = "";
   beats: string[] = [];
   selectedBeatLabel: string = "";
+  private genres: Genre[] = [];
 
   constructor(@Inject(IManageGenresToken)  private _genresManager: IManageGenres,
               public soundService: SoundService,
@@ -34,7 +35,8 @@ export class SequencerComponent implements OnInit {
 
   ngOnInit() {
     this._genresManager.getGenres().then(genres => {
-      this.genres = genres.map(x => x.label);
+      this.genres = genres;
+      this.genresLabel = genres.map(x => x.label);
       this.route.queryParamMap.subscribe((params) => {
         this.selectGenre(genres, params.get('genre'), params.get('beat'));
       });
@@ -100,6 +102,15 @@ export class SequencerComponent implements OnInit {
       () => {
       }
     );
+  }
+
+  genreChange($event: string) {
+    this.selectGenre(this.genres, $event, null);
+  }
+
+  beatChange($event: string) {
+    const beatToSelect = this.genres.find(x => x.label === this.selectedGenreLabel)?.beats.find(x => x.label === $event);
+    this.selectBeat(beatToSelect);
   }
 }
 

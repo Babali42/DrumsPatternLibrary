@@ -7,8 +7,9 @@
   <div class="sequencer-header">
       <div class="label">
         <span class="small">Genre : </span>
-        <app-select-input [elements]="genres"
+        <app-select-input [elements]="genresLabel"
                           [selectedElement]="selectedGenreLabel"
+                          (selectChange)="genreChange($event)"
                           placeHolder="Choose genre">
         </app-select-input>
       </div>
@@ -16,6 +17,7 @@
         <span class="small">Beat : </span>
         <app-select-input [elements]="beats"
                           [selectedElement]="selectedBeatLabel"
+                          (selectChange)="beatChange($event)"
                           placeHolder="Choose {{selectedGenreLabel}} beat">
         </app-select-input>
       </div>
