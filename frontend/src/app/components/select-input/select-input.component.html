@@ -1,0 +1,4 @@
+<select [(ngModel)]="selectedElement" (change)="onSelectChange()">
+  <option value="" disabled selected>{{placeHolder}}</option>
+  <option *ngFor="let element of elements" [value]="element">{{ element }}</option>
+</select>

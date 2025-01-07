@@ -12,6 +12,7 @@ import {LoadingInterceptor} from './interceptors/loading.interceptor';
 import {environment} from "../environments/environment";
 import {provideRouter, RouterOutlet, Routes} from "@angular/router";
 import {BeatCreatorComponent} from "./components/beat-creator/beat-creator.component";
+import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   { path: '', component: SequencerComponent },
@@ -24,14 +25,13 @@ import {IManageGenresToken} from "./domain/ports/secondary/i-manage-genres";
     BrowserModule,
     HttpClientModule,
     LoadingBarModule,
-
+    FormsModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     environment.httpClientInMemory ? HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false}
     ) : [],
-    SequencerComponent,
     RouterOutlet
   ],
   declarations: [AppComponent],

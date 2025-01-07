@@ -8,18 +8,24 @@ import {ActivatedRoute} from '@angular/router';
 import IManageGenres, {IManageGenresToken} from "../../domain/ports/secondary/i-manage-genres";
 import {Subject} from "rxjs";
 import {BpmInputComponent} from "../bpm-input/bpm-input.component";
+import {SelectInputComponent} from "../select-input/select-input.component";
 
 @Component({
   selector: 'sequencer',
   templateUrl: './sequencer.component.html',
   styleUrls: ['./sequencer.component.scss'],
   standalone: true,
-  imports: [NgFor, BpmInputComponent]
+  imports: [NgFor, BpmInputComponent, SelectInputComponent]
 })
 export class SequencerComponent implements OnInit {
   beat = {} as Beat;
   genre = {} as  Genre;
   beatBehaviourSubject: Subject<Beat>;
+  genresLabel: string[] = [];
+  selectedGenreLabel: string = "";
+  beats: string[] = [];
+  selectedBeatLabel: string = "";
+  private genres: Genre[] = [];
 
   constructor(@Inject(IManageGenresToken)  private _genresManager: IManageGenres,
               public soundService: SoundService,
@@ -29,6 +35,8 @@ export class SequencerComponent implements OnInit {
 
   ngOnInit() {
     this._genresManager.getGenres().then(genres => {
+      this.genres = genres;
+      this.genresLabel = genres.map(x => x.label);
       this.route.queryParamMap.subscribe((params) => {
         this.selectGenre(genres, params.get('genre'), params.get('beat'));
       });
@@ -66,6 +74,8 @@ export class SequencerComponent implements OnInit {
     if (!firstGenre) return;
 
     this.genre = firstGenre;
+    this.selectedGenreLabel = firstGenre.label;
+    this.beats = firstGenre.beats.map(x => x.label);
 
     const beatToSelect = beat ? firstGenre.beats.find(x => x.id === beat) : firstGenre.beats[0];
     this.selectBeat(beatToSelect);
@@ -74,7 +84,8 @@ export class SequencerComponent implements OnInit {
   selectBeat(beatToSelect: Beat | undefined): void {
     if (beatToSelect == undefined) return;
     this.beat = beatToSelect;
-    this.beatBehaviourSubject.next(this.beat)
+    this.beatBehaviourSubject.next(this.beat);
+    this.selectedBeatLabel = this.beat.label;
   }
 
   protected readonly StepLengths = StepLengths;
@@ -91,6 +102,15 @@ export class SequencerComponent implements OnInit {
       () => {
       }
     );
+  }
+
+  genreChange($event: string) {
+    this.selectGenre(this.genres, $event, null);
+  }
+
+  beatChange($event: string) {
+    const beatToSelect = this.genres.find(x => x.label === this.selectedGenreLabel)?.beats.find(x => x.label === $event);
+    this.selectBeat(beatToSelect);
   }
 }
 
