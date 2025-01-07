@@ -13,25 +13,6 @@
   &.genre {
     justify-content: flex-end;
   }
-
-  .button {
-    border-radius: 5px;
-    width: 90%;
-    padding: 5px;
-    background-color: var(--backgroundColor);
-    border: none;
-    text-align: left;
-    color: var(--textColor);
-
-    &.selected {
-      background-color: var(--menuButtonColor);
-      border: solid 1px var(--borderColor);
-    }
-
-    &:hover:not(.selected) {
-      background-color: #cecece;
-    }
-  }
 }
 
 .content {
@@ -89,27 +70,4 @@
   .portrait-to-landscape-image {
     width: 100px;
   }
-}
-
-.beat-name {
-  height: 40px;
-  @include centered-text;
-  width: 200px;
-  min-width: 200px;
-  font-size: 20px;
-}
-
-.bpm {
-  height: 40px;
-  @include centered-text;
-  width: 120px;
-  min-width: 120px;
-  font-size: 20px;
-}
-
-.corner {
-  position: absolute;
-  width: 75px;
-  aspect-ratio: 1;
-  clip-path: polygon(0 100%, 0 0, 100% 100%, 0 100%);
 }
