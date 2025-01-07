@@ -7,7 +7,7 @@
   <div class="sequencer-header">
       <div class="label">
         <span class="small">Genre : </span>
-        <span class="large">{{ genre.label }}</span>
+          <app-select-input [elements]="genres" [selectedElement]="selectedGenreLabel"></app-select-input>
       </div>
       <div class="label">
         <span class="small">Beat : </span>

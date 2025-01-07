@@ -8,18 +8,21 @@ import {ActivatedRoute} from '@angular/router';
 import IManageGenres, {IManageGenresToken} from "../../domain/ports/secondary/i-manage-genres";
 import {Subject} from "rxjs";
 import {BpmInputComponent} from "../bpm-input/bpm-input.component";
+import {SelectInputComponent} from "../select-input/select-input.component";
 
 @Component({
   selector: 'sequencer',
   templateUrl: './sequencer.component.html',
   styleUrls: ['./sequencer.component.scss'],
   standalone: true,
-  imports: [NgFor, BpmInputComponent]
+  imports: [NgFor, BpmInputComponent, SelectInputComponent]
 })
 export class SequencerComponent implements OnInit {
   beat = {} as Beat;
   genre = {} as  Genre;
   beatBehaviourSubject: Subject<Beat>;
+  genres: string[] = [];
+  selectedGenreLabel: string = "";
 
   constructor(@Inject(IManageGenresToken)  private _genresManager: IManageGenres,
               public soundService: SoundService,
@@ -29,6 +32,7 @@ export class SequencerComponent implements OnInit {
 
   ngOnInit() {
     this._genresManager.getGenres().then(genres => {
+      this.genres = genres.map(x => x.label);
       this.route.queryParamMap.subscribe((params) => {
         this.selectGenre(genres, params.get('genre'), params.get('beat'));
       });

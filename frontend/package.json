@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^17.3.12",
     "@angular/platform-browser-dynamic": "^17.3.12",
     "@angular/router": "^17.3.12",
+    "@angular/forms": "^17.3.12",
     "@ngx-loading-bar/core": "^7.0.0",
     "angular-in-memory-web-api": "^0.17.0",
     "effect": "^3.10.14",
