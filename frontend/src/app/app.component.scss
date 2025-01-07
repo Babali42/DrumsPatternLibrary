@@ -3,6 +3,12 @@
 
 .app-container {
   height: 100%;
+
+  .top-left-corner{
+    position: absolute;
+    top: $main-app-margin-size;
+    left: $main-app-margin-size;
+  }
 }
 
 .menu {
@@ -30,12 +36,6 @@
 
 .column {
   flex-direction: column;
-}
-
-.left-menu {
-  padding: 10px;
-  justify-content: space-between;
-  margin-bottom: 150px;
 }
 
 .nowrap {

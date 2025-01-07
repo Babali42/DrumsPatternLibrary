@@ -1,13 +1,12 @@
 <ngx-loading-bar></ngx-loading-bar>
 <ng-container *ngIf="!isMobileDisplay">
   <main class="flex app-container">
-    <nav class="flex column left-menu">
-      <img
-        src="./assets/images/title.svg"
-        id="title-image"
-        alt="Website Title"
-      />
-    </nav>
+    <img
+      src="./assets/images/title.svg"
+      id="title-image"
+      alt="Website Title"
+      class="top-left-corner"
+    />
     <section class="flex content">
       <router-outlet></router-outlet>
     </section>
