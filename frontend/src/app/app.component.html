@@ -7,26 +7,6 @@
         id="title-image"
         alt="Website Title"
       />
-      <section class="flex menu genre" *ngIf="musicGenres.length != 0">
-        <h2>Genre</h2>
-        <button
-          class="button pointer"
-          *ngFor="let genre of musicGenres"
-          (click)="selectGenre(genre)"
-          [ngClass]="{ selected: genre.label == selectedGenre.label }">
-          {{ genre.label }}
-        </button>
-      </section>
-      <section class="flex menu" *ngIf="musicGenres.length != 0">
-        <h2>{{ this.selectedGenre.label }} beats</h2>
-        <button
-          class="button pointer"
-          *ngFor="let beat of selectedGenre.beats"
-          (click)="selectBeat(beat)"
-          [ngClass]="{ selected: beat.id == selectedBeat.id }">
-          {{ beat.label }}
-        </button>
-      </section>
     </nav>
     <section class="flex content">
       <router-outlet></router-outlet>
