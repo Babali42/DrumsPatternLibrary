@@ -134,6 +134,18 @@
             "scripts": [],
             "karmaConfig": "karma.conf.js"
           }
+        },
+        "e2e": {
+          "builder": "@puppeteer/ng-schematics:puppeteer",
+          "options": {
+            "devServerTarget": "DrumBeatRepo:serve",
+            "testRunner": "jasmine"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "DrumBeatRepo:serve:production"
+            }
+          }
         }
       }
     }
