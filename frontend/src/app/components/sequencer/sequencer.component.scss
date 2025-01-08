@@ -116,7 +116,12 @@ $gap: 4px;
   }
 
   div + div {
-    margin-top: 3px;
+    margin-top: 5px;
+  }
+
+  .bpm-input-group {
+    align-items: center;
+    gap: 5px;
   }
 }
 

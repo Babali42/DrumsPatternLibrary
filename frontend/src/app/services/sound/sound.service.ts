@@ -9,7 +9,7 @@ import {LoadingBarService} from '@ngx-loading-bar/core';
   providedIn: 'root'
 })
 export class SoundService {
-  static maxBpm = 300;
+  static maxBpm = 1300;
   static minBpm = 30;
   bpm: number = 120;
   isPlaying: boolean = false;

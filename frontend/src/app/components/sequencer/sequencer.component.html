@@ -21,7 +21,7 @@
                           placeHolder="Choose {{selectedGenreLabel}} beat">
         </app-select-input>
       </div>
-      <div class="flex label" style="align-items: center; gap: 5px; margin-top: 2px">
+      <div class="flex label bpm-input-group">
         <span class="small">Tempo : </span>
         <app-bpm-input [bpm]="beat.bpm" (bpmChange)="changeBeatBpm($event)"></app-bpm-input>
         <span class="small"> bpm</span>

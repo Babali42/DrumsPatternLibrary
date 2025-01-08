@@ -17,11 +17,15 @@
   }
 
   .number-left::before {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
     content: "-";
   }
 
   .number-right::after {
     content: "+";
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
   }
 
   .number-quantity {
