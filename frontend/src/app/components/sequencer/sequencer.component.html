@@ -28,7 +28,12 @@
       </div>
   </div>
   <div class="tracks-name">
-    <h3 *ngFor="let track of beat.tracks" class="track-name">{{ track.name }}</h3>
+    <div *ngFor="let track of beat.tracks" class="flex">
+      <h3 class="track-name">
+        {{ track.name }}
+      </h3>
+      <button style="height: fit-content" (click)="playTrack(track.name)">play</button>
+    </div>
   </div>
   <section class="tracks-container">
     <article *ngFor="let track of beat.tracks">
