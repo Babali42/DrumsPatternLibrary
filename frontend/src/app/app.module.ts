@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from "./adapters/secondary/in-memory-data.service";
 import {SequencerComponent} from "./components/sequencer/sequencer.component";
@@ -20,29 +20,21 @@ export const routes: Routes = [
 ];
 import {IManageGenresToken} from "./domain/ports/secondary/i-manage-genres";
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    LoadingBarModule,
-    FormsModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    environment.httpClientInMemory ? HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    ) : [],
-    RouterOutlet
-  ],
-  declarations: [AppComponent],
-  providers: [
-    // Inject adapters into domain classes
-    {provide: IManageGenresToken, useClass: GenresAdapterService},
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
-    provideRouter(routes)
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        LoadingBarModule,
+        FormsModule,
+        // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+        // and returns simulated server responses.
+        // Remove it when a real server is ready to receive requests.
+        environment.httpClientInMemory ? HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }) : [],
+        RouterOutlet], providers: [
+        // Inject adapters into domain classes
+        { provide: IManageGenresToken, useClass: GenresAdapterService },
+        { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+        provideRouter(routes),
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }
 
