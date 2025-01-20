@@ -2,11 +2,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SoundService} from "../../services/sound/sound.service";
 
 @Component({
-  selector: 'app-bpm-input',
-  standalone: true,
-  imports: [],
-  templateUrl: './bpm-input.component.html',
-  styleUrl: './bpm-input.component.scss'
+    selector: 'app-bpm-input',
+    imports: [],
+    templateUrl: './bpm-input.component.html',
+    styleUrl: './bpm-input.component.scss'
 })
 export class BpmInputComponent {
   maxBpm = SoundService.maxBpm;

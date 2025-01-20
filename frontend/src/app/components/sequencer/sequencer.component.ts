@@ -11,11 +11,10 @@ import {BpmInputComponent} from "../bpm-input/bpm-input.component";
 import {SelectInputComponent} from "../select-input/select-input.component";
 
 @Component({
-  selector: 'sequencer',
-  templateUrl: './sequencer.component.html',
-  styleUrls: ['./sequencer.component.scss'],
-  standalone: true,
-  imports: [NgFor, BpmInputComponent, SelectInputComponent]
+    selector: 'sequencer',
+    templateUrl: './sequencer.component.html',
+    styleUrls: ['./sequencer.component.scss'],
+    imports: [NgFor, BpmInputComponent, SelectInputComponent]
 })
 export class SequencerComponent implements OnInit {
   beat = {} as Beat;
